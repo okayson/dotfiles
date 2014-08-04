@@ -12,6 +12,8 @@ set nobackup
 set iminsert=0 imsearch=0
 inoremap <silent> <ESC> <ESC>
 
+set shell=bash.exe
+
 "--- Display ---
 set columns=100
 set lines=40
