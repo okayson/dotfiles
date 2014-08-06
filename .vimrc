@@ -39,7 +39,7 @@ set backspace=start,eol,indent
 set whichwrap=b,s,h,l,<,>,[,]
 set clipboard=unnamed
 set list
-set listchars=tab:^\ ,trail:~
+set listchars=tab:^_,trail:~
 set wildmenu wildmode=list:full
 
 "--- Display ---
