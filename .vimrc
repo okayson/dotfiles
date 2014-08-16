@@ -4,8 +4,12 @@ set visualbell
 set viminfo=
 set nocompatible
 
-set runtimepath+=~/.vim
-runtime! userautoload/*.vim
+if has('vim_starting')
+	set runtimepath+=~/.vim
+	runtime! userautoload/*.vim
+endif
+
+filetype plugin on
 
 "--- Encoding ---
 set encoding=utf-8
