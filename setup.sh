@@ -1,19 +1,20 @@
-set TARGET_DIR=~/dotfiles/
-set LINK_DIR=~/
+#!/bin/bash
 
-set TARGET=.vimrc
-echo === %TARGET% ===
+TARGET_DIR=$HOME/dotfiles/
+LINK_DIR=$HOME/
+
+TARGET=.vimrc
+echo === $TARGET ===
 ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
 
-set TARGET=_gvimrc
-echo === %TARGET% ===
+TARGET=_gvimrc
+echo === $TARGET ===
 ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
 
-set TARGET=.vim
-echo === %TARGET% ===
+TARGET=.vim
+echo === $TARGET ===
 ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
 
-
-set TARGET=.emacs.d
-echo === %TARGET% ===
+TARGET=.emacs.d
+echo === $TARGET ===
 ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
