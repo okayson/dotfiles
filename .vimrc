@@ -30,7 +30,8 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "My Bundles here:
-"NeoBundle {plugin}
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'scrooloose/nerdtree'
 
 call neobundle#end()
 
