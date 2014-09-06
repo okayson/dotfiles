@@ -30,8 +30,17 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "My Bundles here:
+"--- utilities
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'scrooloose/nerdtree'
+"--- color scheme
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'jnurmine/Zenburn'
 
 call neobundle#end()
 
@@ -77,9 +86,10 @@ set matchtime=3
 "set laststatus=2
 "set cursorline
 
+"set background=dark
 "colorscheme desert
-"colorscheme slate
-"colorscheme evening
+"colorscheme molokai
+"colorscheme jellybeans
 
 syntax on
 
