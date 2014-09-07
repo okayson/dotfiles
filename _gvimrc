@@ -20,6 +20,13 @@ set lines=40
 "set cmdheight=2
 "winpos 758 0
 
+set background=dark
+"colorscheme solarized
+colorscheme jellybeans
+"colorscheme molokai
+"colorscheme hybrid
+"colorscheme Zenburn
+
 "--- Mouse ---
 set mouse=a
 set nomousefocus
@@ -28,8 +35,8 @@ set mousehide
 "--- GUI ---
 set guioptions-=T
 
-autocmd FocusGained * set transparency=210
-autocmd FocusLost * set transparency=150
+"autocmd FocusGained * set transparency=210
+"autocmd FocusLost * set transparency=150
 
 "--- Scripts ---
 " Save Window Position

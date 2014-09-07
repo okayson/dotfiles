@@ -86,10 +86,8 @@ set matchtime=3
 "set laststatus=2
 "set cursorline
 
-"set background=dark
-"colorscheme desert
-"colorscheme molokai
-"colorscheme jellybeans
+set background=dark
+colorscheme desert
 
 syntax on
 
