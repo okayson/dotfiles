@@ -17,7 +17,7 @@ set fileencodings=iso-2022-jp,iso-2022-jp-2,utf-8,euc-jp,sjis
 
 "--- Plugins ---
 " Use NeoBundle to manage other plugins.
-" start: NeoBundle setting ----->
+" start: NeoBundle setting ---------->
 filetype plugin indent off
 
 if has('vim_starting')
@@ -34,7 +34,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'scrooloose/nerdtree'
-"--- color scheme
+NeoBundle 'thinca/vim-singleton'
+"--- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'tomasr/molokai'
@@ -47,7 +48,7 @@ call neobundle#end()
 filetype plugin indent on
 
 NeoBundleCheck
-" end: NeoBundle setting <-----
+" end: NeoBundle setting <----------
 
 "--- File ---
 set hidden

@@ -14,6 +14,11 @@ inoremap <silent> <ESC> <ESC>
 
 set shell=bash.exe
 
+"--- Plugins ---
+"singleton.vim
+call singleton#enable()
+let g:singleton#opener = "drop"
+
 "--- Display ---
 set columns=100
 set lines=40
