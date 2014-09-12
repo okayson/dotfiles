@@ -35,6 +35,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'thinca/vim-singleton'
+NeoBundle 'vim-scripts/gtags.vim'
 "--- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -112,4 +113,13 @@ hi String ctermfg=green cterm=bold
 
 "--- Map ---
 map Y y$
+
+" Gtags
+nmap <C-q> <C-w><C-w><C-w>q
+nmap <C-g> :Gtags -g
+nmap <C-l> :Gtags -f %<CR>
+nmap <C-j> :Gtags <C-r><C-w><CR>
+nmap <C-k> :Gtags -r <C-r><C-w><CR>
+nmap <C-n> :cn<CR>
+nmap <C-p> :cp<CR>
 
