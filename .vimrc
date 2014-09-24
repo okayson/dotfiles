@@ -88,28 +88,7 @@ set matchtime=3
 "set laststatus=2
 "set cursorline
 
-set background=dark
-colorscheme desert
-
 syntax on
-
-hi Statement ctermfg=white
-hi Comment   ctermfg=yellow
-hi String ctermfg=green cterm=bold
-"hi Constant ctermfg=yellow cterm=bold
-"hi Character ctermfg=5
-"hi String ctermfg=white cterm=bold
-"hi Function term=bold ctermfg=LightBlue
-"hi Number ctermfg=black
-"hi Identifier ctermfg=black cterm=bold
-"hi Statement ctermfg=white cterm=bold
-"hi PreProc ctermfg=white cterm=bold
-"hi Type ctermfg=LightBlue cterm=bold
-"hi Special ctermfg=grey cterm=bold
-"hi Underlined cterm=italic
-"hi Ignore ctermfg=darkgray
-"hi Error ctermfg=darkred ctermbg=black
-"hi Todo ctermbg=darkred ctermfg=yellow
 
 "--- Map ---
 map Y y$
@@ -122,4 +101,12 @@ nmap <C-j> :Gtags <C-r><C-w><CR>
 nmap <C-k> :Gtags -r <C-r><C-w><CR>
 nmap <C-n> :cn<CR>
 nmap <C-p> :cp<CR>
+
+"--- Local Setting ---
+" Write local setting to '~/.vimrc.local', for example:
+" - color scheme
+" - enviroment variables.(useful document folder etc...)
+if filereadable(expand("~/.vimrc.local"))
+	source ~/.vimrc.local
+endif
 
