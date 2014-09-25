@@ -1,0 +1,24 @@
+"------------------------------
+" variables
+"------------------------------
+let $MD="c:/Users/{user name}/Documents/"
+
+"------------------------------
+" color scheme 
+"------------------------------
+set background=dark
+"colorscheme solarized
+"colorscheme jellybeans
+colorscheme molokai
+"colorscheme hybrid
+"colorscheme Zenburn
+
+"------------------------------
+" auto commands
+"------------------------------
+"augroup Transparency
+"	autocmd!
+"	autocmd FocusGained * set transparency=230
+"	autocmd FocusLost * set transparency=150
+"augroup END
+
