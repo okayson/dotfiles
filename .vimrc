@@ -96,7 +96,8 @@ map Y y$
 " Gtags
 nmap <C-q> <C-w><C-w><C-w>q
 nmap <C-g> :Gtags -g
-nmap <C-l> :Gtags -f %<CR>
+nmap <C-l> :cd <C-r>=getcwd()<CR><CR> 
+         \ :Gtags -f <C-r>=substitute(expand('%'), "\\", "/", "g")<CR><CR>
 nmap <C-j> :Gtags <C-r><C-w><CR>
 nmap <C-k> :Gtags -r <C-r><C-w><CR>
 nmap <C-n> :cn<CR>
