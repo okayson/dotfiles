@@ -77,7 +77,7 @@ set smartcase
 set wrapscan
 
 "------------------------------
-" Input 
+" Input
 "------------------------------
 set cindent
 set shiftwidth=4
@@ -106,6 +106,11 @@ syntax on
 "------------------------------
 " Map
 "------------------------------
+" How to check about key map.
+" Detault key map  > :h index.txt
+" Assigned key map > :verbose map
+"                     (or nmap/imap/vmap)
+
 map Y y$
 
 " Gtags
