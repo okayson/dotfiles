@@ -1,4 +1,6 @@
-"--- General ---
+"------------------------------
+" General
+"------------------------------
 set noerrorbells
 set visualbell
 set viminfo=
@@ -9,15 +11,19 @@ if has('vim_starting')
 	runtime! userautoload/*.vim
 endif
 
-"--- Encoding ---
+"------------------------------
+" Encoding
+"------------------------------
 set encoding=utf-8
 set encoding=cp932
 
 set fileencodings=iso-2022-jp,iso-2022-jp-2,utf-8,euc-jp,sjis
 
-"--- Plugins ---
+"------------------------------
+" Plugins
+"------------------------------
 " Use NeoBundle to manage other plugins.
-" start: NeoBundle setting ---------->
+
 filetype plugin indent off
 
 if has('vim_starting')
@@ -26,17 +32,17 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-"Let NeoBundle manage NeoBundle
+" Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-"My Bundles here:
-"--- utilities
+" My Bundles here:
+"- utilities
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'vim-scripts/gtags.vim'
-"--- color schemes
+"- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'tomasr/molokai'
@@ -49,9 +55,10 @@ call neobundle#end()
 filetype plugin indent on
 
 NeoBundleCheck
-" end: NeoBundle setting <----------
 
-"--- File ---
+"------------------------------
+" File
+"------------------------------
 set hidden
 set autoread
 
@@ -59,7 +66,9 @@ set browsedir=buffer
 "set directory=$HOME/.vim/backup
 "set history=1000
 
-"--- Search ---
+"------------------------------
+" Search
+"------------------------------
 set incsearch
 "set nohlsearch
 set hlsearch
@@ -67,7 +76,9 @@ set ignorecase
 set smartcase
 set wrapscan
 
-"--- Input ---
+"------------------------------
+" Input 
+"------------------------------
 set cindent
 set shiftwidth=4
 set tabstop=4
@@ -78,7 +89,9 @@ set list
 set listchars=tab:^_,trail:~
 set wildmenu wildmode=list:full
 
-"--- Display ---
+"------------------------------
+" Display
+"------------------------------
 set number
 set title
 set showcmd
@@ -90,7 +103,9 @@ set matchtime=3
 
 syntax on
 
-"--- Map ---
+"------------------------------
+" Map
+"------------------------------
 map Y y$
 
 " Gtags
@@ -103,7 +118,9 @@ nmap <C-k> :Gtags -r <C-r><C-w><CR>
 nmap <C-n> :cn<CR>
 nmap <C-p> :cp<CR>
 
-"--- Local Setting ---
+"------------------------------
+" Local Setting
+"------------------------------
 " Write local setting to '~/.vimrc.local', for example:
 " - color scheme
 " - enviroment variables.(useful document folder etc...)

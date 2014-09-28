@@ -1,4 +1,6 @@
-"--- Enviroment ---
+"------------------------------
+" Enviroment
+"------------------------------
 " don't use viminfo file"
 set viminfo=
 
@@ -14,26 +16,36 @@ inoremap <silent> <ESC> <ESC>
 
 set shell=bash.exe
 
-"--- Plugins ---
+"------------------------------
+" Plugins
+"------------------------------
 "singleton.vim
 call singleton#enable()
 let g:singleton#opener = "drop"
 
-"--- Display ---
+"------------------------------
+" Display
+"------------------------------
 set columns=100
 set lines=40
 "set cmdheight=2
 "winpos 758 0
 
-"--- Mouse ---
+"------------------------------
+" Mouse
+"------------------------------
 set mouse=a
 set nomousefocus
 set mousehide
 
-"--- GUI ---
+"------------------------------
+" GUI
+"------------------------------
 set guioptions-=T
 
-"--- Scripts ---
+"------------------------------
+" Scripts
+"------------------------------
 " Save Window Position
 let g:save_window_file = expand('~/.vimwinpos')
 augroup SaveWindow
@@ -53,7 +65,9 @@ if filereadable(g:save_window_file)
   execute 'source' g:save_window_file
 endif
 
-"--- Local Setting ---
+"------------------------------
+" Local Setting
+"------------------------------
 " Write local setting to '~/._gvimrc.local', for example:
 " - color scheme
 " - enviroment variables.(useful document folder etc...)
