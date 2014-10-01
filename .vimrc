@@ -107,18 +107,18 @@ set matchtime=3
 syntax on
 
 "------------------------------
-" Map
+" Keymap
 "------------------------------
 " How to check about key map.
 " Detault key map  > :h index.txt
 " Assigned key map > :verbose map
 "                     (or nmap/imap/vmap)
 
-map Y y$
+nmap Y y$
+nmap <SPACE>/ :nohlsearch<C-l><CR>
 
 " Gtags
-nmap <C-q> <C-w><C-w><C-w>q
-nmap <C-g> :Gtags -g
+nmap <C-g> :Gtags<SPACE>
 nmap <C-l> :cd <C-r>=getcwd()<CR><CR> 
          \ :Gtags -f <C-r>=substitute(expand('%'), "\\", "/", "g")<CR><CR>
 nmap <C-j> :Gtags <C-r><C-w><CR>
