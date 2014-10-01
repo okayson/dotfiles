@@ -104,7 +104,7 @@ set matchtime=3
 syntax on
 
 "------------------------------
-" Map
+" Keymap
 "------------------------------
 " How to check about key map.
 " Detault key map  > :h index.txt
@@ -112,6 +112,7 @@ syntax on
 "                     (or nmap/imap/vmap)
 
 nmap Y y$
+nmap <SPACE>/ :nohlsearch<C-l><CR>
 
 " Gtags
 nmap <C-g> :Gtags<SPACE>
