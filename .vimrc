@@ -1,3 +1,6 @@
+" How to check options.
+"	 :help options
+"	 :help option-list
 "------------------------------
 " General
 "------------------------------
