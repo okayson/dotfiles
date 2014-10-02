@@ -110,9 +110,8 @@ syntax on
 " Keymap
 "------------------------------
 " How to check about key map.
-" Detault key map  > :h index.txt
-" Assigned key map > :verbose map
-"                     (or nmap/imap/vmap)
+" Detault  key map > :h index.txt
+" Assigned key map > :verbose map(or nmap/imap/vmap)
 
 nnoremap <F4> :<C-u>edit $MYVIMRC<CR>
 nnoremap <F5> :<C-u>source $MYVIMRC<CR>
