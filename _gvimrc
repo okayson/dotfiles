@@ -32,6 +32,13 @@ set lines=40
 "winpos 758 0
 
 "------------------------------
+" Keymap
+"------------------------------
+" overwrite <F5> keymap which is defined in $MYVIMRC.
+nnoremap <F5> :<C-u>source $MYVIMRC<CR>
+			\      :source $MYGVIMRC<CR>
+
+"------------------------------
 " Mouse
 "------------------------------
 set mouse=a

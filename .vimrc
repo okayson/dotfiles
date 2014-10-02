@@ -111,6 +111,9 @@ syntax on
 " Assigned key map > :verbose map
 "                     (or nmap/imap/vmap)
 
+nnoremap <F4> :<C-u>edit $MYVIMRC<CR>
+nnoremap <F5> :<C-u>source $MYVIMRC<CR>
+
 nmap Y y$
 nmap <SPACE>/ :nohlsearch<C-l><CR>
 
