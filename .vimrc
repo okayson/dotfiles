@@ -1,3 +1,6 @@
+" How to check options.
+"	 :help options
+"	 :help option-list
 "------------------------------
 " General
 "------------------------------
@@ -120,7 +123,7 @@ nmap <SPACE>/ :nohlsearch<C-l><CR>
 " Gtags
 nmap <C-g> :Gtags<SPACE>
 nmap <C-l> :cd <C-r>=getcwd()<CR><CR> 
-         \ :Gtags -f <C-r>=substitute(expand('%'), "\\", "/", "g")<CR><CR>
+         \ :Gtags -f %<CR>
 nmap <C-j> :Gtags <C-r><C-w><CR>
 nmap <C-k> :Gtags -r <C-r><C-w><CR>
 nmap <C-n> :cn<CR>

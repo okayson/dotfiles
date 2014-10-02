@@ -15,6 +15,7 @@ set iminsert=0 imsearch=0
 inoremap <silent> <ESC> <ESC>
 
 set shell=bash.exe
+set shellslash
 
 "------------------------------
 " Plugins
