@@ -116,8 +116,8 @@ syntax on
 nnoremap <F4> :<C-u>edit $MYVIMRC<CR>
 nnoremap <F5> :<C-u>source $MYVIMRC<CR>
 
-nnoremap <C-h> :<C-u>help<SPACE>
-nnoremap <C-h><C-h> :<C-u>help<SPACE><C-r><C-w><CR>
+nnoremap <C-h> :<C-u>help<Space>
+nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 nnoremap Y y$
 nnoremap j gj
@@ -125,10 +125,12 @@ nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
-nnoremap <SPACE>/ :nohlsearch<C-l><CR>
+nnoremap <Space>/ :<C-u>nohlsearch<C-l><CR>
+nnoremap <Space>m :<C-u>marks<CR>
+nnoremap <Space>r :<C-u>registers<CR>
 
 " Gtags
-nmap <C-g> :Gtags<SPACE>
+nmap <C-g> :Gtags<Space>
 nmap <C-l> :cd <C-r>=getcwd()<CR><CR> 
          \ :Gtags -f %<CR>
 nmap <C-j> :Gtags <C-r><C-w><CR>
