@@ -45,6 +45,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'rking/ag.vim'
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -103,6 +104,7 @@ set showmatch
 set matchtime=3
 "set laststatus=2
 "set cursorline
+set showtabline=2
 
 syntax on
 
@@ -116,7 +118,8 @@ syntax on
 nnoremap <F4> :<C-u>edit $MYVIMRC<CR>
 nnoremap <F5> :<C-u>source $MYVIMRC<CR>
 
-nnoremap <C-h> :<C-u>help<Space>
+" Help
+nnoremap <C-h>      :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 nnoremap Y y$
@@ -129,14 +132,43 @@ nnoremap <Space>/ :<C-u>nohlsearch<C-l><CR>
 nnoremap <Space>m :<C-u>marks<CR>
 nnoremap <Space>r :<C-u>registers<CR>
 
+nnoremap ss :<C-u>write<CR>
+nnoremap sg 0
+nnoremap sh ^
+nnoremap sl $
+
+" TabPage
+nnoremap [TabPage] <Nop>
+nmap   t [TabPage]
+nnoremap <silent> [TabPage]t <C-w>T
+nnoremap <silent> [TabPage]o :<C-u>tabedit<CR>
+nnoremap <silent> [TabPage]q :<C-u>tabclose<CR>
+nnoremap <silent> [TabPage]x :<C-u>tabonly<CR>
+nnoremap <silent> [TabPage]n :<C-u>tabnext<CR>
+nnoremap <silent> [TabPage]p :<C-u>tabprevious<CR>
+nnoremap <silent> [TabPage]l :<C-u>tabs<CR>
+for i in range(1, 9)
+	" Input 't{i}' to go to tab page {i}.
+	execute 'nnoremap <silent> [TabPage]'.i ':<C-u>tabnext'.i '<CR>'
+endfor
+
+" Tags
+nnoremap   [Tags] <Nop>
+nmap <C-t> [Tags]
+nnoremap <silent> [Tags]<C-t> <C-]>
+nnoremap <silent> [Tags]n :<C-u>tag<CR>
+nnoremap <silent> [Tags]p :<C-u>pop<CR>
+nnoremap <silent> [Tags]l :<C-u>tags<CR>
+
 " Gtags
-nmap <C-g> :Gtags<Space>
-nmap <C-l> :cd <C-r>=getcwd()<CR><CR> 
-         \ :Gtags -f %<CR>
-nmap <C-j> :Gtags <C-r><C-w><CR>
-nmap <C-k> :Gtags -r <C-r><C-w><CR>
-nmap <C-n> :cn<CR>
-nmap <C-p> :cp<CR>
+nmap          <C-g> :Gtags<Space>
+nmap <silent> <C-l> :cd <C-r>=getcwd()<CR><CR>:Gtags -f %<CR>
+nmap <silent> <C-j> :Gtags <C-r><C-w><CR>
+nmap <silent> <C-k> :Gtags -r <C-r><C-w><CR>
+
+" QuickFix
+nmap <silent> <C-n> :cn<CR>
+nmap <silent> <C-p> :cp<CR>
 
 "------------------------------
 " Local Setting
