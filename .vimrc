@@ -137,6 +137,12 @@ nnoremap sg 0
 nnoremap sh ^
 nnoremap sl $
 
+" Toggle Options
+nnoremap [Option] <Nop>
+nmap <Space>o [Option]
+nnoremap [Option]r :<C-u>set relativenumber!<CR>
+nnoremap [Option]w :<C-u>set wrap!<CR>
+
 " TabPage
 nnoremap [TabPage] <Nop>
 nmap   t [TabPage]
