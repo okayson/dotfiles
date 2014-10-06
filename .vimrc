@@ -123,19 +123,19 @@ nnoremap <C-h>      :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 nnoremap Y y$
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
+noremap  j gj
+noremap  k gk
+noremap  gj j
+noremap  gk k
 
 nnoremap <Space>/ :<C-u>nohlsearch<C-l><CR>
 nnoremap <Space>m :<C-u>marks<CR>
 nnoremap <Space>r :<C-u>registers<CR>
 
 nnoremap ss :<C-u>write<CR>
-nnoremap sg 0
-nnoremap sh ^
-nnoremap sl $
+noremap  sg 0
+noremap  sh ^
+noremap  sl $
 
 " Toggle Options
 nnoremap [Option] <Nop>
