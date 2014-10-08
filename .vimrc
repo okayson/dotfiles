@@ -142,6 +142,7 @@ noremap  sl $
 " Toggle Options
 nnoremap [Option] <Nop>
 nmap <Space>o [Option]
+nnoremap [Option]n :<C-u>set number!<CR>
 nnoremap [Option]r :<C-u>set relativenumber!<CR>
 nnoremap [Option]w :<C-u>set wrap!<CR>
 
