@@ -42,6 +42,18 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "- utilities
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
+"NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'mingw32-make -f make_mingw32.mak',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'thinca/vim-singleton'
@@ -60,6 +72,9 @@ call neobundle#end()
 filetype plugin indent on
 
 NeoBundleCheck
+
+" Unite Setting.
+let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
 
 "------------------------------
 " File
