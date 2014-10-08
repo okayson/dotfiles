@@ -150,8 +150,8 @@ nnoremap [Option]w :<C-u>set wrap!<CR>
 " TabPage
 nnoremap [TabPage] <Nop>
 nmap   t [TabPage]
-nnoremap <silent> [TabPage]t <C-w>T
-nnoremap <silent> [TabPage]o :<C-u>tabedit<CR>
+nnoremap <silent> [TabPage]o <C-w>T
+nnoremap <silent> [TabPage]t :<C-u>tabedit<CR>
 nnoremap <silent> [TabPage]q :<C-u>tabclose<CR>
 nnoremap <silent> [TabPage]x :<C-u>tabonly<CR>
 nnoremap <silent> [TabPage]n :<C-u>tabnext<CR>
