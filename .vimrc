@@ -192,8 +192,10 @@ nmap <silent> <C-j> :Gtags <C-r><C-w><CR>
 nmap <silent> <C-k> :Gtags -r <C-r><C-w><CR>
 
 " QuickFix
-nmap <silent> <C-n> :cn<CR>
-nmap <silent> <C-p> :cp<CR>
+nnoremap <silent> <C-n> :cn<CR>
+nnoremap <silent> <C-p> :cp<CR>
+nnoremap <silent> sn :colder<CR>
+nnoremap <silent> sp :cnewer<CR>
 
 "------------------------------
 " Local Setting
