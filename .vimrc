@@ -112,9 +112,23 @@ syntax on
 "------------------------------
 " Keymap
 "------------------------------
-" How to check about key map.
+" [How to check about key map]
 " Detault  key map > :h index.txt
 " Assigned key map > :verbose map(or nmap/imap/vmap)
+"
+" [Guide line]
+" - for moving.
+"   mode	: Normal/Visual/Operator-pending
+"   command	: noremap
+" - for seclecting.
+"   mode	: Visual/Operator-pending
+"   command	: vnoremap/onoremap
+" - for inputing.
+"   mode	: Insert/Command-line(optional)
+"   command	: inoremap
+" - for executing function.
+"   mode	: Normal
+"   command	: nnoremap
 
 nnoremap [RC] <Nop>
 nmap <Space>. [RC]
