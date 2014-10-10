@@ -73,8 +73,17 @@ filetype plugin indent on
 
 NeoBundleCheck
 
-" Unite Setting.
+" Unite
 let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+let g:unite_source_history_yank_enable = 1
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#profile('default', 'context', {
+\   'start_insert': 1
+\ })
+
+" Ag
+let g:aghighlight=1
 
 "------------------------------
 " File
@@ -106,7 +115,7 @@ set backspace=start,eol,indent
 set whichwrap=b,s,h,l,<,>,[,]
 set clipboard=unnamed
 set list
-set listchars=tab:^_,trail:~
+set listchars=tab:^\ ,trail:~
 set wildmenu wildmode=list:full
 
 "------------------------------
@@ -127,9 +136,23 @@ syntax on
 "------------------------------
 " Keymap
 "------------------------------
-" How to check about key map.
+" [How to check about key map]
 " Detault  key map > :h index.txt
 " Assigned key map > :verbose map(or nmap/imap/vmap)
+"
+" [Guide line]
+" - for moving.
+"   mode	: Normal/Visual/Operator-pending
+"   command	: noremap
+" - for seclecting.
+"   mode	: Visual/Operator-pending
+"   command	: vnoremap/onoremap
+" - for inputing.
+"   mode	: Insert/Command-line(optional)
+"   command	: inoremap
+" - for executing function.
+"   mode	: Normal
+"   command	: nnoremap
 
 nnoremap [RC] <Nop>
 nmap <Space>. [RC]
@@ -176,6 +199,8 @@ for i in range(1, 9)
 	" Input 't{i}' to go to tab page {i}.
 	execute 'nnoremap <silent> [TabPage]'.i ':<C-u>tabnext'.i '<CR>'
 endfor
+nnoremap <silent> [TabPage]s :<C-u>split<CR>
+nnoremap <silent> [TabPage]v :<C-u>vsplit<CR>
 
 " Tags
 nnoremap   [Tags] <Nop>
@@ -196,6 +221,18 @@ nnoremap <silent> <C-n> :cn<CR>
 nnoremap <silent> <C-p> :cp<CR>
 nnoremap <silent> sn :colder<CR>
 nnoremap <silent> sp :cnewer<CR>
+
+" Unite
+" 
+" show souces	:Unite source
+nnoremap [Unite] <Nop>
+nmap  su [Unite]
+nnoremap [Unite]u :<C-u>Unite<Space>
+nnoremap [Unite]b :<C-u>Unite buffer<CR>
+nnoremap [Unite]f :<C-u>Unite file<CR>
+nnoremap [Unite]r :<C-u>Unite file_rec/async<CR>
+nnoremap [Unite]m :<C-u>Unite file_mru<CR>
+nnoremap [Unite]y :<C-u>Unite history/yank<CR>
 
 "------------------------------
 " Local Setting
