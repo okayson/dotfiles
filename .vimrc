@@ -82,6 +82,9 @@ call unite#custom#profile('default', 'context', {
 \   'start_insert': 1
 \ })
 
+" Ag
+let g:aghighlight=1
+
 "------------------------------
 " File
 "------------------------------
@@ -112,7 +115,7 @@ set backspace=start,eol,indent
 set whichwrap=b,s,h,l,<,>,[,]
 set clipboard=unnamed
 set list
-set listchars=tab:^_,trail:~
+set listchars=tab:^\ ,trail:~
 set wildmenu wildmode=list:full
 
 "------------------------------
