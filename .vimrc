@@ -223,7 +223,6 @@ nmap <silent> <C-p> :cp<CR>
 " Unite
 " 
 " show souces	:Unite source
-" show mapping	:Unite mapping
 nnoremap [Unite] <Nop>
 nmap  su [Unite]
 nnoremap [Unite]u :<C-u>Unite<Space>
