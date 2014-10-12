@@ -42,9 +42,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "- utilities
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
-"NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/vimshell.vim'
+"NeoBundle 'Shougo/neosnippet.vim'
+"NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'mingw32-make -f make_mingw32.mak',
@@ -76,11 +77,17 @@ NeoBundleCheck
 " Unite
 let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
 let g:unite_source_history_yank_enable = 1
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#profile('default', 'context', {
-\   'start_insert': 1
-\ })
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#custom#profile('default', 'context', {
+"\   'start_insert': 1
+"\ })
+augroup UniteMySettings
+	autocmd!
+	autocmd FileType unite call s:unite_my_settings()
+	function! s:unite_my_settings() "{{{
+		nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
+	endfunction "}}}
+augroup END
 
 " Ag
 let g:aghighlight=1
@@ -177,6 +184,7 @@ nnoremap ss :<C-u>write<CR>
 noremap  sg 0
 noremap  sh ^
 noremap  sl $
+nnoremap sp %
 
 " Toggle Options
 nnoremap [Option] <Nop>
@@ -194,13 +202,17 @@ nnoremap <silent> [TabPage]q :<C-u>tabclose<CR>
 nnoremap <silent> [TabPage]x :<C-u>tabonly<CR>
 nnoremap <silent> [TabPage]n :<C-u>tabnext<CR>
 nnoremap <silent> [TabPage]p :<C-u>tabprevious<CR>
-nnoremap <silent> [TabPage]l :<C-u>tabs<CR>
+nnoremap <silent> [TabPage]i :<C-u>tabs<CR>
 for i in range(1, 9)
 	" Input 't{i}' to go to tab page {i}.
 	execute 'nnoremap <silent> [TabPage]'.i ':<C-u>tabnext'.i '<CR>'
 endfor
 nnoremap <silent> [TabPage]s :<C-u>split<CR>
 nnoremap <silent> [TabPage]v :<C-u>vsplit<CR>
+nnoremap <silent> [TabPage]j <C-w>j
+nnoremap <silent> [TabPage]k <C-w>k
+nnoremap <silent> [TabPage]h <C-w>h
+nnoremap <silent> [TabPage]l <C-w>l
 
 " Tags
 nnoremap   [Tags] <Nop>
@@ -223,16 +235,17 @@ nnoremap <silent> sn :colder<CR>
 nnoremap <silent> sp :cnewer<CR>
 
 " Unite
-" 
 " show souces	:Unite source
 nnoremap [Unite] <Nop>
 nmap  su [Unite]
-nnoremap [Unite]u :<C-u>Unite<Space>
-nnoremap [Unite]b :<C-u>Unite buffer<CR>
-nnoremap [Unite]f :<C-u>Unite file<CR>
-nnoremap [Unite]r :<C-u>Unite file_rec/async<CR>
-nnoremap [Unite]m :<C-u>Unite file_mru<CR>
-nnoremap [Unite]y :<C-u>Unite history/yank<CR>
+nnoremap          [Unite]u :<C-u>Unite<Space>
+nnoremap <silent> [Unite]b :<C-u>Unite -buffer-name=buffer buffer<CR>
+nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru file_mru directory_mru bookmark<CR>
+nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
+nnoremap <silent> [Unite]h :<C-u>Unite -buffer-name=resume resume<CR>
+nnoremap <silent> [Unite]a :<C-u>UniteBookmarkAdd<CR>
 
 "------------------------------
 " Local Setting
