@@ -60,6 +60,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'itchyny/lightline.vim'
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -134,7 +135,7 @@ set showcmd
 set ruler
 set showmatch
 set matchtime=3
-"set laststatus=2
+set laststatus=2
 "set cursorline
 set showtabline=2
 
