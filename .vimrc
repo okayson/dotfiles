@@ -232,8 +232,8 @@ nmap <silent> <C-k> :Gtags -r <C-r><C-w><CR>
 " QuickFix
 nnoremap <silent> <C-n> :cn<CR>
 nnoremap <silent> <C-p> :cp<CR>
-nnoremap <silent> sn :colder<CR>
-nnoremap <silent> sp :cnewer<CR>
+nnoremap <silent> so :colder<CR>
+nnoremap <silent> sn :cnewer<CR>
 
 " Unite
 " show souces	:Unite source
