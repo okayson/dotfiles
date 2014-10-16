@@ -56,7 +56,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 \    },
 \ }
 NeoBundle 'ujihisa/unite-colorscheme'
-NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'rking/ag.vim'
@@ -247,6 +246,12 @@ nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
 nnoremap <silent> [Unite]h :<C-u>Unite -buffer-name=resume resume<CR>
 nnoremap <silent> [Unite]a :<C-u>UniteBookmarkAdd<CR>
+
+" Vimfiler
+nnoremap [VimFiler] <Nop>
+nmap     <Space>e [VimFiler]
+nnoremap <silent> [VimFiler]e :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
+nnoremap <silent> [VimFiler]. :<C-u>VimFilerBufferDir -buffer-name=BufferDir -status<CR>
 
 "------------------------------
 " Local Setting
