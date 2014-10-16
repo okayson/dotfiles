@@ -253,8 +253,8 @@ nnoremap <silent> [Unite]a :<C-u>UniteBookmarkAdd<CR>
 " VimFiler
 nnoremap [VimFiler] <Nop>
 nmap     <Space>f [VimFiler]
-nnoremap <silent> [VimFiler]f :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
-nnoremap <silent> [VimFiler]. :<C-u>VimFilerBufferDir -buffer-name=BufferDir -status<CR>
+nnoremap <silent> [VimFiler]f :<C-u>VimFilerBufferDir -buffer-name=BufferDir -status<CR>
+nnoremap <silent> [VimFiler]e :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
 
 "------------------------------
 " Local Setting
