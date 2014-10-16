@@ -86,6 +86,9 @@ augroup UniteMySettings
 	autocmd FileType unite call s:unite_my_settings()
 	function! s:unite_my_settings() "{{{
 		nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
+		nnoremap <silent><buffer><expr> s  unite#do_action('split')
+		nnoremap <silent><buffer><expr> v  unite#do_action('vsplit')
+		nnoremap <silent><buffer><expr> f  unite#do_action('vimfiler')
 	endfunction "}}}
 augroup END
 
@@ -247,7 +250,7 @@ nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
 nnoremap <silent> [Unite]h :<C-u>Unite -buffer-name=resume resume<CR>
 nnoremap <silent> [Unite]a :<C-u>UniteBookmarkAdd<CR>
 
-" Vimfiler
+" VimFiler
 nnoremap [VimFiler] <Nop>
 nmap     <Space>f [VimFiler]
 nnoremap <silent> [VimFiler]f :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
