@@ -44,8 +44,8 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/vimshell.vim'
-"NeoBundle 'Shougo/neosnippet.vim'
-"NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'mingw32-make -f make_mingw32.mak',
@@ -179,7 +179,7 @@ noremap  k gk
 noremap  gj j
 noremap  gk k
 
-nnoremap <Space>/ :<C-u>nohlsearch<C-l><CR>
+nnoremap <Esc><Esc> :<C-u>nohlsearch<C-l><CR>
 nnoremap <Space>m :<C-u>marks<CR>
 nnoremap <Space>r :<C-u>registers<CR>
 

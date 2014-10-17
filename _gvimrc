@@ -49,7 +49,9 @@ set mousehide
 "------------------------------
 " GUI
 "------------------------------
+set guioptions&
 set guioptions-=T
+set guioptions-=m
 
 "------------------------------
 " Scripts
