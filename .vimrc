@@ -173,13 +173,14 @@ nnoremap [RC]. :<C-u>source $MYVIMRC<CR>
 nnoremap <C-h>      :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
+nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR><C-l>
+
 nnoremap Y y$
 noremap  j gj
 noremap  k gk
 noremap  gj j
 noremap  gk k
 
-nnoremap <Esc><Esc> :<C-u>nohlsearch<C-l><CR>
 nnoremap <Space>m :<C-u>marks<CR>
 nnoremap <Space>r :<C-u>registers<CR>
 
