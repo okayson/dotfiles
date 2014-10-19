@@ -249,7 +249,7 @@ nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru file_mru directory_mru b
 nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
 nnoremap <silent> [Unite]h :<C-u>Unite -buffer-name=resume resume<CR>
-nnoremap <silent> [Unite]a :<C-u>UniteBookmarkAdd<CR>
+nnoremap <silent> [Unite]l :<C-u>Unite -buffer-name=line line<CR>
 
 " VimFiler
 nnoremap [VimFiler] <Nop>
