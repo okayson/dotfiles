@@ -18,7 +18,7 @@ endif
 " Encoding
 "------------------------------
 set encoding=utf-8
-set encoding=cp932
+"set encoding=cp932
 
 set fileencodings=iso-2022-jp,iso-2022-jp-2,utf-8,euc-jp,sjis
 
@@ -98,6 +98,12 @@ augroup END
 
 " NeoComplCache
 let g:neocomplcache_enable_at_startup = 1
+
+" NeoSnippet
+let g:neosnippet#snippets_directory = '~/.vim/snippets, ~/vim-snippets'
+"let g:neosnippet#disable_runtime_snippets = {
+"			\   'c' : 1, 'cpp' : 1,
+"			\ }
 
 " Ag
 let g:aghighlight=1
@@ -263,6 +269,12 @@ nnoremap [VimFiler] <Nop>
 nmap     <Space>f [VimFiler]
 nnoremap <silent> [VimFiler]f :<C-u>VimFilerBufferDir -buffer-name=BufferDir -status<CR>
 nnoremap <silent> [VimFiler]e :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
+
+" NeoSnippet
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
 
 "------------------------------
 " Local Setting
