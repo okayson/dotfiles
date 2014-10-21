@@ -13,18 +13,20 @@ snippet     template
 abbr        template <T>
     template<typename ${1:T}> 
 
-snippet     class
+snippet     class-with-constructor
 abbr        class {}
-    class ${1:#:name} {
+    class ${1:#:name}
+    {
         ${2}
     public:
         $1(${3});
     };
-    $1::$1($3) {
+    $1::$1($3)
+    {
         ${0:TARGET}
     }
 
-snippet     class-without-constructor
+snippet     class
 abbr        class {}
     class ${1:#:name} {
         ${2}
@@ -32,16 +34,20 @@ abbr        class {}
 
 snippet     try
 abbr        try catch
-    try {
+    try
+    {
         ${1:TARGET}
-    } catch (${2:e:xception}) {
+    }
+    catch (${2:e:xception})
+    {
         ${3}
     }
 
 # range based for ( C++11 feature )
 snippet     for_CPP11
 abbr        for (:) {}
-    for (${1:auto&& }${2:var} : ${3:container}) {
+    for (${1:auto&& }${2:var} : ${3:container})
+    {
         ${0:TARGET}
     }
 
@@ -64,7 +70,8 @@ delete      namespace
 snippet     namespace
 abbr        namespace {}
 options     head
-    namespace ${1:#:name} {
+    namespace ${1:#:name}
+    {
         ${0:TARGET}
     } // namespace $1
 
