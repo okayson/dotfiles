@@ -106,6 +106,12 @@ augroup END
 " NeoComplCache
 let g:neocomplcache_enable_at_startup = 1
 
+" NeoSnippet
+let g:neosnippet#snippets_directory = '~/.vim/snippets, ~/vim-snippets'
+"let g:neosnippet#disable_runtime_snippets = {
+"			\   'c' : 1, 'cpp' : 1,
+"			\ }
+
 " Ag
 let g:aghighlight=1
 
@@ -257,19 +263,26 @@ nnoremap <silent> sn :cnewer<CR>
 nnoremap [Unite] <Nop>
 nmap  su [Unite]
 nnoremap          [Unite]u :<C-u>Unite<Space>
-nnoremap <silent> [Unite]b :<C-u>Unite -buffer-name=buffer buffer<CR>
-nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru file_mru directory_mru bookmark<CR>
+nnoremap <silent> [Unite]b :<C-u>Unite -buffer-name=buffer -start-insert buffer<CR>
+nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files -start-insert file<CR>
+nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru -start-insert file_mru directory_mru bookmark<CR>
 nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
 nnoremap <silent> [Unite]h :<C-u>Unite -buffer-name=resume resume<CR>
-nnoremap <silent> [Unite]l :<C-u>Unite -buffer-name=line line<CR>
+nnoremap <silent> [Unite]l :<C-u>Unite -buffer-name=line -start-insert line<CR>
+nnoremap <silent> [Unite]o :<C-u>Unite -buffer-name=outline -start-insert outline<CR>
 
 " VimFiler
 nnoremap [VimFiler] <Nop>
 nmap     <Space>f [VimFiler]
 nnoremap <silent> [VimFiler]f :<C-u>VimFilerBufferDir -buffer-name=BufferDir -status<CR>
 nnoremap <silent> [VimFiler]e :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
+
+" NeoSnippet
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
 
 "------------------------------
 " Local Setting
