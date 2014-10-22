@@ -56,14 +56,18 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'Shougo/unite-outline'		" for unite
+NeoBundle 'ujihisa/unite-colorscheme'	" for unite
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'tsukkee/unite-tag'			" for unite
+NeoBundle 'choplin/unite-vim_hacks'		" for unite
+NeoBundle 'mattn/webapi-vim'			" for unite_vim_hacks
+NeoBundle 'mattn/wwwrenderer-vim'		" for unite_vim_hacks
+NeoBundle 'thinca/vim-openbuf'			" for unite_vim_hacks
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
