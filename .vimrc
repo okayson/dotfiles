@@ -210,6 +210,12 @@ noremap  sh ^
 noremap  sl $
 nnoremap sp %
 
+nnoremap <silent> cy   cw<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
+nnoremap <silent> cY   cW<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
+nnoremap <silent> ciy ciw<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
+nnoremap <silent> ciY ciW<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
+vnoremap <silent> cy    c<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
+
 " Toggle Options
 nnoremap [Option] <Nop>
 nmap <Space>o [Option]
