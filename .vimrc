@@ -18,9 +18,9 @@ endif
 " Encoding
 "------------------------------
 set encoding=utf-8
-"if has('win32')
-"	set encoding=cp932
-"endif
+if has('win32')
+	set encoding=cp932
+endif
 
 "set fileencodings=iso-2022-jp,iso-2022-jp-2,utf-8,euc-jp,sjis
 set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
@@ -208,7 +208,7 @@ nnoremap ss :<C-u>write<CR>
 noremap  sg 0
 noremap  sh ^
 noremap  sl $
-nnoremap sp %
+noremap  sp %
 
 nnoremap <silent> cy   cw<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 nnoremap <silent> cY   cW<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
