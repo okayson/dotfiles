@@ -18,9 +18,10 @@ endif
 " Encoding
 "------------------------------
 set encoding=utf-8
-if has('win32')
-	set encoding=cp932
-endif
+"if has('win32')
+"	set encoding=cp932
+"endif
+set ambiwidth=double
 
 "set fileencodings=iso-2022-jp,iso-2022-jp-2,utf-8,euc-jp,sjis
 set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
