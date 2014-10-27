@@ -103,6 +103,7 @@ augroup UniteMySettings
 	endfunction "}}}
 augroup END
 
+
 " NeoComplCache
 let g:neocomplcache_enable_at_startup = 1
 
@@ -283,6 +284,7 @@ nnoremap [VimFiler] <Nop>
 nmap     <Space>f [VimFiler]
 nnoremap <silent> [VimFiler]f :<C-u>VimFilerBufferDir -buffer-name=BufferDir -status<CR>
 nnoremap <silent> [VimFiler]e :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
+nnoremap <silent> [VimFiler]b :<C-u>VimFiler bookmark: -buffer-name=bookmark<CR>
 
 " NeoSnippet
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
