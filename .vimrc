@@ -68,10 +68,6 @@ NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tsukkee/unite-tag'			" for unite
-NeoBundle 'choplin/unite-vim_hacks'		" for unite
-NeoBundle 'mattn/webapi-vim'			" for unite_vim_hacks
-NeoBundle 'mattn/wwwrenderer-vim'		" for unite_vim_hacks
-NeoBundle 'thinca/vim-openbuf'			" for unite_vim_hacks
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
