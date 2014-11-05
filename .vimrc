@@ -62,12 +62,13 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 NeoBundle 'Shougo/unite-outline'		" for unite
 NeoBundle 'ujihisa/unite-colorscheme'	" for unite
+NeoBundle 'tsukkee/unite-tag'			" for unite
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'tsukkee/unite-tag'			" for unite
+NeoBundle 'vim-scripts/a.vim'
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
