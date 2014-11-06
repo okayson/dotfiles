@@ -9,10 +9,9 @@ set visualbell
 set viminfo=
 set nocompatible
 
-if has('vim_starting')
-	set runtimepath+=~/.vim
-	runtime! userautoload/*.vim
-endif
+set runtimepath&
+set runtimepath+=~/.vim
+runtime! userautoload/*.vim
 
 "------------------------------
 " Encoding
@@ -33,9 +32,7 @@ set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,eu
 
 filetype plugin indent off
 
-if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+set runtimepath+=~/.vim/bundle/neobundle.vim/
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 
@@ -90,17 +87,6 @@ let g:unite_source_history_yank_enable = 1
 "call unite#custom#profile('default', 'context', {
 "\   'start_insert': 1
 "\ })
-augroup UniteMySettings
-	autocmd!
-	autocmd FileType unite call s:unite_my_settings()
-	function! s:unite_my_settings() "{{{
-		nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
-		nnoremap <silent><buffer><expr> s  unite#do_action('split')
-		nnoremap <silent><buffer><expr> v  unite#do_action('vsplit')
-		nnoremap <silent><buffer><expr> f  unite#do_action('vimfiler')
-	endfunction "}}}
-augroup END
-
 
 " NeoComplCache
 let g:neocomplcache_enable_at_startup = 1
@@ -119,7 +105,6 @@ let g:aghighlight=1
 "------------------------------
 set hidden
 set autoread
-
 set browsedir=buffer
 "set directory=$HOME/.vim/backup
 "set history=1000
@@ -128,7 +113,6 @@ set browsedir=buffer
 " Search
 "------------------------------
 set incsearch
-"set nohlsearch
 set hlsearch
 set ignorecase
 set smartcase
@@ -157,8 +141,8 @@ set ruler
 set showmatch
 set matchtime=3
 set laststatus=2
-"set cursorline
 set showtabline=2
+"set cursorline
 
 syntax on
 
@@ -277,12 +261,34 @@ nnoremap <silent> [Unite]h :<C-u>Unite -buffer-name=resume resume<CR>
 nnoremap <silent> [Unite]l :<C-u>Unite -buffer-name=line -start-insert line<CR>
 nnoremap <silent> [Unite]o :<C-u>Unite -buffer-name=outline -start-insert outline<CR>
 
+augroup UniteBufferMappings
+	autocmd!
+	autocmd FileType unite call s:map_unite_buffer()
+	function! s:map_unite_buffer()
+		nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
+		nnoremap <silent><buffer><expr> s  unite#do_action('split')
+		nnoremap <silent><buffer><expr> v  unite#do_action('vsplit')
+		nnoremap <silent><buffer><expr> f  unite#do_action('vimfiler')
+	endfunction
+augroup END
+
 " VimFiler
 nnoremap [VimFiler] <Nop>
 nmap     <Space>f [VimFiler]
 nnoremap <silent> [VimFiler]f :<C-u>VimFilerBufferDir -buffer-name=BufferDir -status<CR>
 nnoremap <silent> [VimFiler]e :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
 nnoremap <silent> [VimFiler]b :<C-u>VimFiler bookmark: -buffer-name=bookmark<CR>
+
+augroup VimFilerBufferMappings
+	autocmd!
+	autocmd FileType vimfiler call s:map_vimfiler_buffer()
+	function! s:map_vimfiler_buffer()
+		unmap <buffer> t
+		unmap <buffer> T
+		nmap  <buffer> f <Plug>(vimfiler_expand_tree)
+		nmap  <buffer> F <Plug>(vimfiler_expand_tree_recursive)
+	endfunction
+augroup END
 
 " NeoSnippet
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -300,3 +306,4 @@ if filereadable(expand("~/.vimrc.local"))
 	source ~/.vimrc.local
 endif
 
+" vim: foldmethod=marker
