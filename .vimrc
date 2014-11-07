@@ -26,81 +26,6 @@ set ambiwidth=double
 set fileencodings=iso-2022-jp-3,iso-2022-jp,euc-jisx0213,euc-jp,utf-8,ucs-bom,euc-jp,eucjp-ms,cp932
 
 "------------------------------
-" Plugins
-"------------------------------
-" Use NeoBundle to manage other plugins.
-
-filetype plugin indent off
-
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" My Bundles here:
-"- utilities
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/neocomplcache.vim'
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'mingw32-make -f make_mingw32.mak',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
-NeoBundle 'Shougo/unite-outline'		" for unite
-NeoBundle 'ujihisa/unite-colorscheme'	" for unite
-NeoBundle 'tsukkee/unite-tag'			" for unite
-NeoBundle 'thinca/vim-singleton'
-NeoBundle 'vim-scripts/gtags.vim'
-NeoBundle 'vim-scripts/taglist.vim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'vim-scripts/a.vim'
-"- color schemes
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'croaker/mustang-vim'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'jnurmine/Zenburn'
-
-call neobundle#end()
-
-filetype plugin indent on
-
-NeoBundleCheck
-
-" Unite
-let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
-let g:unite_source_history_yank_enable = 1
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#custom#profile('default', 'context', {
-"\   'start_insert': 1
-"\ })
-
-" NeoComplCache
-let g:neocomplcache_enable_at_startup = 1
-
-" NeoSnippet
-let g:neosnippet#snippets_directory = '~/.vim/snippets, ~/vim-snippets'
-"let g:neosnippet#disable_runtime_snippets = {
-"			\   'c' : 1, 'cpp' : 1,
-"			\ }
-
-" Ag
-let g:aghighlight=1
-
-"------------------------------
 " File
 "------------------------------
 set hidden
@@ -144,28 +69,99 @@ set laststatus=2
 set showtabline=2
 "set cursorline
 
-syntax on
+"------------------------------
+" Plugins
+"------------------------------
+" Use NeoBundle to manage other plugins.
+filetype plugin indent off
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+"- utilities
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'mingw32-make -f make_mingw32.mak',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+NeoBundle 'Shougo/unite-outline'		" for unite
+NeoBundle 'ujihisa/unite-colorscheme'	" for unite
+NeoBundle 'tsukkee/unite-tag'			" for unite
+NeoBundle 'thinca/vim-singleton'
+NeoBundle 'vim-scripts/gtags.vim'
+NeoBundle 'vim-scripts/taglist.vim'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'vim-scripts/a.vim'
+"- color schemes
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'jnurmine/Zenburn'
+
+call neobundle#end()
+filetype plugin indent on
+NeoBundleCheck
 
 "------------------------------
-" Keymap
+" Plugin Settings
+"------------------------------
+" Unite
+let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+let g:unite_source_history_yank_enable = 1
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#custom#profile('default', 'context', {
+"\   'start_insert': 1
+"\ })
+
+" NeoComplCache
+let g:neocomplcache_enable_at_startup = 1
+
+" NeoSnippet
+let g:neosnippet#snippets_directory = '~/.vim/snippets, ~/vim-snippets'
+"let g:neosnippet#disable_runtime_snippets = {
+"			\   'c' : 1, 'cpp' : 1,
+"			\ }
+
+" Ag
+let g:aghighlight=1
+
+"------------------------------
+" Key Mappings
 "------------------------------
 " [How to check about key map]
-" Detault  key map > :h index.txt
-" Assigned key map > :verbose map(or nmap/imap/vmap)
+" 	Detault  key map > :h index.txt
+" 	Assigned key map > :verbose map(or nmap/imap/vmap)
 "
 " [Guide line]
-" - for moving.
-"   mode	: Normal/Visual/Operator-pending
-"   command	: noremap
-" - for seclecting.
-"   mode	: Visual/Operator-pending
-"   command	: vnoremap/onoremap
-" - for inputing.
-"   mode	: Insert/Command-line(optional)
-"   command	: inoremap
-" - for executing function.
-"   mode	: Normal
-"   command	: nnoremap
+" 	- for moving.
+" 	  mode		: Normal/Visual/Operator-pending
+" 	  command	: noremap
+" 	- for seclecting.
+" 	  mode		: Visual/Operator-pending
+" 	  command	: vnoremap/onoremap
+" 	- for inputing.
+" 	  mode		: Insert/Command-line(optional)
+" 	  command	: inoremap
+" 	- for executing function.
+" 	  mode		: Normal
+" 	  command	: nnoremap
 
 nnoremap [RC] <Nop>
 nmap <Space>. [RC]
@@ -178,9 +174,9 @@ nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR><C-l>
 
-nnoremap Y y$
-noremap  j gj
-noremap  k gk
+nnoremap Y  y$
+noremap  j  gj
+noremap  k  gk
 noremap  gj j
 noremap  gk k
 
@@ -295,6 +291,11 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
+
+"------------------------------
+" Others
+"------------------------------
+syntax on
 
 "------------------------------
 " Local Setting
