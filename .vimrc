@@ -184,7 +184,7 @@ nnoremap <Space>m :<C-u>marks<CR>
 nnoremap <Space>r :<C-u>registers<CR>
 
 nnoremap ss :<C-u>write<CR>
-noremap  sg 0
+noremap  sH 0
 noremap  sh ^
 noremap  sl $
 noremap  sp %
