@@ -293,6 +293,43 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
 
 "------------------------------
+" User Commands
+"------------------------------
+" Trim white spaces on line tail.
+command! -range TrimSpaces :%s/\s\+$//|normal! <line1>G
+" Make tag files
+command! MakeTags :call <SID>make_tags()
+" Make tag files
+" Functions for 'Make tag file'."{{{
+function! s:make_tags()
+	call s:make_gtags()
+	call s:make_ctags()
+endfunction
+
+function! s:make_gtags()
+	if executable('gtags')
+		echo 'Processing...gtags.'
+		call system('find . -type f -name GTAGS -exec rm -f {} \;')
+		call system('find . -type f -name GPATH -exec rm -f {} \;')
+		call system('find . -type f -name GRTAGS -exec rm -f {} \;')
+		call system('gtags')
+	else	
+		echo 'gtags not found.'
+	endif
+endfunction
+
+function! s:make_ctags()
+	if executable('ctags')
+		echo 'Processing...ctags.'
+		call system('find . -type f -name tags -exec rm -f {} \;')
+		call system('ctags -R')
+	else
+		echo 'ctags not found.'
+	endif
+endfunction
+"}}}
+
+"------------------------------
 " Others
 "------------------------------
 syntax on
