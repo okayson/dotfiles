@@ -175,6 +175,9 @@ noremap  sh ^
 noremap  sl $
 noremap  sp %
 
+vnoremap < <gv
+vnoremap > >gv
+
 nnoremap <silent> cy   cw<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 nnoremap <silent> cY   cW<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 nnoremap <silent> ciy ciw<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
