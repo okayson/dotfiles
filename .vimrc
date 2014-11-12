@@ -163,27 +163,13 @@ let g:aghighlight=1
 " 	  mode		: Normal
 " 	  command	: nnoremap
 
-nnoremap [RC] <Nop>
-nmap <Space>. [RC]
-nnoremap [RC]  :<C-u>edit $MYVIMRC<CR>
-nnoremap [RC]. :<C-u>source $MYVIMRC<CR>
-
-" Help
-nnoremap <C-h>      :<C-u>help<Space>
-nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
-
-nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR><C-l>
-
 nnoremap Y  y$
+
 noremap  j  gj
 noremap  k  gk
 noremap  gj j
 noremap  gk k
 
-nnoremap <Space>m :<C-u>marks<CR>
-nnoremap <Space>r :<C-u>registers<CR>
-
-nnoremap ss :<C-u>write<CR>
 noremap  sg 0
 noremap  sh ^
 noremap  sl $
@@ -194,6 +180,20 @@ nnoremap <silent> cY   cW<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 nnoremap <silent> ciy ciw<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 nnoremap <silent> ciY ciW<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 vnoremap <silent> cy    c<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
+
+nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR><C-l>
+nnoremap ss :<C-u>write<CR>
+nnoremap <Space>m :<C-u>marks<CR>
+
+" Run Command
+nnoremap [RC] <Nop>
+nmap <Space>. [RC]
+nnoremap [RC]  :<C-u>edit $MYVIMRC<CR>
+nnoremap [RC]. :<C-u>source $MYVIMRC<CR>
+
+" Help
+nnoremap <C-h>      :<C-u>help<Space>
+nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 " Toggle Options
 nnoremap [Option] <Nop>
