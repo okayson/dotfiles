@@ -245,8 +245,8 @@ nmap <silent> <C-j> :Gtags <C-r><C-w><CR>
 nmap <silent> <C-k> :Gtags -r <C-r><C-w><CR>
 
 " QuickFix
-nnoremap <silent> <C-n> :cn<CR>zt
-nnoremap <silent> <C-p> :cp<CR>zt
+nnoremap <silent> <C-n> :cn<CR>zz
+nnoremap <silent> <C-p> :cp<CR>zz
 nnoremap <silent> so :colder<CR>
 nnoremap <silent> sn :cnewer<CR>
 
