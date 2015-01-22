@@ -279,6 +279,7 @@ augroup END
 nnoremap [VimFiler] <Nop>
 nmap     <Space>f [VimFiler]
 nnoremap <silent> [VimFiler]f :<C-u>VimFilerBufferDir -buffer-name=BufferDir -status<CR>
+nnoremap <silent> [VimFiler]c :<C-u>VimFilerCurrentDir -buffer-name=CurrentDir -status<CR>
 nnoremap <silent> [VimFiler]e :<C-u>VimFilerExplorer -buffer-name=explorer -parent<CR>
 nnoremap <silent> [VimFiler]b :<C-u>VimFiler bookmark: -buffer-name=bookmark<CR>
 
@@ -304,6 +305,7 @@ xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
 "------------------------------
 " Trim white spaces on line tail.
 command! -range TrimSpaces :%s/\s\+$//|normal! <line1>G
+
 " Make tag files
 command! MakeTags :call <SID>make_tags()
 " Make tag files
