@@ -11,7 +11,6 @@ set nocompatible
 
 set runtimepath&
 set runtimepath+=~/.vim
-runtime! userautoload/*.vim
 
 "------------------------------
 " Encoding
