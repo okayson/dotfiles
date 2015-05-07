@@ -10,6 +10,9 @@ set noswapfile
 " don't use backup file"
 set nobackup
 
+" don't use undo file"
+set noundofile
+
 " setting IME behavior "
 set iminsert=0 imsearch=0
 inoremap <silent> <ESC> <ESC>
