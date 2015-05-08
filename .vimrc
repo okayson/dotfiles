@@ -117,6 +117,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'croaker/mustang-vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'jnurmine/Zenburn'
+NeoBundle 'okayson/crosspj.vim'
 
 call neobundle#end()
 filetype plugin indent on
