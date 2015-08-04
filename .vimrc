@@ -257,6 +257,7 @@ nmap  su [Unite]
 nnoremap          [Unite]u :<C-u>Unite<Space>
 nnoremap <silent> [Unite]b :<C-u>Unite -buffer-name=buffer -start-insert buffer<CR>
 nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files -start-insert file<CR>
+nnoremap <silent> [Unite]s :<C-u>UniteWithCurrentDir -buffer-name=files -start-insert file_rec<CR>
 nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru -start-insert file_mru directory_mru bookmark<CR>
 nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
