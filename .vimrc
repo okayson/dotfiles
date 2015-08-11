@@ -101,6 +101,7 @@ NeoBundle 'Shougo/unite-outline'		" for unite
 NeoBundle 'ujihisa/unite-colorscheme'	" for unite
 NeoBundle 'tsukkee/unite-tag'			" for unite
 NeoBundle 'thinca/vim-singleton'
+NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'rking/ag.vim'
