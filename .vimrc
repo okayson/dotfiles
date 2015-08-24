@@ -100,6 +100,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/unite-outline'		" for unite
 NeoBundle 'ujihisa/unite-colorscheme'	" for unite
 NeoBundle 'tsukkee/unite-tag'			" for unite
+NeoBundle 'tsukkee/unite-help'			" for unite
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'vim-scripts/gtags.vim'
@@ -111,6 +112,7 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-fold'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-lastpat'
+NeoBundle 'tpope/vim-fugitive'
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
