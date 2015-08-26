@@ -113,6 +113,7 @@ NeoBundle 'kana/vim-textobj-fold'
 NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-lastpat'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'sgur/unite-qf'
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -267,6 +268,7 @@ nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
 nnoremap <silent> [Unite]h :<C-u>Unite -buffer-name=resume resume<CR>
 nnoremap <silent> [Unite]l :<C-u>Unite -buffer-name=line -start-insert line<CR>
 nnoremap <silent> [Unite]o :<C-u>Unite -buffer-name=outline -start-insert outline<CR>
+nnoremap <silent> [Unite]q :<C-u>Unite -buffer-name=quick-fix -start-insert qf<CR>
 
 augroup UniteBufferMappings
 	autocmd!
