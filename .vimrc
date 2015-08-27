@@ -114,6 +114,7 @@ NeoBundle 'kana/vim-textobj-indent'
 NeoBundle 'kana/vim-textobj-lastpat'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'sgur/unite-qf'
+NeoBundle 'okayson/crosspj.vim'
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -121,7 +122,6 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'croaker/mustang-vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'jnurmine/Zenburn'
-NeoBundle 'okayson/crosspj.vim'
 
 call neobundle#end()
 filetype plugin indent on
