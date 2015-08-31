@@ -115,6 +115,7 @@ NeoBundle 'kana/vim-textobj-lastpat'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'sgur/unite-qf'
 NeoBundle 'okayson/crosspj.vim'
+NeoBundle 'tyru/caw.vim'
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -305,6 +306,10 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
+
+"Caw
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
 
 "------------------------------
 " User Commands
