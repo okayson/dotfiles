@@ -103,6 +103,7 @@ NeoBundle 'tsukkee/unite-tag'			" for unite
 NeoBundle 'tsukkee/unite-help'			" for unite
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'thinca/vim-fontzoom'
+NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'rking/ag.vim'
@@ -132,12 +133,17 @@ NeoBundleCheck
 " Plugin Settings
 "------------------------------
 " Unite
-let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
-let g:unite_source_history_yank_enable = 1
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "call unite#custom#profile('default', 'context', {
 "\   'start_insert': 1
 "\ })
+let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+let g:unite_source_history_yank_enable = 1
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 " NeoComplCache
 let g:neocomplcache_enable_at_startup = 1
