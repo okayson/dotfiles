@@ -187,6 +187,9 @@ noremap  sp %
 vnoremap < <gv
 vnoremap > >gv
 
+nnoremap *  *N
+nnoremap #  #N
+
 nnoremap <silent> cy   cw<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 nnoremap <silent> cY   cW<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 nnoremap <silent> ciy ciw<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
@@ -196,6 +199,7 @@ vnoremap <silent> cy    c<C-r>0<Esc>:let @/ = @"<CR>:nohlsearch<CR>
 nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR><C-l>
 nnoremap ss :<C-u>write<CR>
 nnoremap <Space>m :<C-u>marks<CR>
+nnoremap <C-g> <C-^>
 
 " Run Command
 nnoremap [RC] <Nop>
@@ -244,7 +248,6 @@ nnoremap <silent> [Tags]p :<C-u>pop<CR>
 nnoremap <silent> [Tags]l :<C-u>tags<CR>
 
 " Gtags
-nmap          <C-g> :Gtags<Space>
 nmap <silent> <C-l> :cd <C-r>=getcwd()<CR><CR>:Gtags -f %<CR>
 nmap <silent> <C-j> :Gtags <C-r><C-w><CR>
 nmap <silent> <C-k> :Gtags -r <C-r><C-w><CR>
