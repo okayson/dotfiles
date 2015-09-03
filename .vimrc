@@ -106,9 +106,10 @@ NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
+NeoBundle 'vim-scripts/a.vim'
+NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'vim-scripts/a.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-fold'
 NeoBundle 'kana/vim-textobj-indent'
@@ -156,6 +157,9 @@ let g:neosnippet#snippets_directory = '~/.vim/snippets, ~/vim-snippets'
 
 " Ag
 let g:aghighlight=1
+
+" ErrorMarker
+let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 
 "------------------------------
 " Key Mappings
@@ -362,6 +366,7 @@ endfunction
 " Others
 "------------------------------
 syntax on
+set makeprg=LANGUAGE=C\ make
 
 "------------------------------
 " Local Setting
