@@ -135,9 +135,9 @@ NeoBundleCheck
 "------------------------------
 " Unite
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#custom#profile('default', 'context', {
-"\   'start_insert': 1
-"\ })
+call unite#custom#profile('default', 'context', {
+\   'start_insert': 1
+\ })
 let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
 let g:unite_source_history_yank_enable = 1
 if executable('ag')
@@ -273,16 +273,16 @@ nnoremap <silent> sn :cnewer<CR>
 nnoremap [Unite] <Nop>
 nmap  su [Unite]
 nnoremap          [Unite]u :<C-u>Unite<Space>
-nnoremap <silent> [Unite]b :<C-u>Unite -buffer-name=buffer -start-insert buffer<CR>
-nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files -start-insert file<CR>
-nnoremap <silent> [Unite]s :<C-u>UniteWithCurrentDir -buffer-name=files -start-insert file_rec<CR>
-nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru -start-insert file_mru directory_mru bookmark<CR>
+nnoremap <silent> [Unite]b :<C-u>Unite -buffer-name=buffer  buffer<CR>
+nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files  file<CR>
+nnoremap <silent> [Unite]s :<C-u>UniteWithCurrentDir -buffer-name=files  file_rec<CR>
+nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru  file_mru directory_mru bookmark<CR>
 nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
 nnoremap <silent> [Unite]h :<C-u>Unite -buffer-name=resume resume<CR>
-nnoremap <silent> [Unite]l :<C-u>Unite -buffer-name=line -start-insert line<CR>
-nnoremap <silent> [Unite]o :<C-u>Unite -buffer-name=outline -start-insert outline<CR>
-nnoremap <silent> [Unite]q :<C-u>Unite -buffer-name=quick-fix -start-insert qf<CR>
+nnoremap <silent> [Unite]l :<C-u>Unite -buffer-name=line  line<CR>
+nnoremap <silent> [Unite]o :<C-u>Unite -buffer-name=outline  outline<CR>
+nnoremap <silent> [Unite]q :<C-u>Unite -buffer-name=quick-fix  qf<CR>
 
 augroup UniteBufferMappings
 	autocmd!
