@@ -1,0 +1,29 @@
+# Global snippets
+
+snippet     date
+abbr        yyyy/mm/dd
+options     word
+    `strftime("%Y/%m/%d")`
+
+snippet     date_full
+abbr        yyyy/mm/dd hh:mm:ss
+alias       df
+options     word
+    `strftime("%Y/%m/%d %H:%M:%S")`
+
+snippet     date_day
+abbr        yyyy/mm/dd
+alias       dd
+options     word
+    `strftime("%Y/%m/%d")`
+
+snippet     date_time
+abbr        hh:mm:ss
+alias       dt
+options     word
+    `strftime("%H:%M:%S")`
+
+snippet     lastmod
+abbr        Last modified time
+alias       lmod
+    Last Modified: `strftime("%Y/%m/%d %H:%M:%S")`
