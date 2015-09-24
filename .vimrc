@@ -104,6 +104,7 @@ NeoBundle 'tsukkee/unite-help'			" for unite
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'thinca/vim-qfreplace'
+NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'vim-scripts/gtags.vim'
 NeoBundle 'vim-scripts/taglist.vim'
 NeoBundle 'vim-scripts/a.vim'
@@ -320,9 +321,13 @@ smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
 
-"Caw
+" Caw
 nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
+
+" Visual Star
+map * <Plug>(visualstar-*)N
+map # <Plug>(visualstar-#)N
 
 "------------------------------
 " User Commands
