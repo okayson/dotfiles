@@ -126,6 +126,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'croaker/mustang-vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'jnurmine/Zenburn'
+NeoBundle 'vim-scripts/3DGlasses.vim'
 
 call neobundle#end()
 filetype plugin indent on
