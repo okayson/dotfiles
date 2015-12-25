@@ -119,6 +119,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'sgur/unite-qf'
 NeoBundle 'okayson/crosspj.vim'
 NeoBundle 'tyru/caw.vim'
+NeoBundle 'easymotion/vim-easymotion'
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -162,6 +163,13 @@ let g:aghighlight=1
 
 " ErrorMarker
 let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+
+" EasyMotion
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0
 
 "------------------------------
 " Key Mappings
@@ -330,6 +338,17 @@ vmap <Leader>c <Plug>(caw:i:toggle)
 " Visual Star
 map * <Plug>(visualstar-*)N
 map # <Plug>(visualstar-#)N
+
+" EasyMotion
+nmap  sm <Plug>(easymotion-s2)
+xmap  sm <Plug>(easymotion-s2)
+omap  sm <Plug>(easymotion-s2)
+map   sj <Plug>(easymotion-j)
+map   sk <Plug>(easymotion-k)
+map   f  <Plug>(easymotion-fl)
+map   F  <Plug>(easymotion-Fl)
+omap  t  <Plug>(easymotion-tl)
+omap  T  <Plug>(easymotion-Tl)
 
 "------------------------------
 " User Commands
