@@ -340,9 +340,9 @@ map * <Plug>(visualstar-*)N
 map # <Plug>(visualstar-#)N
 
 " EasyMotion
-nmap  s; <Plug>(easymotion-s2)
-xmap  s; <Plug>(easymotion-s2)
-omap  s; <Plug>(easymotion-s2)
+nmap  sa <Plug>(easymotion-s2)
+xmap  sa <Plug>(easymotion-s2)
+omap  sa <Plug>(easymotion-s2)
 map   sj <Plug>(easymotion-j)
 map   sk <Plug>(easymotion-k)
 map   f  <Plug>(easymotion-fl)
