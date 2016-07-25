@@ -160,6 +160,7 @@ let g:neosnippet#snippets_directory = '~/.vim/snippets, ~/vim-snippets'
 
 " Ag
 let g:aghighlight=1
+let g:ag_apply_qmappings=0
 
 " ErrorMarker
 let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
@@ -393,6 +394,8 @@ endfunction
 "------------------------------
 syntax on
 set makeprg=LANGUAGE=C\ make
+" forbidden wrap text
+autocmd FileType text :setlocal formatoptions-=tc
 
 "------------------------------
 " Local Setting
@@ -403,5 +406,4 @@ set makeprg=LANGUAGE=C\ make
 if filereadable(expand("~/.vimrc.local"))
 	source ~/.vimrc.local
 endif
-
 " vim: foldmethod=marker
