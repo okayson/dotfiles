@@ -333,8 +333,10 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
 
 " Caw
-nmap <Leader>c <Plug>(caw:i:toggle)
-vmap <Leader>c <Plug>(caw:i:toggle)
+" nmap <Leader>c <Plug>(caw:i:toggle)
+" vmap <Leader>c <Plug>(caw:i:toggle)
+nmap <Leader>c <Plug>(caw:I:toggle)
+vmap <Leader>c <Plug>(caw:I:toggle)
 
 " Visual Star
 map * <Plug>(visualstar-*)N
