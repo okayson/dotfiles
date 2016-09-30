@@ -253,6 +253,11 @@ for i in range(1, 9)
 	" Input 't{i}' to go to tab page {i}.
 	execute 'nnoremap <silent> [TabPage]'.i ':<C-u>tabnext'.i '<CR>'
 endfor
+nnoremap <silent> [TabPage]. :<C-u>tabmove +1<CR>
+nnoremap <silent> [TabPage], :<C-u>tabmove -1<CR>
+nnoremap <silent> [TabPage]> :<C-u>tabmove<CR>
+nnoremap <silent> [TabPage]< :<C-u>tabmove 0<CR>
+
 nnoremap <silent> [TabPage]s :<C-u>split<CR>
 nnoremap <silent> [TabPage]v :<C-u>vsplit<CR>
 nnoremap <silent> [TabPage]j <C-w>j
