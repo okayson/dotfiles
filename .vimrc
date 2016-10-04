@@ -120,6 +120,9 @@ NeoBundle 'sgur/unite-qf'
 NeoBundle 'okayson/crosspj.vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'plasticboy/vim-markdown'		" for markdown
+NeoBundle 'kannokanno/previm'			" for markdown
+NeoBundle 'tyru/open-browser.vim'		" for markdown
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
