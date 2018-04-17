@@ -144,7 +144,8 @@ NeoBundleCheck
 call unite#custom#profile('default', 'context', {
 \   'start_insert': 1
 \ })
-let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 let g:unite_source_history_yank_enable = 1
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
@@ -162,7 +163,7 @@ let g:neosnippet#snippets_directory = '~/.vim/snippets, ~/vim-snippets'
 "			\ }
 
 " Ag
-let g:aghighlight=1
+let g:ag_highlight=1
 let g:ag_apply_qmappings=0
 
 " ErrorMarker
