@@ -19,8 +19,4 @@ set TARGET=.vim
 echo === %TARGET% ===
 mklink /D %LINK_DIR%\%TARGET% %TARGET_DIR%\%TARGET%
 
-set TARGET=.emacs.d
-echo === %TARGET% ===
-mklink /D %LINK_DIR%\%TARGET% %TARGET_DIR%\%TARGET%
-
 pause

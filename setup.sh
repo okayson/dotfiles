@@ -15,6 +15,3 @@ TARGET=.vim
 echo === $TARGET ===
 ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
 
-TARGET=.emacs.d
-echo === $TARGET ===
-ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
