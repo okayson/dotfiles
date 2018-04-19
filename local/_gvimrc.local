@@ -4,8 +4,12 @@
 let $MD="c:/Users/{user name}/Documents/"
 
 "------------------------------
-" color scheme 
+" look and feel
 "------------------------------
+" ** Font **
+set guifont=Myrica_M:h12
+
+" ** Color scheme **
 set background=dark
 "colorscheme solarized
 "colorscheme jellybeans
