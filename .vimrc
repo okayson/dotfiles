@@ -123,6 +123,8 @@ NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'plasticboy/vim-markdown'		" for markdown
 NeoBundle 'kannokanno/previm'			" for markdown
 NeoBundle 'tyru/open-browser.vim'		" for markdown
+NeoBundle 'LeafCage/yankround.vim'
+
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -146,7 +148,7 @@ call unite#custom#profile('default', 'context', {
 \ })
 
 let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-let g:unite_source_history_yank_enable = 1
+" let g:unite_source_history_yank_enable = 1
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
@@ -299,7 +301,8 @@ nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [Unite]s :<C-u>UniteWithCurrentDir -buffer-name=files file_rec<CR>
 nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru file_mru directory_mru bookmark<CR>
 nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
+" nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
+nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank yankround<CR>
 nnoremap <silent> [Unite]l :<C-u>Unite -buffer-name=line line<CR>
 nnoremap <silent> [Unite]o :<C-u>Unite -buffer-name=outline outline<CR>
 nnoremap <silent> [Unite]q :<C-u>Unite -buffer-name=quick-fix qf<CR>
@@ -361,6 +364,16 @@ map   f  <Plug>(easymotion-fl)
 map   F  <Plug>(easymotion-Fl)
 omap  t  <Plug>(easymotion-tl)
 omap  T  <Plug>(easymotion-Tl)
+
+" yandround
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
 
 "------------------------------
 " User Commands
