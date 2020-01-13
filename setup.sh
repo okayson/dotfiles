@@ -1,17 +1,17 @@
 #!/bin/bash
 
-TARGET_DIR=$HOME/dotfiles/
-LINK_DIR=$HOME/
+TARGET_DIR=$(dirname $0)/
+LINK_DIR=~/
 
 TARGET=.vimrc
-echo === $TARGET ===
+echo "make link: $TARGET_DIR$TARGET -> $LINK_DIR$TARGET"
 ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
 
 TARGET=_gvimrc
-echo === $TARGET ===
+echo "make link: $TARGET_DIR$TARGET -> $LINK_DIR$TARGET"
 ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
 
 TARGET=.vim
-echo === $TARGET ===
+echo "make link: $TARGET_DIR$TARGET -> $LINK_DIR$TARGET"
 ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
 

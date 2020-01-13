@@ -106,7 +106,9 @@ NeoBundle 'thinca/vim-fontzoom'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'vim-scripts/gtags.vim'
+if executable('ctags')
 NeoBundle 'vim-scripts/taglist.vim'
+endif
 NeoBundle 'vim-scripts/a.vim'
 NeoBundle 'vim-scripts/errormarker.vim'
 NeoBundle 'rking/ag.vim'
@@ -372,8 +374,8 @@ nmap P <Plug>(yankround-P)
 nmap gp <Plug>(yankround-gp)
 xmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
-nmap <C-u> <Plug>(yankround-prev)
-nmap <C-d> <Plug>(yankround-next)
+" nmap <C-u> <Plug>(yankround-prev)
+" nmap <C-d> <Plug>(yankround-next)
 
 "------------------------------
 " User Commands
