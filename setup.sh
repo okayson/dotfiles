@@ -1,17 +1,16 @@
 #!/bin/bash
 
-TARGET_DIR=$(dirname $0)/
-LINK_DIR=~/
+TargetDir=$(cd $(dirname $0); pwd)/
+LinkDir=~/
 
-TARGET=.vimrc
-echo "make link: $TARGET_DIR$TARGET -> $LINK_DIR$TARGET"
-ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
+TargetFiles=(.vimrc _gvimrc .vim)
 
-TARGET=_gvimrc
-echo "make link: $TARGET_DIR$TARGET -> $LINK_DIR$TARGET"
-ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
+echo "make link ..."
+for target in ${TargetFiles[@]}
+do
+	echo "${LinkDir}${target} -> ${TargetDir}${target}"
+	ln -s ${TargetDir}${target} ${LinkDir}${target}
+done
 
-TARGET=.vim
-echo "make link: $TARGET_DIR$TARGET -> $LINK_DIR$TARGET"
-ln -s $TARGET_DIR$TARGET $LINK_DIR$TARGET
+exit
 
