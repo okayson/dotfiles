@@ -1,29 +1,16 @@
 "------------------------------
 " variables
 "------------------------------
-let $MD="/c/Users/{user name}/Documents/"
+let $WIN_USER="/path/to/windows/userprofile"
+let $DESKTOP=$WIN_USER . "/Desktop"
 
 "------------------------------
-" color scheme
+" look and feel
 "------------------------------
-hi Statement ctermfg=white
-hi Comment   ctermfg=yellow
-hi String ctermfg=green cterm=bold
-"hi Constant ctermfg=yellow cterm=bold
-"hi Character ctermfg=5
-"hi String ctermfg=white cterm=bold
-"hi Function term=bold ctermfg=LightBlue
-"hi Number ctermfg=black
-"hi Identifier ctermfg=black cterm=bold
-"hi Statement ctermfg=white cterm=bold
-"hi PreProc ctermfg=white cterm=bold
-"hi Type ctermfg=LightBlue cterm=bold
-"hi Special ctermfg=grey cterm=bold
-"hi Underlined cterm=italic
-"hi Ignore ctermfg=darkgray
-"hi Error ctermfg=darkred ctermbg=black
-"hi Todo ctermbg=darkred ctermfg=yellow
-
+" ** Color scheme **
 set background=dark
-colorscheme desert
+
+colorscheme molokai
+"colorscheme jellybeans
+"colorscheme hybrid
 
