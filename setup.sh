@@ -5,9 +5,23 @@ LinkDir=~/
 
 TargetFiles=(.vimrc _gvimrc .vim)
 
-echo "make link ..."
+echo "# Make link ..."
+
 for target in ${TargetFiles[@]}
 do
 	ln -s -v ${TargetDir}${target} ${LinkDir}${target}
 done
+
+echo "# Update bashrc ..."
+
+AdditionalBashrc=${TargetDir}.bashrc
+grep "${AdditionalBashrc}" ~/.bashrc >/dev/null
+if [ $? -eq 0 ]; then
+	echo "  nothing to do."
+else
+	echo "  add ${AdditionalBashrc} in ~/.bashrc."
+
+	echo "# Load additional .bashrc." >> ~/.bashrc
+	echo ". ${AdditionalBashrc}" >> ~/.bashrc
+fi
 
