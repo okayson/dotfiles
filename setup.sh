@@ -11,5 +11,3 @@ do
 	ln -s -v ${TargetDir}${target} ${LinkDir}${target}
 done
 
-exit
-
