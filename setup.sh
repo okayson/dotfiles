@@ -5,22 +5,33 @@ LinkDir=~/
 
 TargetFiles=(.vimrc _gvimrc .vim)
 
-echo "# Make link ..."
+echo "[PROCESS] Make link ..."
 
 for target in ${TargetFiles[@]}
 do
-	ln -s -v ${TargetDir}${target} ${LinkDir}${target}
+	if [[  -L ${LinkDir}${target}  ]]; then
+		echo "[INFO] Symbolic link exists...unlink: ${LinkDir}${target}"
+		unlink ${LinkDir}${target}
+	fi
+
+	if [[  -f ${LinkDir}${target}  ]]; then
+		echo "[ABORT] File exists: ${LinkDir}${target}"
+	else
+		echo "[INFO] Create symbolic link."
+		ln -s -v ${TargetDir}${target} ${LinkDir}${target}
+	fi
 done
 
-echo "# Update bashrc ..."
+echo "[PROCESS] Update bashrc ..."
 
 AdditionalBashrc=${TargetDir}.bashrc
 grep "${AdditionalBashrc}" ~/.bashrc >/dev/null
 if [ $? -eq 0 ]; then
-	echo "  nothing to do."
+	echo "[INFO] '${AdditionalBashrc}' is already setup in '~/.bashrc'."
 else
-	echo "  add ${AdditionalBashrc} in ~/.bashrc."
+	echo "[INFO] Setup '${AdditionalBashrc}' in '~/.bashrc'."
 
+	echo "" >> ~/.bashrc
 	echo "# Load additional .bashrc." >> ~/.bashrc
 	echo ". ${AdditionalBashrc}" >> ~/.bashrc
 fi
