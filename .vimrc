@@ -135,6 +135,7 @@ NeoBundle 'croaker/mustang-vim'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'jnurmine/Zenburn'
 NeoBundle 'vim-scripts/3DGlasses.vim'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
 
 call neobundle#end()
 filetype plugin indent on
