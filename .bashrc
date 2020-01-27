@@ -3,12 +3,21 @@
 # Enviroment
 ########################################
 
-# エディタ
+# Permission for file creation.
+umask 022
+
+# Editor
 export EDITOR
 EDITOR='vim'
 
-# 新規ファイルの権限を設定
-umask 022
+# fzf
+if type fzf >/dev/null 2>&1; then
+	export FZF_DEFAULT_OPTS='--multi --layout=reverse --cycle'
+
+	# if type tree >/dev/null 2>&1; then
+	# 	export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+	# fi
+fi
 
 ########################################
 # Alias
@@ -65,4 +74,17 @@ alias gc!='git commit -v --amend'
 # git - log
 alias gl='git log --stat --color'
 alias glg='git log --graph --color'
+
+# # xclip
+# alias clipin='xclip -selection c'
+# alias clipout='xclip -selection c -o'
+
+# cd
+function cd_fzf_find() {
+    local DIR=$(find ./ -path '*/\.*' -name .git -prune -o -type d -print 2> /dev/null | fzf --height 50%)
+    if [ -n "$DIR" ]; then
+        cd $DIR
+    fi
+}
+alias cdd=cd_fzf_find
 
