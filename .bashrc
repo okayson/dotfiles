@@ -81,7 +81,7 @@ alias glg='git log --graph --color'
 
 # cd
 function cd_fzf_find() {
-    local DIR=$(find ./ -path '*/\.*' -name .git -prune -o -type d -print 2> /dev/null | fzf --height 50%)
+    local DIR=$(find ./ -path '*/\.*' -name .git -prune -o -type d -print 2> /dev/null | fzf --layout=reverse --height 40% --cycle)
     if [ -n "$DIR" ]; then
         cd $DIR
     fi
