@@ -3,38 +3,38 @@
 LinkedDir=$(cd $(dirname $0); pwd)/
 LinkDir=~/
 
-LinkedTargets=(.vimrc _gvimrc .vim)
+LinkedTargets=(.vim .vimrc _gvimrc .tmux.conf)
 
-echo "[PROCESS] Generate link ..."
+echo "Generate link..."
 
 for target in ${LinkedTargets[@]}
 do
 	if [[  -L ${LinkDir}${target}  ]]; then
-		echo "[INFO] Symbolic link exists ... unlink: ${LinkDir}${target}"
+		echo "    Symbolic link exists...unlink: ${LinkDir}${target}"
 		unlink ${LinkDir}${target}
 	fi
 
 	if [[  -f ${LinkDir}${target}  ]]; then
-		echo "[ABORT] File exists: ${LinkDir}${target}"
+		echo "    [ABORT] File exists: ${LinkDir}${target}"
 	else
-		echo "[INFO] Generate symbolic link."
-		ln -s -v ${LinkedDir}${target} ${LinkDir}${target}
+		echo "    Generate symbolic link...${LinkDir}${target} -> ${LinkedDir}${target}"
+		ln -s ${LinkedDir}${target} ${LinkDir}${target}
 	fi
 done
 
-echo "[PROCESS] Update bashrc ..."
+echo "Update bashrc..."
 
 BaseBashrc=~/.bashrc
 AdditionalBashrc=${LinkedDir}.bashrc
 
 grep "${AdditionalBashrc}" ${BaseBashrc} >/dev/null
 if [ $? -eq 0 ]; then
-	echo "[INFO] '${AdditionalBashrc}' is already setuped in '${BaseBashrc}'."
+	echo "    '${AdditionalBashrc}' is already setuped in '${BaseBashrc}'."
 else
-	echo "[INFO] Setup '${AdditionalBashrc}' in '${BaseBashrc}'."
+	echo "    Setup '${AdditionalBashrc}' in '${BaseBashrc}'."
 	echo "" >> ${BaseBashrc}
 	echo "# Additional .bashrc." >> ${BaseBashrc}
 	echo "[ -f ${AdditionalBashrc} ] && source ${AdditionalBashrc}" >> ${BaseBashrc}
-	echo "[INFO] Completed. Please reload ${BaseBashrc}."
+	echo "    Completed. Please reload ${BaseBashrc}."
 fi
 
