@@ -35,10 +35,10 @@ function prompt_post_message {
 		return
 	fi
 	if [[ $command_result -eq 0 ]] ; then
-		# echo -ne "\e[0;37m[Success]\e[00m\n"
+		# echo -ne "\e[0;37m[ Success ]\e[00m\n"
 		:
 	else
-		echo -ne "\e[0;31m[Failure(code=$command_result)]\e[00m\n"
+		echo -ne "\e[0;31m[ Failure (code=$command_result) ]\e[00m\n"
 	fi
 }
 
