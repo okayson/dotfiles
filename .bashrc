@@ -20,6 +20,31 @@ if type fzf >/dev/null 2>&1; then
 fi
 
 ########################################
+# Prompt
+########################################
+# PS1="\$(
+# 	echo -ne "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ "
+# )"
+#
+PS1=$(echo -ne "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ ")
+
+function prompt_post_message {
+	local command_result=$?
+	if [[ ! $prompt_post_message ]] ; then
+		prompt_post_message=1
+		return
+	fi
+	if [[ $command_result -eq 0 ]] ; then
+		# echo -ne "\e[0;37m[Success]\e[00m\n"
+		:
+	else
+		echo -ne "\e[0;31m[Failure(code=$command_result)]\e[00m\n"
+	fi
+}
+
+PROMPT_COMMAND="prompt_post_message; ${PROMPT_COMMAND//prompt_post_message;/}"
+
+########################################
 # Alias
 ########################################
 
