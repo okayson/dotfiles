@@ -100,10 +100,6 @@ alias gc!='git commit -v --amend'
 alias gl='git log --stat --color'
 alias glg='git log --graph --color'
 
-# # xclip
-# alias clipin='xclip -selection c'
-# alias clipout='xclip -selection c -o'
-
 # cd
 function cd_fzf_find() {
     local DIR=$(find ./ -path '*/\.*' -name .git -prune -o -type d -print 2> /dev/null | fzf --layout=reverse --height 40% --cycle)
@@ -112,4 +108,14 @@ function cd_fzf_find() {
     fi
 }
 alias cdd=cd_fzf_find
+
+# clipboard on WSL
+if uname -a| grep 'Linux.*Microsoft' >/dev/null 2>&1; then
+	if type win32yank.exe >/dev/null 2>&1; then
+		# input from clipboard
+		alias cin='win32yank.exe -o'
+		# output to clipboard(eg. echo "hello" | cout)
+		alias cout='win32yank.exe -i'
+	fi
+fi
 
