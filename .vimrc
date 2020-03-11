@@ -417,6 +417,33 @@ function! s:make_ctags()
 endfunction
 "}}}
 
+" Yank and Put for WSL
+if system("uname -a | grep 'Linux.*Microsoft'") != ''
+
+	if executable('win32yank.exe')
+		let   s:yank_cmd = 'win32yank.exe -i'
+		let   s:put_cmd  = 'win32yank.exe -o'
+	elseif executable('clip.exe')
+		let   s:yank_cmd = 'clip.exe'
+		unlet s:put_cmd
+	else
+		unlet s:yank_cmd
+		unlet s:put_cmd
+	endif
+	
+	if exists('s:yank_cmd')
+		augroup WslYank
+			autocmd!
+			autocmd TextYankPost * :call system(s:yank_cmd, @")
+		augroup END
+	endif
+
+	if exists('s:put_cmd')
+		command! WinPut :execute "r !" . s:put_cmd
+		nnoremap wp :<C-u>WinPut<CR>
+	endif
+endif
+
 "------------------------------
 " Others
 "------------------------------
