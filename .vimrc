@@ -247,6 +247,7 @@ nmap <Space>o [Option]
 nnoremap [Option]n :<C-u>set number!<CR>
 nnoremap [Option]r :<C-u>set relativenumber!<CR>
 nnoremap [Option]w :<C-u>set wrap!<CR>
+nnoremap [Option]t :<C-u>set expandtab!<CR>
 
 " TabPage
 nnoremap [TabPage] <Nop>
