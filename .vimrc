@@ -425,10 +425,6 @@ if system("uname -a | grep 'Linux.*Microsoft'") != ''
 		let   s:put_cmd  = 'win32yank.exe -o'
 	elseif executable('clip.exe')
 		let   s:yank_cmd = 'clip.exe'
-		unlet s:put_cmd
-	else
-		unlet s:yank_cmd
-		unlet s:put_cmd
 	endif
 	
 	if exists('s:yank_cmd')
