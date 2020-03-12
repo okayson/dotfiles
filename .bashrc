@@ -112,10 +112,10 @@ alias cdd=cd_fzf_find
 # clipboard on WSL
 if uname -a| grep 'Linux.*Microsoft' >/dev/null 2>&1; then
 	if type win32yank.exe >/dev/null 2>&1; then
-		# input from clipboard
-		alias cin='win32yank.exe -o'
-		# output to clipboard(eg. echo "hello" | cout)
-		alias cout='win32yank.exe -i'
+		# output clipboard
+		alias cout='win32yank.exe -o'
+		# input to clipboard(eg. echo "hello" | cin)
+		alias cin='win32yank.exe -i'
 	fi
 fi
 
