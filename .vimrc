@@ -428,7 +428,7 @@ if system("uname -a | grep 'Linux.*Microsoft'") != ''
 	endif
 	
 	if exists('s:yank_cmd')
-		augroup WslYank
+		augroup WinYank
 			autocmd!
 			autocmd TextYankPost * :call system(s:yank_cmd, @")
 		augroup END
@@ -437,6 +437,12 @@ if system("uname -a | grep 'Linux.*Microsoft'") != ''
 	if exists('s:put_cmd')
 		command! WinPut :execute "r !" . s:put_cmd
 		nnoremap wp :<C-u>WinPut<CR>
+
+		" eg. To input to command-line, Type as ':<C-r>=WinPut()'.
+		function! WinPut()
+			let s:put_text = system(s:put_cmd)
+			return s:put_text
+		endfunction
 	endif
 endif
 
