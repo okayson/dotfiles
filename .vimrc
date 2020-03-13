@@ -345,8 +345,22 @@ augroup END
 " NeoSnippet
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
+" imap <C-k> <Plug>(neosnippet_expand)
+" smap <C-k> <Plug>(neosnippet_expand)
 xmap <C-k> <Plug>(neosnippet_expand_target)
-xmap <C-l> <Plug>(neosnippet_start_unite_snippet_target)
+
+" NeoSnippet > SuperTab like snippets behavior.
+imap <expr><TAB>
+\ pumvisible() ?
+\ "\<C-n>" : neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" NeoSnippet > For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 " Caw
 nmap <Leader>c <Plug>(caw:i:toggle)
