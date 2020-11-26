@@ -275,6 +275,18 @@ nnoremap <silent> [TabPage]k <C-w>k
 nnoremap <silent> [TabPage]h <C-w>h
 nnoremap <silent> [TabPage]l <C-w>l
 
+" Terminal
+" Terminal prefix key is <C-w>.
+" set termkey=<C-j>
+"" Change to terminal normal mode
+tnoremap <silent> <Esc><Esc> <C-w>N
+"" Paste "register
+tnoremap <silent> <C-o><C-p> <C-w>""
+
+" Terminal cheat sheet
+"- Rotate window:=> <C-w>r
+"- Change to command line mode:=> <C-w>:
+
 " Tags
 nnoremap   [Tags] <Nop>
 nmap <C-t> [Tags]
@@ -398,6 +410,14 @@ nmap gP <Plug>(yankround-gP)
 "------------------------------
 " Trim white spaces on line tail.
 command! -range TrimSpaces :%s/\s\+$//|normal! <line1>G
+
+" Terminal
+command! Term :vertical leftabove term ++close
+command! Terml :vertical leftabove term ++close
+command! Termr :vertical rightbelow term ++close
+command! Termt :topleft term ++close
+command! Termb :rightbelow term ++close
+command! Termc :term ++close ++curwin
 
 " Make tag files
 command! MakeTags :call <SID>make_tags()
