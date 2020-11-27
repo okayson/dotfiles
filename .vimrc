@@ -412,12 +412,11 @@ nmap gP <Plug>(yankround-gP)
 command! -range TrimSpaces :%s/\s\+$//|normal! <line1>G
 
 " Terminal
-command! Term :vertical leftabove term ++close
-command! Terml :vertical leftabove term ++close
-command! Termr :vertical rightbelow term ++close
-command! Termt :topleft term ++close
-command! Termb :rightbelow term ++close
-command! Termc :term ++close ++curwin
+command! Term :term ++close ++curwin
+command! Termh :vertical leftabove term ++close
+command! Terml :vertical rightbelow term ++close
+command! Termk :topleft term ++close
+command! Termj :rightbelow term ++close
 
 " Make tag files
 command! MakeTags :call <SID>make_tags()
