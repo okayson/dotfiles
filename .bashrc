@@ -110,7 +110,7 @@ function cd_fzf_find() {
 alias cdd=cd_fzf_find
 
 # clipboard on WSL
-if uname -a| grep 'Linux.*Microsoft' >/dev/null 2>&1; then
+if uname -a| grep -i 'linux.*microsoft' >/dev/null 2>&1; then
 	if type win32yank.exe >/dev/null 2>&1; then
 		# output clipboard
 		alias cout='win32yank.exe -o'
