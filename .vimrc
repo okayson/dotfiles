@@ -11,7 +11,9 @@ set nocompatible
 
 set runtimepath&
 set runtimepath+=~/.vim
-
+packadd termdebug
+" let g:termdebug_wide=163
+let g:termdebug_wide=1
 "------------------------------
 " Encoding
 "------------------------------
@@ -279,7 +281,8 @@ nnoremap <silent> [TabPage]l <C-w>l
 " Terminal prefix key is <C-w>.
 " set termkey=<C-j>
 "" Change to terminal normal mode
-tnoremap <silent> <Esc><Esc> <C-w>N
+" tnoremap <silent> <Esc><Esc> <C-w>N
+tnoremap <silent> <C-o><C-o> <C-w>N
 "" Paste "register
 tnoremap <silent> <C-o><C-p> <C-w>""
 
@@ -451,7 +454,7 @@ endfunction
 "}}}
 
 " Yank and Put for WSL
-if system("uname -a | grep 'Linux.*Microsoft'") != ''
+if system("uname -a | grep -i 'linux.*microsoft'") != ''
 
 	if executable('win32yank.exe')
 		let   s:yank_cmd = 'win32yank.exe -i'
