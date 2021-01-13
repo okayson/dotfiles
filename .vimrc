@@ -483,12 +483,19 @@ if system("uname -a | grep -i 'linux.*microsoft'") != ''
 endif
 
 "------------------------------
+" FileType Setting
+"------------------------------
+" sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtab
+autocmd FileType sh setlocal sw=2 sts=2 ts=2 et
+
+" " forbidden wrap text
+" autocmd FileType text :setlocal formatoptions-=tc
+
+"------------------------------
 " Others
 "------------------------------
 syntax on
 set makeprg=LANGUAGE=C\ make
-" forbidden wrap text
-autocmd FileType text :setlocal formatoptions-=tc
 
 "------------------------------
 " Local Setting
