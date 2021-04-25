@@ -11,13 +11,10 @@ export EDITOR
 EDITOR='vim'
 
 # fzf
-if type fzf >/dev/null 2>&1; then
-	export FZF_DEFAULT_OPTS='--multi --layout=reverse --cycle'
+export FZF_DEFAULT_OPTS='--multi --layout=reverse --cycle'
 
-	# if type tree >/dev/null 2>&1; then
-	# 	export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-	# fi
-fi
+# enhancd
+export ENHANCD_DISABLE_DOT=1
 
 ########################################
 # Prompt
