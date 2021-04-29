@@ -10,11 +10,6 @@ function has() {
 
 }
 
-if ! has git; then
-  echo "Command 'git' not found. Please install git."
-  exit 1
-fi
-
 if [ ! -d "${bin_dir}" ]; then
   echo "Make ${bin_dir}."
   mkdir ${bin_dir}
@@ -25,6 +20,7 @@ fi
 #--------------------------------------------------
 sudo apt install git -y
 sudo apt install vim -y
+sudo apt install tmux -y
 sudo apt install global -y
 sudo apt install exuberant-ctags -y
 sudo apt install silversearcher-ag -y
