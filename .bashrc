@@ -85,11 +85,13 @@ alias gd='git diff'
 alias gdw='git diff --color-words'
 alias gdf='git diff --stat'
 alias gdn='git diff --name-only'
+alias gdd='git difftool'
 # git - diff(stated)
 alias gd!='gd --cached'
 alias gdw!='gdw --cached'
 alias gdf!='gdf --cached'
 alias gdn!='gdn --cached'
+alias gdd!='git difftool --cached'
 # git - commit
 alias gc='git commit -v'
 alias gc!='git commit -v --amend'
@@ -97,14 +99,56 @@ alias gc!='git commit -v --amend'
 alias gl='git log --stat --color'
 alias glg='git log --graph --color'
 
-# cd
-function cd_fzf_find() {
+# cd to children directly
+fuzzy_cd_children() {
     local DIR=$(find ./ -path '*/\.*' -name .git -prune -o -type d -print 2> /dev/null | fzf --layout=reverse --height 40% --cycle)
     if [ -n "$DIR" ]; then
         cd $DIR
     fi
 }
-alias cdd=cd_fzf_find
+alias cdd=fuzzy_cd_children
+
+# select modified git files
+fuzzy_git_select_modified() {
+  local selected
+
+	if type unbuffer >/dev/null 2>&1; then
+    selected="$(unbuffer git status --short | grep -e '??' -e '.M' | fzf --multi --ansi | awk '{print $2}')"
+  else
+    selected="$(git status --short | grep -e '??' -e '.M' | fzf --multi | awk '{print $2}')"
+  fi
+  echo $selected
+}
+
+# git add
+fuzzy_git_add() {
+  local selected
+
+  selected="$(fuzzy_git_select_modified)"
+
+  if [ -n "$selected" ]; then
+    echo $selected
+    git add $selected
+  fi
+}
+
+alias ga=fuzzy_git_add
+
+# select git diff file
+fuzzy_select_git_diff() {
+  local selected
+
+  selected=$(git diff --name-only | fzf --multi --preview="git diff --color {}")
+
+  if [ -n "$selected" ]; then
+    echo $selected
+  fi
+}
+
+# usage:
+# $ git add $(gds)
+# $ gdd $(gds)
+alias gds=fuzzy_select_git_diff
 
 # clipboard on WSL
 if uname -a| grep -i 'linux.*microsoft' >/dev/null 2>&1; then
