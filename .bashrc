@@ -108,6 +108,43 @@ fuzzy_cd_children() {
 }
 alias cdd=fuzzy_cd_children
 
+# man
+color_man() {
+  env MANPAGER='less -R' \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    man "$@"
+}
+alias cman=color_man
+
+fuzzy_man() {
+  local manpage
+
+  manpage=$(man -k . | awk '{print $1,$2}' | fzf -q "$1" --prompt='MAN> ' | awk '{print $1}')
+
+  if [ -n "$manpage" ]; then
+    cman $manpage
+  fi
+}
+
+fuzzy_man_with_summary() {
+  local manpage
+
+  manpage=$(man -k . | fzf -q "$1" --prompt='MAN> ' | awk '{print $1}')
+
+  if [ -n "$manpage" ]; then
+    cman $manpage
+  fi
+}
+alias fman=fuzzy_man
+alias fman2=fuzzy_man_with_summary
+# alias fmans=fuzzy_man_with_summary
+
 # select modified git files
 fuzzy_git_select_modified() {
   local selected
@@ -120,11 +157,26 @@ fuzzy_git_select_modified() {
   echo $selected
 }
 
+fuzzy_git_select_modified_with_preview() {
+  local selected
+
+	if type unbuffer >/dev/null 2>&1; then
+    selected=$(unbuffer git status --short | grep -e '??' -e '.M' | fzf --multi --ansi --preview "echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+  else
+    selected=$(git status --short | grep -e '??' -e '.M' | fzf --multi --preview "echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+  fi
+  echo $selected
+}
+
 # git add
 fuzzy_git_add() {
   local selected
 
-  selected="$(fuzzy_git_select_modified)"
+  if [ "$1" == "-p" ]; then
+    selected="$(fuzzy_git_select_modified_with_preview)"
+  else
+    selected="$(fuzzy_git_select_modified)"
+  fi
 
   if [ -n "$selected" ]; then
     echo $selected
@@ -132,23 +184,53 @@ fuzzy_git_add() {
   fi
 }
 
-alias ga=fuzzy_git_add
+alias ga='fuzzy_git_add'
+alias gap='fuzzy_git_add -p'
 
 # select git diff file
 fuzzy_select_git_diff() {
   local selected
 
-  selected=$(git diff --name-only | fzf --multi --preview="git diff --color {}")
+  selected="$(git diff --name-only $1 | fzf --multi --preview="git diff $1 --color {}")"
 
   if [ -n "$selected" ]; then
     echo $selected
   fi
 }
 
-# usage:
-# $ git add $(gds)
-# $ gdd $(gds)
-alias gds=fuzzy_select_git_diff
+fuzzy_git_difftool() {
+  local selected
+
+  selected="$(fuzzy_select_git_diff $1)"
+
+  if [ -n "$selected" ]; then
+    git difftool $1 --no-prompt $selected
+  else
+    git difftool $1
+  fi
+}
+alias gdt='fuzzy_git_difftool'
+alias gdt!='fuzzy_git_difftool --cached'
+
+# grep keyword and open file by vim with line number
+# vimag 100
+# vimag -w 100
+# vimag .
+fuzzy_open_found_keyword() {
+  local file
+  local line
+
+	if type unbuffer >/dev/null 2>&1; then
+    read -r file line <<<"$(unbuffer ag --nobreak --noheading $@ | fzf -0 -1 --ansi | awk -F: '{print $1, $2}')"
+  else
+    read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+  fi
+
+  if [[ -n $file && "$line" =~ ^[0-9]+$ ]]; then
+     vim $file +$line
+  fi
+}
+alias viag=fuzzy_open_found_keyword
 
 # clipboard on WSL
 if uname -a| grep -i 'linux.*microsoft' >/dev/null 2>&1; then
