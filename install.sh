@@ -1,8 +1,7 @@
 #!/bin/bash
 
-this_file=$(cd $(dirname $0); pwd)
-bin_dir=~/bin
-bashrc_file=~/.bashrc
+readonly BIN_DIR=~/bin
+readonly BASHRC_FILE=~/.bashrc
 
 function has() {
 
@@ -10,14 +9,20 @@ function has() {
 
 }
 
-if [ ! -d "${bin_dir}" ]; then
-  echo "Make ${bin_dir}."
-  mkdir ${bin_dir}
+if [ ! -d "${BIN_DIR}" ]; then
+  echo "Make ${BIN_DIR}."
+  mkdir ${BIN_DIR}
 fi
 
 #--------------------------------------------------
 # Install by apt
 #--------------------------------------------------
+sudo apt update
+if [ $? != 0 ]; then
+  echo "Abort installing."
+  exit 1
+fi
+
 sudo apt install git -y
 sudo apt install vim -y
 sudo apt install tmux -y
@@ -25,14 +30,15 @@ sudo apt install global -y
 sudo apt install exuberant-ctags -y
 sudo apt install silversearcher-ag -y
 sudo apt install build-essential -y
+sudo apt install expect -y              # for unbuffer
 
 #--------------------------------------------------
 # Install fzf
 #--------------------------------------------------
-if [ ! -d "${bin_dir}/fzf" ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ${bin_dir}/fzf
+if [ ! -d "${BIN_DIR}/fzf" ]; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ${BIN_DIR}/fzf
   if [ $? -eq 0 ]; then
-    ${bin_dir}/fzf/install
+    ${BIN_DIR}/fzf/install
   else
     echo "Failed to install fzf."
   fi
@@ -41,11 +47,11 @@ fi
 #--------------------------------------------------
 # Install enhancd
 #--------------------------------------------------
-if [ ! -d "${bin_dir}/enhancd" ]; then
-  git clone --depth 1 https://github.com/b4b4r07/enhancd ${bin_dir}/enhancd
+if [ ! -d "${BIN_DIR}/enhancd" ]; then
+  git clone --depth 1 https://github.com/b4b4r07/enhancd ${BIN_DIR}/enhancd
   if [ $? -eq 0 ]; then
-	  echo "" >> ${bashrc_file}
-	  echo "[ -f ${bin_dir}/enhancd/init.sh ] && source ${bin_dir}/enhancd/init.sh" >> ${bashrc_file}
+	  echo "" >> ${BASHRC_FILE}
+	  echo "[ -f ${BIN_DIR}/enhancd/init.sh ] && source ${BIN_DIR}/enhancd/init.sh" >> ${BASHRC_FILE}
   else
     echo "Failed to install enhancd."
   fi
