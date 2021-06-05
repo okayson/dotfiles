@@ -1,4 +1,3 @@
-
 ########################################
 # Enviroment
 ########################################
@@ -42,13 +41,203 @@ function prompt_post_message {
 PROMPT_COMMAND="prompt_post_message; ${PROMPT_COMMAND//prompt_post_message;/}"
 
 ########################################
+# Utilities
+########################################
+
+if type unbuffer >/dev/null 2>&1; then
+  UNBUFFER=unbuffer
+fi
+
+# man - show man page with color
+man_color() {
+  env MANPAGER='less -R' \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    man "$@"
+}
+
+# man - Finding keyword from man page.
+# $ fuzzy_man
+# $ fuzzy_man a-part-of-word
+fuzzy_man() {
+  local manpage=$(man -k . | fzf -q "$1" --nth 1 --prompt='MAN> ' | awk '{print $1}')
+
+  if [ -n "$manpage" ]; then
+    man $manpage
+  fi
+}
+
+# man - Finding keyword or summary from man page.
+# $ fuzzy_man_including_summary
+# $ fuzzy_man_including_summary a-part-of-word
+fuzzy_man_including_summary() {
+  local manpage=$(man -k . | fzf -q "$1" --prompt='MAN> ' | awk '{print $1}')
+
+  if [ -n "$manpage" ]; then
+    man $manpage
+  fi
+}
+
+# cd - change directory to children directly
+fuzzy_cd_children() {
+  local dir_=$(find ./ -path '*/\.*' -name .git -prune -o -type d -print 2> /dev/null | \
+    fzf --layout=reverse --height 40% --cycle)
+
+  if [ -n "$dir_" ]; then
+    cd "$dir_"
+  fi
+}
+
+# git - select modified git files
+fuzzy_git_select_modified() {
+  local selected="$($UNBUFFER git status --short | \
+    grep -e '??' -e '.M' | \
+    fzf --multi --ansi | \
+    awk '{print $2}')"
+  echo $selected
+}
+fuzzy_git_select_modified_preview() {
+  local selected=$($UNBUFFER git status --short | \
+    grep -e '??' -e '.M' | \
+    fzf --multi --ansi --preview "echo {} | awk '{print \$2}' | xargs git diff --color" | \
+    awk '{print $2}')
+  echo $selected
+}
+
+# git - git add
+fuzzy_git_add() {
+  local selected
+
+  if [ "$1" == "-p" ]; then
+    selected="$(fuzzy_git_select_modified_preview)"
+  else
+    selected="$(fuzzy_git_select_modified)"
+  fi
+
+  if [ -n "$selected" ]; then
+    echo $selected
+    git add $selected
+  fi
+}
+
+# fuzzy_git_select_branch() {
+#
+# }
+
+# git - checkout git branch
+fuzzy_git_checkout() {
+  local branches branch
+
+  branches=$($UNBUFFER git --no-pager branch -vv) &&
+  branch=$(echo "$branches" | fzf --no-multi --ansi) &&
+  git checkout $(echo "$branch" | sed "s/^\*//" | awk '{print $1}' | sed "s/.* //")
+}
+
+# git - checkout git branch (including remote branches)
+fuzzy_git_checkout_including_remote() {
+  local branches branch
+
+  branches=$($UNBUFFER git --no-pager branch --all -vv | grep -v HEAD) &&
+  branch=$(echo "$branches" | fzf --no-multi --ansi) &&
+  git checkout $(echo "$branch" | sed "s/^\*//" | awk '{print $1}' | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# git - select git commmit sha
+# example usage:
+# $ git rebase -i $(fuzzy_git_select_hash)
+# $ git checkout $(fuzzy_git_select_hash)
+fuzzy_git_select_hash() {
+  local commit sha
+  local preview_window
+
+  if [ "$1" == "-pv" ]; then
+    # show vertical fzf preview window.
+    preview_window=right
+  elif [ "$1" == "-ph" ]; then
+    # show horizonal fzf preview window.
+    preview_window=down
+  else
+    # don't show fzf preview window.
+    preview_window=hidden
+  fi
+
+  commit=$(
+      git log --graph --color=always --abbrev-commit --date=short \
+        --format="%C(auto)%h%d %C(black)%C(bold)%ad %an %C(auto)%s" |
+      fzf --ansi --multi --no-sort --reverse --print-query \
+        --preview "echo {} | sed 's/^[^a-z0-9]*//;/^$/d' | awk '{print \$1}' | xargs git show --color=always" \
+        --preview-window $preview_window) &&
+  sha=$(sed 's/^[^a-z0-9]*//;/^$/d' <<< "$commit" | awk '{print $1}')
+  echo $sha
+}
+
+# git - select git diff file
+# Parameter are passed to the 'git diff'.
+# example usage:
+# $ fuzzy_select_git_diff --cached
+fuzzy_select_git_diff() {
+  local selected
+
+  selected="$(git diff --name-only $@ | fzf --multi --preview="git diff $@ --color {}")"
+
+  if [ -n "$selected" ]; then
+    echo $selected
+  fi
+}
+
+# git - launch git-difftool
+# If selected file, launch difftool for selected files.
+# Otherwise, launch difftool for all of shown files.
+# Parameter are passed to the 'fuzzy_select_git_diff'.
+fuzzy_git_difftool() {
+  local selected
+
+  selected="$(fuzzy_select_git_diff $@)"
+
+  if [ -n "$selected" ]; then
+    git difftool $@ --no-prompt $selected
+  else
+    git difftool $@
+  fi
+}
+
+# vim - find keyword and open file by vim with line number
+# example usage:
+# $ fuzzy_open_found_keyword <keyword>
+# $ fuzzy_open_found_keyword 100
+# $ fuzzy_open_found_keyword -w 100
+# $ fuzzy_open_found_keyword .
+fuzzy_open_found_keyword() {
+  local file line
+
+  read -r file line <<<"$($UNBUFFER ag --nobreak --noheading $@ | \
+    fzf -0 -1 --ansi | \
+    awk -F: '{print $1, $2}')"
+
+  if [[ -n $file && "$line" =~ ^[0-9]+$ ]]; then
+     vim $file +$line
+  fi
+}
+
+########################################
 # Alias
 ########################################
+
+#man
+alias man='man_color'
+alias fman='fuzzy_man'
+alias fman2='fuzzy_man_including_summary'
 
 # cd
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias cdd='fuzzy_cd_children'
 
 # ls
 alias ls='ls --color=auto'
@@ -76,22 +265,21 @@ alias fgrep='fgrep --color=auto'
 alias gtags='gtags -v'
 alias htags='htags -vsF'
 
-# git
-alias g='git'
+# git --- primitive commands
 # git - status
 alias gs='git status'
+# git - branch
+alias gb='git branch'
 # git - diff(non-stated)
 alias gd='git diff'
 alias gdw='git diff --color-words'
 alias gdf='git diff --stat'
 alias gdn='git diff --name-only'
-alias gdd='git difftool'
 # git - diff(stated)
 alias gd!='gd --cached'
 alias gdw!='gdw --cached'
 alias gdf!='gdf --cached'
 alias gdn!='gdn --cached'
-alias gdd!='git difftool --cached'
 # git - commit
 alias gc='git commit -v'
 alias gc!='git commit -v --amend'
@@ -99,138 +287,27 @@ alias gc!='git commit -v --amend'
 alias gl='git log --stat --color'
 alias glg='git log --graph --color'
 
-# cd to children directly
-fuzzy_cd_children() {
-    local DIR=$(find ./ -path '*/\.*' -name .git -prune -o -type d -print 2> /dev/null | fzf --layout=reverse --height 40% --cycle)
-    if [ -n "$DIR" ]; then
-        cd $DIR
-    fi
-}
-alias cdd=fuzzy_cd_children
-
-# man
-color_man() {
-  env MANPAGER='less -R' \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
-    man "$@"
-}
-alias cman=color_man
-
-fuzzy_man() {
-  local manpage
-
-  manpage=$(man -k . | awk '{print $1,$2}' | fzf -q "$1" --prompt='MAN> ' | awk '{print $1}')
-
-  if [ -n "$manpage" ]; then
-    cman $manpage
-  fi
-}
-
-fuzzy_man_with_summary() {
-  local manpage
-
-  manpage=$(man -k . | fzf -q "$1" --prompt='MAN> ' | awk '{print $1}')
-
-  if [ -n "$manpage" ]; then
-    cman $manpage
-  fi
-}
-alias fman=fuzzy_man
-alias fman2=fuzzy_man_with_summary
-# alias fmans=fuzzy_man_with_summary
-
-# select modified git files
-fuzzy_git_select_modified() {
-  local selected
-
-	if type unbuffer >/dev/null 2>&1; then
-    selected="$(unbuffer git status --short | grep -e '??' -e '.M' | fzf --multi --ansi | awk '{print $2}')"
-  else
-    selected="$(git status --short | grep -e '??' -e '.M' | fzf --multi | awk '{print $2}')"
-  fi
-  echo $selected
-}
-
-fuzzy_git_select_modified_with_preview() {
-  local selected
-
-	if type unbuffer >/dev/null 2>&1; then
-    selected=$(unbuffer git status --short | grep -e '??' -e '.M' | fzf --multi --ansi --preview "echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
-  else
-    selected=$(git status --short | grep -e '??' -e '.M' | fzf --multi --preview "echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
-  fi
-  echo $selected
-}
-
-# git add
-fuzzy_git_add() {
-  local selected
-
-  if [ "$1" == "-p" ]; then
-    selected="$(fuzzy_git_select_modified_with_preview)"
-  else
-    selected="$(fuzzy_git_select_modified)"
-  fi
-
-  if [ -n "$selected" ]; then
-    echo $selected
-    git add $selected
-  fi
-}
-
+# git --- fuzzy commands
+# fuzzy git - add
+alias git-add='fuzzy_git_add'
+alias git-add-preview='fuzzy_git_add -p'
 alias ga='fuzzy_git_add'
 alias gap='fuzzy_git_add -p'
-
-# select git diff file
-fuzzy_select_git_diff() {
-  local selected
-
-  selected="$(git diff --name-only $1 | fzf --multi --preview="git diff $1 --color {}")"
-
-  if [ -n "$selected" ]; then
-    echo $selected
-  fi
-}
-
-fuzzy_git_difftool() {
-  local selected
-
-  selected="$(fuzzy_select_git_diff $1)"
-
-  if [ -n "$selected" ]; then
-    git difftool $1 --no-prompt $selected
-  else
-    git difftool $1
-  fi
-}
+# fuzzy git - checkout
+alias git-checkout='fuzzy_git_checkout'
+alias git-checkout-remote='fuzzy_git_checkout_including_remote'
+alias gco='fuzzy_git_checkout'
+alias gcor='fuzzy_git_checkout_including_remote'
+# fuzzy git - get hash
+alias git-hash='fuzzy_git_select_hash'
+alias ghash='fuzzy_git_select_hash'
+# fuzzy git - difftool
+alias git-difftool='fuzzy_git_difftool'
 alias gdt='fuzzy_git_difftool'
 alias gdt!='fuzzy_git_difftool --cached'
 
-# grep keyword and open file by vim with line number
-# vimag 100
-# vimag -w 100
-# vimag .
-fuzzy_open_found_keyword() {
-  local file
-  local line
-
-	if type unbuffer >/dev/null 2>&1; then
-    read -r file line <<<"$(unbuffer ag --nobreak --noheading $@ | fzf -0 -1 --ansi | awk -F: '{print $1, $2}')"
-  else
-    read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
-  fi
-
-  if [[ -n $file && "$line" =~ ^[0-9]+$ ]]; then
-     vim $file +$line
-  fi
-}
-alias viag=fuzzy_open_found_keyword
+# vim & ag - find and open
+alias viag='fuzzy_open_found_keyword'
 
 # clipboard on WSL
 if uname -a| grep -i 'linux.*microsoft' >/dev/null 2>&1; then
