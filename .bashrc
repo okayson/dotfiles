@@ -68,7 +68,7 @@ fuzzy_man() {
   local manpage=$(man -k . | fzf -q "$1" --nth 1 --prompt='MAN> ' | awk '{print $1}')
 
   if [ -n "$manpage" ]; then
-    man $manpage
+    man_color $manpage
   fi
 }
 
@@ -79,7 +79,7 @@ fuzzy_man_including_summary() {
   local manpage=$(man -k . | fzf -q "$1" --prompt='MAN> ' | awk '{print $1}')
 
   if [ -n "$manpage" ]; then
-    man $manpage
+    man_color $manpage
   fi
 }
 
