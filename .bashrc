@@ -309,13 +309,19 @@ alias gdt!='fuzzy_git_difftool --cached'
 # vim & ag - find and open
 alias viag='fuzzy_open_found_keyword'
 
-# clipboard on WSL
+# For WSL
 if uname -a| grep -i 'linux.*microsoft' >/dev/null 2>&1; then
+
+  # clipboard on WSL
 	if type win32yank.exe >/dev/null 2>&1; then
 		# output clipboard
 		alias cout='win32yank.exe -o'
 		# input to clipboard(eg. echo "hello" | cin)
 		alias cin='win32yank.exe -i'
 	fi
+
+  # explorer
+  alias exp='explorer.exe . | echo "explorer open ... $(pwd)"'
+
 fi
 
