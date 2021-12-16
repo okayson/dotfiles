@@ -458,9 +458,10 @@ function! s:make_ctags()
 endfunction
 "}}}
 
-" Yank and Put for WSL
+" For WSL
 if system("uname -a | grep -i 'linux.*microsoft'") != ''
 
+	" Yank and Put ----------
 	if executable('win32yank.exe')
 		let   s:yank_cmd = 'win32yank.exe -i'
 		let   s:put_cmd  = 'win32yank.exe -o'
@@ -485,15 +486,29 @@ if system("uname -a | grep -i 'linux.*microsoft'") != ''
 			return s:put_text
 		endfunction
 	endif
+
+	" Switch IM ----------
+	if executable('zenhan.exe')
+		augroup Zenhan
+			autocmd!
+			autocmd InsertLeave * :call system('zenhan.exe 0')
+			autocmd CmdlineLeave * :call system('zenhan.exe 0')
+		augroup END
+	endif	
+
 endif
 
 "------------------------------
 " FileType Setting
 "------------------------------
 " sw=shiftwidth, sts=softtabstop, ts=tabstop, et=expandtab
-autocmd FileType sh  setlocal sw=2 sts=2 ts=2 et
-autocmd FileType c   setlocal sw=4 sts=4 ts=4 et
-autocmd FileType cpp setlocal sw=4 sts=4 ts=4 et
+"
+augroup FileTypeConfig
+	autocmd!
+	autocmd FileType sh  setlocal sw=2 sts=2 ts=2 et
+	autocmd FileType c   setlocal sw=4 sts=4 ts=4 et
+	autocmd FileType cpp setlocal sw=4 sts=4 ts=4 et
+augroup END
 
 " " forbidden wrap text
 " autocmd FileType text :setlocal formatoptions-=tc
