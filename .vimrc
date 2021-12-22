@@ -459,8 +459,17 @@ function! s:make_ctags()
 endfunction
 "}}}
 
+" Check running in wsl or not.
+function! InWsl()
+	if system("uname -a | grep -i 'linux.*microsoft'") != ''
+		return 1
+	else
+		return 0
+	endif
+endfunction
+
 " For WSL
-if system("uname -a | grep -i 'linux.*microsoft'") != ''
+if InWsl()
 
 	" Yank and Put ----------
 	if executable('win32yank.exe')
