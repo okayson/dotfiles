@@ -13,4 +13,17 @@ set background=dark
 colorscheme molokai
 "colorscheme jellybeans
 "colorscheme hybrid
+"colorscheme lucario
+"colorscheme tender
+
+" ** status line **
+let g:lightline = {
+      \ 'colorscheme': 'wombat'
+      \ }
+
+"------------------------------
+" Others
+"------------------------------
+let g:previm_wsl_mode = 1
+let g:previm_open_cmd = '/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
 

@@ -87,7 +87,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -126,8 +125,8 @@ NeoBundle 'okayson/crosspj.vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'plasticboy/vim-markdown'		" for markdown
-NeoBundle 'kannokanno/previm'			" for markdown
-NeoBundle 'tyru/open-browser.vim'		" for markdown
+NeoBundle 'previm/previm'				" for markdown
+" NeoBundle 'tyru/open-browser.vim'		" for markdown
 NeoBundle 'LeafCage/yankround.vim'
 
 "- color schemes
@@ -139,6 +138,8 @@ NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'jnurmine/Zenburn'
 NeoBundle 'vim-scripts/3DGlasses.vim'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'raphamorim/lucario'
+NeoBundle 'jacoborus/tender.vim'
 
 call neobundle#end()
 filetype plugin indent on
