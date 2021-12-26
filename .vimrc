@@ -131,6 +131,7 @@ NeoBundle 'LeafCage/yankround.vim'
 if executable('cmigemo')
 NeoBundle 'haya14busa/vim-migemo'
 endif
+NeoBundle 'tyru/current-func-info.vim'
 
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
