@@ -128,6 +128,9 @@ NeoBundle 'plasticboy/vim-markdown'		" for markdown
 NeoBundle 'previm/previm'				" for markdown
 " NeoBundle 'tyru/open-browser.vim'		" for markdown
 NeoBundle 'LeafCage/yankround.vim'
+if executable('cmigemo')
+NeoBundle 'haya14busa/vim-migemo'
+endif
 
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
