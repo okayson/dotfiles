@@ -3,6 +3,7 @@
 "------------------------------
 let $WIN_USER="/path/to/windows/userprofile"
 let $DESKTOP=$WIN_USER . "/Desktop"
+let $DOWNLOAD=$WIN_USER . "/Downloads"
 
 "------------------------------
 " look and feel
