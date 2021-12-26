@@ -329,7 +329,8 @@ nnoremap          [Unite]u :<C-u>Unite<Space>
 nnoremap <silent> [Unite]i :<C-u>UniteResume<CR>
 nnoremap <silent> [Unite]b :<C-u>Unite -buffer-name=buffer buffer<CR>
 nnoremap <silent> [Unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> [Unite]s :<C-u>UniteWithCurrentDir -buffer-name=files file_rec<CR>
+nnoremap <silent> [Unite]s :<C-u>UniteWithCurrentDir -buffer-name=files file_rec/async<CR>
+nnoremap <silent> [Unite]g :<C-u>UniteWithCurrentDir -buffer-name=files-git file_rec/git<CR>
 nnoremap <silent> [Unite]m :<C-u>Unite -buffer-name=mru file_mru directory_mru bookmark<CR>
 nnoremap <silent> [Unite]r :<C-u>Unite -buffer-name=register register<CR>
 " nnoremap <silent> [Unite]y :<C-u>Unite -buffer-name=yank history/yank<CR>
