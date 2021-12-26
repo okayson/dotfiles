@@ -162,6 +162,9 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt = ''
 endif
 
+" Vimfiler
+let g:vimfiler_as_default_explorer = 1
+
 " NeoComplCache
 let g:neocomplcache_enable_at_startup = 1
 
