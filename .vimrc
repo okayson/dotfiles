@@ -1,4 +1,4 @@
-" How to check options.
+"<CR> How to check options.
 "	 :help options
 "	 :help option-list
 "------------------------------
@@ -263,6 +263,9 @@ nnoremap [Option]n :<C-u>set number!<CR>
 nnoremap [Option]r :<C-u>set relativenumber!<CR>
 nnoremap [Option]w :<C-u>set wrap!<CR>
 nnoremap [Option]t :<C-u>set expandtab!<CR>
+nnoremap [Option]g :<C-u>ToggleGitbranchDisplay<CR>
+nnoremap [Option]p :<C-u>TogglePathDisplay<CR>
+nnoremap [Option]f :<C-u>ToggleFuncDisplay<CR>
 
 " TabPage
 nnoremap [TabPage] <Nop>
@@ -465,6 +468,64 @@ function! s:make_ctags()
 		echo 'ctags not found.'
 	endif
 endfunction
+"}}}
+
+" For Lightline
+"  {{{
+function! MyLightlineInitialize()
+
+	let s:lightline_display_gitbranch = 0
+	let s:lightline_display_filepath  = 0
+	let s:lightline_display_funcname  = 0
+	" ex) call MyLightlineInitialize({'gitbranch':1, 'funcname':0})
+	" let s:lightline_display_gitbranch = (has_key(a:param,'gitbranch')&&(a:param['gitbranch'] == 1))
+	" let s:lightline_display_filepath  = (has_key(a:param,'filepath') &&(a:param['filepath']  == 1))
+	" let s:lightline_display_funcname  = (has_key(a:param,'funcname') &&(a:param['funcname']  == 1))
+
+	let g:lightline = {
+				\ 'active': {
+				\   'left': [ [ 'mode', 'paste' ],
+				\             [ 'readonly', 'gitbranch', 'filename', 'funcname', 'modified' ] ]
+				\ },
+				\ 'component_function': {
+				\   'gitbranch': 'MyLightlineGitbranch',
+				\   'filename' : 'MyLightlineFilename',
+				\   'funcname' : 'MyLightlineFuncname'
+				\ }
+				\ }
+
+	function! MyLightlineFilename()
+		" return ((s:lightline_display_filepath == 1) ? expand('%') : expand('%:t'))
+		return ((expand('%:t') !=# '') ?  ((s:lightline_display_filepath == 1) ? expand('%') : expand('%:t')) : '[No Name]')
+	endfunction
+	function! MyLightlineGitbranch()
+		return (((s:lightline_display_gitbranch == 1) &&  exists('*FugitiveHead')) ? FugitiveHead() : '')
+	endfunction
+	function! MyLightlineFuncname()
+		return ((s:lightline_display_funcname == 1) ? cfi#format("%s", "") : '')
+	endfunction
+
+	function! s:lightline_toggle_gitbranch_display()
+		let s:lightline_display_gitbranch = !s:lightline_display_gitbranch
+		echo "".((s:lightline_display_gitbranch == 1) ? "ENABLED" : "DISABLED").": Git branch display"
+	endfunction
+	function! s:lightline_toggle_filepath_display()
+		let s:lightline_display_filepath = !s:lightline_display_filepath
+		echo "".((s:lightline_display_filepath == 1) ? "ENABLED" : "DISABLED").": File path display"
+	endfunction
+	function! s:lightline_toggle_funcname_display()
+		let s:lightline_display_funcname = !s:lightline_display_funcname
+		echo "".((s:lightline_display_funcname == 1) ? "ENABLED" : "DISABLED").": Function name display"
+	endfunction
+
+	command! ToggleGitbranchDisplay :call <SID>lightline_toggle_gitbranch_display()
+	command! TogglePathDisplay      :call <SID>lightline_toggle_filepath_display()
+	command! ToggleFuncDisplay      :call <SID>lightline_toggle_funcname_display()
+
+endfunction
+
+call MyLightlineInitialize()
+
 "}}}
 
 " Check running in wsl or not.
