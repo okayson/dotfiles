@@ -1,4 +1,4 @@
-"<CR> How to check options.
+" How to check options.
 "	 :help options
 "	 :help option-list
 "------------------------------
@@ -173,8 +173,8 @@ else
 endif
 
 if executable('rg')
-  let g:unite_source_rec_async_command = ['rg', '--files', '--hidden', '--color', 'never']
-  let g:unite_sougrce_grep_command = 'rg'
+  let g:unite_source_rec_async_command = ['rg', '--files', '--hidden', '--vimgrep']
+  let g:unite_source_grep_command = 'rg'
   let g:unite_source_grep_default_opts = '--vimgrep'
   let g:unite_source_grep_recursive_opt = ''
 else
@@ -182,7 +182,7 @@ else
 endif
 
 if executable('fdfind')
-  let g:unite_source_rec_async_command = ['fdfind', '--type f', '--hidden', '--follow', '-c', ' never', '--exclude', '.git']
+  let g:unite_source_rec_async_command = ['fdfind', '--type file', '--hidden', '--follow', '-c', ' never', '--exclude', '.git']
 else
   echo 'fdfind is not installed.'
 endif
