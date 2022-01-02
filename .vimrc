@@ -162,14 +162,29 @@ call unite#custom#profile('default', 'context', {
 \   'start_insert': 1
 \ })
 
-let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 " let g:unite_source_history_yank_enable = 1
 if executable('ag')
+  let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
   let g:unite_source_grep_recursive_opt = ''
 else
   echo 'ag is not installed.'
+endif
+
+if executable('rg')
+  let g:unite_source_rec_async_command = ['rg', '--files', '--hidden', '--color', 'never']
+  let g:unite_sougrce_grep_command = 'rg'
+  let g:unite_source_grep_default_opts = '--vimgrep'
+  let g:unite_source_grep_recursive_opt = ''
+else
+  echo 'rg is not installed.'
+endif
+
+if executable('fdfind')
+  let g:unite_source_rec_async_command = ['fdfind', '--type f', '--hidden', '--follow', '-c', ' never', '--exclude', '.git']
+else
+  echo 'fdfind is not installed.'
 endif
 
 " Vimfiler
