@@ -3,12 +3,6 @@
 readonly BIN_DIR=~/bin
 readonly BASHRC_FILE=~/.bashrc
 
-function has() {
-
-  type "$1" >/dev/null 2>&1
-
-}
-
 if [ ! -d "${BIN_DIR}" ]; then
   echo "Make ${BIN_DIR}."
   mkdir ${BIN_DIR}
@@ -31,6 +25,8 @@ sudo apt install exuberant-ctags -y
 sudo apt install silversearcher-ag -y
 sudo apt install build-essential -y
 sudo apt install expect -y              # for unbuffer
+sudo apt install fd-find -y
+sudo apt install ripgrep -y
 
 #--------------------------------------------------
 # Install fzf
