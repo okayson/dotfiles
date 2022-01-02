@@ -390,9 +390,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " NeoSnippet > For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
 
 " Caw
 nmap <Leader>c <Plug>(caw:i:toggle)
@@ -471,16 +471,15 @@ endfunction
 "}}}
 
 " For Lightline
-"  {{{
-function! MyLightlineInitialize()
+function! MyLightlineInitialize(param) "{{{
 
 	let s:lightline_display_gitbranch = 0
 	let s:lightline_display_filepath  = 0
 	let s:lightline_display_funcname  = 0
 	" ex) call MyLightlineInitialize({'gitbranch':1, 'funcname':0})
-	" let s:lightline_display_gitbranch = (has_key(a:param,'gitbranch')&&(a:param['gitbranch'] == 1))
-	" let s:lightline_display_filepath  = (has_key(a:param,'filepath') &&(a:param['filepath']  == 1))
-	" let s:lightline_display_funcname  = (has_key(a:param,'funcname') &&(a:param['funcname']  == 1))
+	let s:lightline_display_gitbranch = (has_key(a:param,'gitbranch')&&(a:param['gitbranch'] == 1))
+	let s:lightline_display_filepath  = (has_key(a:param,'filepath') &&(a:param['filepath']  == 1))
+	let s:lightline_display_funcname  = (has_key(a:param,'funcname') &&(a:param['funcname']  == 1))
 
 	let g:lightline = {
 				\ 'active': {
@@ -524,7 +523,8 @@ function! MyLightlineInitialize()
 
 endfunction
 
-call MyLightlineInitialize()
+" call MyLightlineInitialize({})
+call MyLightlineInitialize({'gitbranch':1, 'filepath':0, 'funcname':0})
 
 "}}}
 
