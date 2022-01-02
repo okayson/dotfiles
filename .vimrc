@@ -110,6 +110,8 @@ NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'vim-scripts/gtags.vim'
 if executable('ctags')
 NeoBundle 'vim-scripts/taglist.vim'
+else
+echo 'ctags is not installed.'
 endif
 NeoBundle 'vim-scripts/a.vim'
 NeoBundle 'vim-scripts/errormarker.vim'
@@ -130,6 +132,8 @@ NeoBundle 'previm/previm'				" for markdown
 NeoBundle 'LeafCage/yankround.vim'
 if executable('cmigemo')
 NeoBundle 'haya14busa/vim-migemo'
+else
+echo 'cmigemo is not installed.'
 endif
 NeoBundle 'tyru/current-func-info.vim'
 
@@ -164,6 +168,8 @@ if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
   let g:unite_source_grep_recursive_opt = ''
+else
+  echo 'ag is not installed.'
 endif
 
 " Vimfiler
@@ -455,7 +461,7 @@ function! s:make_gtags()
 		call system('find . -type f -name GRTAGS -exec rm -f {} \;')
 		call system('gtags')
 	else	
-		echo 'gtags not found.'
+		echo 'gtags is not installed.'
 	endif
 endfunction
 
@@ -465,7 +471,7 @@ function! s:make_ctags()
 		call system('find . -type f -name tags -exec rm -f {} \;')
 		call system('ctags -R')
 	else
-		echo 'ctags not found.'
+		echo 'ctags is not installed.'
 	endif
 endfunction
 "}}}
@@ -544,8 +550,11 @@ if InWsl()
 	if executable('win32yank.exe')
 		let   s:yank_cmd = 'win32yank.exe -i'
 		let   s:put_cmd  = 'win32yank.exe -o'
-	elseif executable('clip.exe')
-		let   s:yank_cmd = 'clip.exe'
+	else
+		echo 'win32yank.exe is not installed.'
+		if executable('clip.exe')
+			let   s:yank_cmd = 'clip.exe'
+		endif
 	endif
 	
 	if exists('s:yank_cmd')
@@ -573,6 +582,8 @@ if InWsl()
 			autocmd InsertLeave * :call system('zenhan.exe 0')
 			autocmd CmdlineLeave * :call system('zenhan.exe 0')
 		augroup END
+	else
+		echo 'zenhan.exe is not installed.'
 	endif	
 
 endif
