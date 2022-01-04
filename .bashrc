@@ -357,7 +357,7 @@ if uname -a| grep -i 'linux.*microsoft' >/dev/null 2>&1; then
 
   # clipboard on WSL
 
-  if executable uwin32yank.exe; then
+  if executable win32yank.exe; then
     # output clipboard
     alias cout='win32yank.exe -o'
     # input to clipboard(eg. echo "hello" | cin)
