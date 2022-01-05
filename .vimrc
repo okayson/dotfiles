@@ -182,7 +182,7 @@ else
 endif
 
 if executable('fdfind')
-  let g:unite_source_rec_async_command = ['fdfind', '--type file', '--hidden', '--follow', '-c', ' never', '--exclude', '.git']
+  let g:unite_source_rec_async_command = ['fdfind', '--type', 'file', '--hidden', '--follow', '--color', 'never', '--exclude', '.git', '.']
 else
   echo 'fdfind is not installed.'
 endif
