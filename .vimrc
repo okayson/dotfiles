@@ -111,7 +111,7 @@ NeoBundle 'vim-scripts/gtags.vim'
 if executable('ctags')
 NeoBundle 'vim-scripts/taglist.vim'
 else
-echo 'ctags is not installed.'
+echomsg 'ctags is not installed.'
 endif
 NeoBundle 'vim-scripts/a.vim'
 NeoBundle 'vim-scripts/errormarker.vim'
@@ -133,7 +133,7 @@ NeoBundle 'LeafCage/yankround.vim'
 if executable('cmigemo')
 NeoBundle 'haya14busa/vim-migemo'
 else
-echo 'cmigemo is not installed.'
+echomsg 'cmigemo is not installed.'
 endif
 NeoBundle 'tyru/current-func-info.vim'
 
@@ -169,7 +169,7 @@ if executable('ag')
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
   let g:unite_source_grep_recursive_opt = ''
 else
-  echo 'ag is not installed.'
+  echomsg 'ag is not installed.'
 endif
 
 if executable('rg')
@@ -178,13 +178,13 @@ if executable('rg')
   let g:unite_source_grep_default_opts = '--vimgrep'
   let g:unite_source_grep_recursive_opt = ''
 else
-  echo 'rg is not installed.'
+  echomsg 'rg is not installed.'
 endif
 
 if executable('fdfind')
   let g:unite_source_rec_async_command = ['fdfind', '--type', 'file', '--hidden', '--follow', '--color', 'never', '--exclude', '.git', '.']
 else
-  echo 'fdfind is not installed.'
+  echomsg 'fdfind is not installed.'
 endif
 
 " Vimfiler
@@ -567,7 +567,7 @@ if InWsl()
 		let   s:yank_cmd = 'win32yank.exe -i'
 		let   s:put_cmd  = 'win32yank.exe -o'
 	else
-		echo 'win32yank.exe is not installed.'
+		echomsg 'win32yank.exe is not installed.'
 		if executable('clip.exe')
 			let   s:yank_cmd = 'clip.exe'
 		endif
@@ -599,7 +599,7 @@ if InWsl()
 			autocmd CmdlineLeave * :call system('zenhan.exe 0')
 		augroup END
 	else
-		echo 'zenhan.exe is not installed.'
+		echomsg 'zenhan.exe is not installed.'
 	endif	
 
 endif
