@@ -124,6 +124,7 @@ NeoBundle 'kana/vim-textobj-lastpat'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'sgur/unite-qf'
 NeoBundle 'okayson/crosspj.vim'
+NeoBundle 'okayson/rg.vim'
 NeoBundle 'tyru/caw.vim'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'plasticboy/vim-markdown'		" for markdown
