@@ -352,11 +352,16 @@ alias viag='fuzzy_open_found_keyword'
 
 #}}}
 
+# ripgrep #################################{{{
+
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+#}}}
+
 # For WSL #############################{{{
 if uname -a| grep -i 'linux.*microsoft' >/dev/null 2>&1; then
 
   # clipboard on WSL
-
   if executable win32yank.exe; then
     # output clipboard
     alias cout='win32yank.exe -o'

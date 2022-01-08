@@ -3,7 +3,7 @@
 LinkedDir=$(cd $(dirname $0); pwd)/
 LinkDir=~/
 
-LinkedTargets=(.vim .vimrc _gvimrc .tmux.conf)
+LinkedTargets=(.vim .vimrc _gvimrc .tmux.conf .ripgreprc)
 
 echo "Generate link..."
 
