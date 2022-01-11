@@ -289,13 +289,13 @@ nnoremap <C-h><C-g> :<C-u>helpgrep<Space>
 " Toggle Options
 nnoremap [Option] <Nop>
 nmap <Space>o [Option]
-nnoremap [Option]n :<C-u>set number!<CR>
-nnoremap [Option]r :<C-u>set relativenumber!<CR>
-nnoremap [Option]w :<C-u>set wrap!<CR>
-nnoremap [Option]t :<C-u>set expandtab!<CR>
-nnoremap [Option]g :<C-u>ToggleGitbranchDisplay<CR>
-nnoremap [Option]p :<C-u>TogglePathDisplay<CR>
-nnoremap [Option]f :<C-u>ToggleFuncDisplay<CR>
+nnoremap          [Option]n :<C-u>set number!<CR>
+nnoremap          [Option]r :<C-u>set relativenumber!<CR>
+nnoremap          [Option]w :<C-u>set wrap!<CR>
+nnoremap          [Option]t :<C-u>set expandtab!<CR>
+nnoremap <silent> [Option]g :<C-u>ToggleGitbranchDisplay<CR>
+nnoremap <silent> [Option]p :<C-u>TogglePathDisplay<CR>
+nnoremap <silent> [Option]f :<C-u>ToggleFuncDisplay<CR>
 
 " TabPage
 nnoremap [TabPage] <Nop>
