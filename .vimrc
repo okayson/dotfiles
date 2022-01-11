@@ -137,6 +137,7 @@ else
 echomsg 'cmigemo is not installed.'
 endif
 NeoBundle 'tyru/current-func-info.vim'
+NeoBundle 'junegunn/fzf.vim'
 
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -217,6 +218,12 @@ let g:EasyMotion_startofline = 0
 " Markdown
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+
+" Fzf
+set runtimepath+=~/bin/fzf
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
+let g:fzf_layout = {'up': '50%'}
 
 "------------------------------
 " Key Mappings
@@ -447,6 +454,33 @@ xmap gp <Plug>(yankround-gp)
 nmap gP <Plug>(yankround-gP)
 " nmap <C-u> <Plug>(yankround-prev)
 " nmap <C-d> <Plug>(yankround-next)
+
+" Fzf
+nnoremap [Fzf] <Nop>
+nmap  si [Fzf]
+nnoremap <silent> [Fzf]f :<C-u>FzfFiles<CR>
+" nnoremap <silent> [Fzf]x :<C-u>FzfGFiles<CR>
+nnoremap <silent> [Fzf]g :<C-u>FzfGFiles!?<CR>
+nnoremap <silent> [Fzf]b :<C-u>FzfBuffers<CR>
+nnoremap <silent> [Fzf]r :<C-u>FzfRg!<CR>
+nnoremap          [Fzf]R :<C-u>FzfRg!<Space>
+" nnoremap <silent> [Fzf]x :<C-u>FzfLines<CR>
+nnoremap <silent> [Fzf]l :<C-u>FzfBLines!<CR>
+" Tags [QUERY]	Tags in the current buffer
+nnoremap <silent> [Fzf]t :<C-u>FzfTags<CR>
+nnoremap          [Fzf]T :<C-u>FzfTags<Space>
+" nnoremap <silent> [Fzf]x :<C-u>FzfBTags<CR>
+" nnoremap <silent> [Fzf]x :<C-u>FzfMarks<CR>
+" nnoremap <silent> [Fzf]x :<C-u>FzfWindows<CR>
+nnoremap <silent> [Fzf]m :<C-u>FzfHistory<CR>
+nnoremap <silent> [Fzf]: :<C-u>FzfHistory:<CR>
+nnoremap <silent> [Fzf]/ :<C-u>FzfHistory/<CR>
+" nnoremap <silent> [Fzf]x :<C-u>FzfCommits!<CR>
+" nnoremap <silent> [Fzf]x :<C-u>FzfBCommits<CR>
+nnoremap <silent> [Fzf]c :<C-u>FzfCommands<CR>
+" nnoremap <silent> [Fzf]x :<C-u>FzfMaps<CR>
+" nnoremap <silent> [Fzf]x :<C-u>FzfHelptags<CR>
+" nnoremap <silent> [Fzf]x :<C-u>FzfFiletypes<CR>
 
 "------------------------------
 " User Commands
