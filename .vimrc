@@ -115,7 +115,6 @@ echomsg 'ctags is not installed.'
 endif
 NeoBundle 'vim-scripts/a.vim'
 NeoBundle 'vim-scripts/errormarker.vim'
-NeoBundle 'rking/ag.vim'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-fold'
@@ -165,15 +164,6 @@ call unite#custom#profile('default', 'context', {
 \ })
 
 " let g:unite_source_history_yank_enable = 1
-if executable('ag')
-  let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-else
-  echomsg 'ag is not installed.'
-endif
-
 if executable('rg')
   let g:unite_source_rec_async_command = ['rg', '--files', '--hidden', '--vimgrep']
   let g:unite_source_grep_command = 'rg'
@@ -201,10 +191,6 @@ let g:neosnippet#snippets_directory = '~/.vim/snippets, ~/vim-snippets'
 "			\   'c' : 1, 'cpp' : 1,
 "			\ }
 
-" Ag
-let g:ag_highlight=1
-let g:ag_apply_qmappings=0
-
 " ErrorMarker
 let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
 
@@ -224,6 +210,9 @@ set runtimepath+=~/bin/fzf
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
 let g:fzf_layout = {'up': '50%'}
+
+" Rg
+let g:rg_highlight=1
 
 "------------------------------
 " Key Mappings
@@ -466,7 +455,6 @@ nnoremap <silent> [Fzf]r :<C-u>FzfRg!<CR>
 nnoremap          [Fzf]R :<C-u>FzfRg!<Space>
 " nnoremap <silent> [Fzf]x :<C-u>FzfLines<CR>
 nnoremap <silent> [Fzf]l :<C-u>FzfBLines!<CR>
-" Tags [QUERY]	Tags in the current buffer
 nnoremap <silent> [Fzf]t :<C-u>FzfTags<CR>
 nnoremap          [Fzf]T :<C-u>FzfTags<Space>
 " nnoremap <silent> [Fzf]x :<C-u>FzfBTags<CR>
