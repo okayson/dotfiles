@@ -73,6 +73,18 @@ if executable unbuffer; then
 fi
 #}}}
 
+# bat ##################################{{{
+# https://github.com/sharkdp/bat
+
+# Checking bat existance.
+if executable bat; then
+  :
+elif executable batcat; then
+  # Rename 'batcat' to 'bat'.
+  alias bat='batcat'
+fi
+#}}}
+
 # fd ##################################{{{
 # https://github.com/sharkdp/fd
 

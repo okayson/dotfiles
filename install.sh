@@ -27,6 +27,7 @@ sudo apt install build-essential -y
 sudo apt install expect -y              # for unbuffer
 sudo apt install fd-find -y
 sudo apt install ripgrep -y
+sudo apt install bat -y
 
 #--------------------------------------------------
 # Install fzf
