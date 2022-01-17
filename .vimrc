@@ -211,9 +211,6 @@ let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
 let g:fzf_layout = {'up': '50%'}
 
-" Rg
-let g:rg_highlight=1
-
 "------------------------------
 " Key Mappings
 "------------------------------
