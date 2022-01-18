@@ -137,6 +137,7 @@ echomsg 'cmigemo is not installed.'
 endif
 NeoBundle 'tyru/current-func-info.vim'
 NeoBundle 'junegunn/fzf.vim'
+NeoBundle 'mattn/vim-maketable'
 
 "- color schemes
 NeoBundle 'altercation/vim-colors-solarized'
