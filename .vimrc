@@ -445,7 +445,9 @@ nmap gP <Plug>(yankround-gP)
 " Fzf
 nnoremap [Fzf] <Nop>
 nmap  si [Fzf]
-nnoremap <silent> [Fzf]f :<C-u>FzfFiles<CR>
+command! -bang FzfFilesWithBufferDir call fzf#vim#files(expand('%:h'), <bang>0)
+nnoremap <silent> [Fzf]f :<C-u>FzfFilesWithBufferDir<CR>
+nnoremap <silent> [Fzf]s :<C-u>FzfFiles<CR>
 " nnoremap <silent> [Fzf]x :<C-u>FzfGFiles<CR>
 nnoremap <silent> [Fzf]g :<C-u>FzfGFiles!?<CR>
 nnoremap <silent> [Fzf]b :<C-u>FzfBuffers<CR>

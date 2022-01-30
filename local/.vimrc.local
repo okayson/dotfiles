@@ -1,9 +1,13 @@
 "------------------------------
 " variables
 "------------------------------
-let $WIN_USER="/path/to/windows/userprofile"
-let $DESKTOP=$WIN_USER . "/Desktop"
-let $DOWNLOAD=$WIN_USER . "/Downloads"
+if InWsl()
+	let $USER_HOME="/path/to/windows/userprofile"
+else
+	let $USER_HOME=$HOME
+endif
+let $DESKTOP=$USER_HOME . "/Desktop"
+let $DOWNLOAD=$USER_HOME . "/Downloads"
 
 "------------------------------
 " look and feel
@@ -18,9 +22,9 @@ colorscheme molokai
 "colorscheme tender
 
 " ** status line **
-let g:lightline = {
-      \ 'colorscheme': 'wombat'
-      \ }
+" let g:lightline = {
+"      \ 'colorscheme': 'wombat'
+"      \ }
 
 "------------------------------
 " Others
