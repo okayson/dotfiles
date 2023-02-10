@@ -1,7 +1,15 @@
 " This file is vimrc for developping python.
 " Usage: run 'source /path/to/.vimrc.python' in vim.
 
-noremap <F5> :!python3 %<CR>
-noremap <F6> :!pytest %<CR>
-noremap <F7> :!pytest<CR>
+noremap <F7> :!python3 %<CR>
+noremap <F8> :!pytest %<CR>
+noremap <F9> :!pytest<CR>
+
+nnoremap [python] <Nop>
+nmap  ;  [python]
+
+nnoremap <silent> [python]r :!python3 %<CR>
+nnoremap <silent> [python]t :!pytest %<CR>
+nnoremap <silent> [python]T :!pytest<CR>
+nnoremap <silent> [python]; :make<CR>
 
