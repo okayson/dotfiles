@@ -133,9 +133,9 @@ fuzzy_cd_children() {
 }
 
 # cd aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
 alias cdd='fuzzy_cd_children'
 
 #}}}
