@@ -215,6 +215,17 @@ augroup FileTypeConfig
 	autocmd FileType cpp setlocal sw=4 sts=4 ts=4 et
 augroup END
 
+" Switch IM ----------
+if executable('zenhan.exe')
+	augroup Zenhan
+		autocmd!
+		autocmd InsertLeave * :call system('zenhan.exe 0')
+		autocmd CmdlineLeave * :call system('zenhan.exe 0')
+	augroup END
+else
+	echomsg 'zenhan.exe is not installed.'
+endif	
+
 "------------------------------
 " Others
 "------------------------------
