@@ -12,14 +12,13 @@ readonly PPAS=(
 )
 
 # === List of packages to install ===
-readonly PACKAGES=(
+readonly APT_PACKAGES=(
     "software-properties-common"
     "git"
     "vim"
     "tmux"
     "global"
     "exuberant-ctags"
-    "silversearcher-ag"
     "build-essential"
     "expect"  # for unbuffer
     "fd-find"
@@ -30,8 +29,16 @@ readonly PACKAGES=(
     "gcc"
     "curl"
     "neovim"
-    # "fzf"
+    "luarocks"  # for lazy.nvim
+#   "lazygit"
+#   "nodejs"
+#   "npm"
+#   "fzf"
     # Add more packages if needed
+)
+
+readonly NPM_PACKAGES=(
+    "tree-sitter-cli"
 )
 
 #--------------------------------------------------
@@ -49,13 +56,13 @@ done
 echo "[INFO] Updating package information..."
 sudo apt update
 
-echo "[INFO] Installing/updating the following packages: ${PACKAGES[*]}"
-sudo apt install -y "${PACKAGES[@]}"
+echo "[INFO] Installing/updating the following packages: ${APT_PACKAGES[*]}"
+sudo apt install -y "${APT_PACKAGES[@]}"
 
 echo "[INFO] Package installation completed."
 
 # Check versions of installed packages
-# for pkg in "${PACKAGES[@]}"; do
+# for pkg in "${APT_PACKAGES[@]}"; do
 #     if command -v "$pkg" &>/dev/null; then
 #         echo "$pkg version:"
 #         $pkg --version | head -n 1
@@ -66,6 +73,15 @@ echo "[INFO] Package installation completed."
 
 # Remove unused packages
 sudo apt-get autoremove -y
+
+#--------------------------------------------------
+# Install by npm
+#--------------------------------------------------
+#echo "[INFO] Installing/updating the following npm packages: ${NPM_PACKAGES[*]}"
+#for NPM_PKG in "${NPM_PACKAGES[@]}"; do
+#    echo "Installing/updating $NPM_PKG..."
+#    npm install -g "$NPM_PKG"
+#done
 
 #--------------------------------------------------
 # Install by manualy
