@@ -92,16 +92,35 @@ if [ ! -d "${BIN_DIR}" ]; then
 fi
 
 # Install fzf
-if [ ! -d "${BIN_DIR}/fzf" ]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ${BIN_DIR}/fzf
-  ${BIN_DIR}/fzf/install
+readonly FZF_BIN_DIR=${BIN_DIR}/fzf
+
+if [ ! -d "${FZF_BIN_DIR}" ]; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ${FZF_BIN_DIR}
+  ${FZF_BIN_DIR}/install
+else
+  (
+    cd ${FZF_BIN_DIR} || exit 1
+    git pull
+  )
 fi
 
 # Install enhancd
-if [ ! -d "${BIN_DIR}/enhancd" ]; then
-  git clone --depth 1 https://github.com/b4b4r07/enhancd ${BIN_DIR}/enhancd
-  echo "" >> ${BASHRC_FILE}
-  echo "[ -f ${BIN_DIR}/enhancd/init.sh ] && source ${BIN_DIR}/enhancd/init.sh" >> ${BASHRC_FILE}
+readonly ENHANCD_BIN_DIR=${BIN_DIR}/enhancd
+readonly ENHANCD_BASH_LINE="[ -f ${ENHANCD_BIN_DIR}/init.sh ] && source ${ENHANCD_BIN_DIR}/init.sh"
+
+if [ ! -d "${ENHANCD_BIN_DIR}" ]; then
+  git clone --depth 1 https://github.com/babarot/enhancd.git ${ENHANCD_BIN_DIR}
+  grep -nF ${ENHANCD_BASH_LINE} ${BASHRC_FILE} >/dev/null
+  if [ $? -eq 0 ]; then
+    echo "[INFO] ${ENHANCD_BASH_LINE} is already exists in ${BASHRC_FILE}."
+  else
+    echo "${ENHANCD_BASH_LINE}">> ${BASHRC_FILE}
+  fi
+else
+  (
+    cd ${ENHANCD_BIN_DIR} || exit 1
+    git pull
+  )
 fi
 
 #--------------------------------------------------

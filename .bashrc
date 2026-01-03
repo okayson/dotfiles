@@ -121,6 +121,7 @@ fi
 # cd ##################################{{{
 # enhancd
 export ENHANCD_DISABLE_DOT=1
+export ENHANCD_HYPHEN_NUM=20
 
 # cd - change directory to children directly
 fuzzy_cd_children() {
