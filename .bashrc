@@ -92,10 +92,10 @@ FD_COMMAND=''
 # Checking fd existance.
 if executable fd; then
   FD_COMMAND='fd'
-elif executable fdfind; then
-  # Rename 'fdfind' to 'fd'.
-#  alias fd='fdfind'
-#  FD_COMMAND='fdfind'
+# elif executable fdfind; then
+#   # Rename 'fdfind' to 'fd'.
+#   alias fd='fdfind'
+#   FD_COMMAND='fdfind'
 fi
 #}}}
 
