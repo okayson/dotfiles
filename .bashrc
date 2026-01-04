@@ -94,8 +94,8 @@ if executable fd; then
   FD_COMMAND='fd'
 elif executable fdfind; then
   # Rename 'fdfind' to 'fd'.
-  alias fd='fdfind'
-  FD_COMMAND='fdfind'
+#  alias fd='fdfind'
+#  FD_COMMAND='fdfind'
 fi
 #}}}
 
@@ -120,8 +120,8 @@ fi
 
 # cd ##################################{{{
 # enhancd
-export ENHANCD_DISABLE_DOT=1
-export ENHANCD_HYPHEN_NUM=20
+# export ENHANCD_DISABLE_DOT=1
+export ENHANCD_HYPHEN_NUM=50
 
 # cd - change directory to children directly
 fuzzy_cd_children() {

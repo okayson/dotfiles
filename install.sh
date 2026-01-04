@@ -58,8 +58,10 @@ sudo apt update
 
 echo "[INFO] Installing/updating the following packages: ${APT_PACKAGES[*]}"
 sudo apt install -y "${APT_PACKAGES[@]}"
-
 echo "[INFO] Package installation completed."
+
+echo "[INFO] Create symbolic link for fd."
+sudo ln -s $(which fdfind) /usr/local/bin/fd
 
 # Check versions of installed packages
 # for pkg in "${APT_PACKAGES[@]}"; do
@@ -87,7 +89,7 @@ sudo apt-get autoremove -y
 # Install by manualy
 #--------------------------------------------------
 if [ ! -d "${BIN_DIR}" ]; then
-  echo "[INFO] Make ${BIN_DIR}."
+  echo "[INFO] Create ${BIN_DIR}."
   mkdir ${BIN_DIR}
 fi
 
@@ -98,6 +100,7 @@ if [ ! -d "${FZF_BIN_DIR}" ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ${FZF_BIN_DIR}
   ${FZF_BIN_DIR}/install
 else
+  @echo '[INFO] Updating fzf...If needed, run `${FZF_BIN_DIR}/install`'.
   (
     cd ${FZF_BIN_DIR} || exit 1
     git pull
@@ -117,6 +120,7 @@ if [ ! -d "${ENHANCD_BIN_DIR}" ]; then
     echo "${ENHANCD_BASH_LINE}">> ${BASHRC_FILE}
   fi
 else
+  @echo "[INFO] Updating enhancd..."
   (
     cd ${ENHANCD_BIN_DIR} || exit 1
     git pull
