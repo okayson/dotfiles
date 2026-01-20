@@ -1,3 +1,6 @@
 /temp
 .vim/bundle/*
 !.vim/bundle/neobundle.vim
+
+*.swp
+
