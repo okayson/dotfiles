@@ -18,8 +18,9 @@ pluginsにプラグイン格納場所を統合する
 
 ## copilot-chat.lua
 
-*  Save/Loadの使い勝手向上
-*  (Loadをui.selectできるようにする。最近使ったものをうえにもってくる。保存時に日付をつける etc)
+* Markdown Rendering  
+https://github.com/CopilotC-Nvim/CopilotChat.nvim/wiki/Examples-and-Tips
 
 ## Read Later
+
 https://xcr4k.hatenablog.com/entry/2025/03/03/155037
