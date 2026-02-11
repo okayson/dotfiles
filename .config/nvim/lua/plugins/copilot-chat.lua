@@ -32,8 +32,8 @@ return {
       language = 'Japanese', -- Hint
       show_help = 'yes',
 
-    -- ビルトインのプロンプトを日本語化
-    prompts = vim.tbl_deep_extend("force", default_prompts, {
+        -- ビルトインのプロンプトを日本語化
+        prompts = vim.tbl_deep_extend("force", default_prompts, {
         Explain = {
             prompt = default_prompts.Explain.prompt .. in_japanese,
         },
