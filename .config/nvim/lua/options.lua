@@ -3,10 +3,12 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- File encodings
+vim.o.encoding = "utf-8"
+vim.opt.fileencodings = { "ucs-bom", "utf-8", "cp932", "euc-jp", "iso-2022-jp" }
+
 -- Make line numbers default
 vim.o.number = true
--- You can also add relative line numbers, to help with jumping.
---  Experiment for yourself to see if you like it!
 -- vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
@@ -55,7 +57,8 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+--vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', trail = '~', nbsp = '␣', extends = '>', precedes = '<' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -70,5 +73,18 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
+
+-- Tab
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = true
+
+-- set window title
+vim.o.title = true
+
+-- Jump to matching brancket
+vim.o.showmatch = true
+vim.o.matchtime = 1
 
 -- vim: ts=2 sts=2 sw=2 et

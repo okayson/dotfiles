@@ -2,15 +2,17 @@
 
 ## All
 
+* vimrcを反映する
+* キーマップを設定する
+* Filerの設定
+* Helpの日本語化
 * lazy-pluginを整理する
 pluginsにプラグイン格納場所を統合する
 	customeの削除
 	kickstart削除
-* Filerの設定
 * copilot を補完して使う
-* キーマップを設定する
 * LSPをの有効無効を簡単にする
-* vimrcを反映する
+* debugできるようにする。
 
 ## copilot.lua
 
