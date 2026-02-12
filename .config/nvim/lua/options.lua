@@ -80,7 +80,8 @@ vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.expandtab = true
 
-vim.opt.whichwrap:append('h,l,<,>,[,]')
+vim.opt.whichwrap:append('<,>,[,]')
+--vim.opt.whichwrap:append('h,l')
 
 -- set window title
 vim.o.title = true
