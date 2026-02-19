@@ -4,8 +4,8 @@
 --  For more options, you can see `:help option-list`
 
 -- File encodings
-vim.o.encoding = "utf-8"
-vim.opt.fileencodings = { "ucs-bom", "utf-8", "cp932", "euc-jp", "iso-2022-jp" }
+vim.o.encoding = 'utf-8'
+vim.opt.fileencodings = { 'ucs-bom', 'utf-8', 'cp932', 'euc-jp', 'iso-2022-jp' }
 
 -- Make line numbers default
 vim.o.number = true
@@ -39,10 +39,10 @@ vim.o.smartcase = true
 vim.o.signcolumn = 'yes'
 
 -- Decrease update time
-vim.o.updatetime = 250
+-- vim.o.updatetime = 250
 
 -- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
+-- vim.o.timeoutlen = 300
 
 -- Configure how new splits should be opened
 vim.o.splitright = true
@@ -80,7 +80,7 @@ vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.expandtab = true
 
-vim.opt.whichwrap:append('<,>,[,]')
+vim.opt.whichwrap:append '<,>,[,]'
 --vim.opt.whichwrap:append('h,l')
 
 -- set window title

@@ -14,14 +14,36 @@ pluginsにプラグイン格納場所を統合する
 * LSPをの有効無効を簡単にする
 * debugできるようにする。
 
+* markを一覧する
+* NerdFontを有効にする(which-keyなどで見た目が変わるか確認する)
+
+* auto completeの表示を消す<ESC>
+
+## mini.surround
+helpを見る
+
 ## copilot.lua
 
 * keymap.dismissの確定(補完系と合わせる.<C-E>など)
 
 ## copilot-chat.lua
-
+* Tanslateをキーマッピングする
 * Markdown Rendering  
 https://github.com/CopilotC-Nvim/CopilotChat.nvim/wiki/Examples-and-Tips
+
+## telescope
+### 酢の文字列を検索する
+require('telescope').setup({
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--fixed-strings',
+      '--line-number',
+      '--column',
+      '--smart-case',
+    },
+  },
+})
 
 ## Read Later
 
