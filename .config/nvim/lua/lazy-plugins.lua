@@ -19,7 +19,6 @@ require('lazy').setup({
   -- keys can be used to configure plugin behavior/loading/etc.
   --
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
-  --
 
   -- modular approach: using `require 'path.name'` will
   -- include a plugin definition from file lua/path/name.lua
@@ -29,7 +28,6 @@ require('lazy').setup({
   require 'kickstart.plugins.lspconfig',
   require 'kickstart.plugins.conform',
   require 'kickstart.plugins.blink-cmp',
-  require 'kickstart.plugins.tokyonight',
   require 'kickstart.plugins.todo-comments',
   require 'kickstart.plugins.mini',
   require 'kickstart.plugins.treesitter',
@@ -40,7 +38,13 @@ require('lazy').setup({
   -- require 'kickstart.plugins.neo-tree',
   require 'plugins.copilot',
   require 'plugins.copilot-chat',
-  --
+
+  -- Run `:Telescope colorscheme` to see which colorshemes are already installed.
+  require 'colorscheme.tokyonight',
+  require 'colorscheme.catppuccin',
+  require 'colorscheme.kanagawa',
+  require 'colorscheme.sonokai',
+
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`

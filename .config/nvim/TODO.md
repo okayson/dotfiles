@@ -5,7 +5,6 @@
 * vimrcを反映する
 * キーマップを設定する
 * Filerの設定
-* Helpの日本語化
 * lazy-pluginを整理する
 pluginsにプラグイン格納場所を統合する
 	customeの削除
@@ -18,6 +17,8 @@ pluginsにプラグイン格納場所を統合する
 * NerdFontを有効にする(which-keyなどで見た目が変わるか確認する)
 
 * auto completeの表示を消す<ESC>
+* 現在のファイル内の%をステータスラインに表示する
+* 現在のバッファのディレクトリでターミナルを開く
 
 ## mini.surround
 helpを見る
