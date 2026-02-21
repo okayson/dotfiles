@@ -22,6 +22,7 @@ return {
     { '<leader>cp', mode = { 'n', 'x' }, '<cmd>CopilotChatPrompt<cr>', desc = 'CopilotChat Prompts' },
     { '<leader>ch', mode = { 'n', 'x' }, '<cmd>CopilotChatHistory<cr>', desc = 'CopilotChat History(newest)' },
     { '<leader>cH', mode = { 'n', 'x' }, '<cmd>CopilotChatHistory oldest<cr>', desc = 'CopilotChat History (oldest)' },
+    { '<leader>cj', mode = { 'n', 'x' }, '<cmd>CopilotChatTranslateJE<cr>', desc = 'CopilotChat Translate Japanese/English' },
   },
   config = function()
     local default_prompts = require 'CopilotChat.config.prompts'
@@ -31,7 +32,7 @@ return {
 
     require('CopilotChat').setup {
       language = 'Japanese', -- Hint
-      show_help = 'yes',
+      show_help = true,
 
       -- ビルトインのプロンプトを日本語化
       prompts = vim.tbl_deep_extend('force', default_prompts, {
