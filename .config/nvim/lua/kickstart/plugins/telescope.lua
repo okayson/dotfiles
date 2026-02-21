@@ -55,12 +55,33 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          --   mappings = {
+          --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          --   },
+          -- See `telescope.defaults.vimgrep_arguments`
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            -- Following options are not default.
+            '--hidden',
+            -- '--no-ignore',
+            '--glob',
+            '!.git/*',
+          },
+        },
         pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = true,
+            follow = true,
+            file_ignore_patterns = { '%.git/' },
+          },
           colorscheme = {
             enable_preview = true,
           },
