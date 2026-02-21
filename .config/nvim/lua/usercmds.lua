@@ -1,6 +1,7 @@
 -- [[ Basic Usercommands ]]
 --  See `:help lua-guide-command
 
+-- [[ Restart ]]
 -- Restart Neovim while preserving the current session.
 vim.api.nvim_create_user_command('Restart', function()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
@@ -36,5 +37,11 @@ vim.api.nvim_create_user_command('DeleteNvimLogs', function()
     print('  ' .. file)
   end
 end, { desc = 'Clear Neovim log files' })
+
+-- [[ TrimSpaces ]]
+-- Trim trailing whitespace in the current buffer or a specified range.
+vim.api.nvim_create_user_command('TrimSpaces', function(opts)
+  vim.cmd(string.format('%d,%ds/\\s\\+$//e', opts.line1, opts.line2))
+end, { range = '%', desc = 'Trim trailing whitespace' })
 
 -- vim: ts=2 sts=2 sw=2 et
