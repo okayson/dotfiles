@@ -40,10 +40,7 @@ require('lazy').setup({
   require 'plugins.copilot-chat',
 
   -- Run `:Telescope colorscheme` to see which colorshemes are already installed.
-  require 'colorscheme.tokyonight',
-  require 'colorscheme.catppuccin',
-  require 'colorscheme.kanagawa',
-  require 'colorscheme.sonokai',
+  require 'colorscheme',
 
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
