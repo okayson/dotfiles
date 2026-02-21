@@ -1,6 +1,8 @@
 -- Theme used at startup
-local CURRENT = 'catppuccin'
--- local CURRENT = 'tokyonight'
+local DEFAULT_THEME = 'catppuccin'
+--local DEFAULT_THEME = 'tokyonight'
+--local DEFAULT_THEME = 'sonokai'
+local CURRENT = DEFAULT_THEME
 
 -- List of themes
 local themes = {
@@ -22,6 +24,7 @@ local themes = {
   },
 }
 
+-- Generate plugin specifications for each theme
 local plugins = {}
 
 for key, theme in pairs(themes) do
