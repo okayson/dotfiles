@@ -33,7 +33,16 @@ return {
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return '%2l:%-2v'
+        local line = vim.fn.line '.'
+        local total = vim.fn.line '$'
+        local percent
+        if total == 0 then
+          percent = 0
+        else
+          percent = math.floor(line / total * 100)
+        end
+        local persent_str = string.format('(%d%%%%)', percent)
+        return '%2l:%-2v' .. persent_str
       end
 
       -- ... and there is more!
