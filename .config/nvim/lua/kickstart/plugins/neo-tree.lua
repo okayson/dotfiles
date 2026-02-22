@@ -1,5 +1,10 @@
 -- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
+--
+-- To paste the default configuration in a buffer, call the following in Neovim:
+-- `lua require("neo-tree").paste_default_config()`
+--
+-- Filter configuration is documented in `:help neo-tree-filtered-items`.
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
@@ -18,8 +23,18 @@ return {
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ['/'] = 'noop', -- disable fuzzy finder
+          ['t'] = 'noop', -- disable open in new tab on default
+          ['to'] = 'open_tabnew', -- Configured similarly to the tabpage keymap in keymap.lua.
+          ['l'] = 'open',
+          ['h'] = 'close_node',
+          ['<C-H>'] = 'navigate_up',
+          --['xx'] = 'expand_all_nodes:',
+          --['yy'] = 'close_all_subnodes:',
         },
       },
     },
   },
 }
+
+--See `neo-tree-filtered-items`
