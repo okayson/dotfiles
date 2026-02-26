@@ -3,16 +3,17 @@ return {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
-    keys = {
-      {
-        '<leader>f',
-        function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
-        end,
-        mode = '',
-        desc = '[F]ormat buffer',
-      },
-    },
+    -- TODO: Add a keymap to format.
+    --keys = {
+    --  {
+    --    '<leader>f',
+    --    function()
+    --      require('conform').format { async = true, lsp_format = 'fallback' }
+    --    end,
+    --    mode = '',
+    --    desc = '[F]ormat buffer',
+    --  },
+    --},
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
@@ -38,6 +39,10 @@ return {
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
+
+    vim.api.nvim_create_user_command('Format', function()
+      require('conform').format { async = true, lsp_format = 'fallback' }
+    end, { desc = 'Format buffer' }),
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
