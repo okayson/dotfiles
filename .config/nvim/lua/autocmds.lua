@@ -12,4 +12,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Don't auto comment new lines
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    vim.opt_local.formatoptions:remove { 'c', 'o' }
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
