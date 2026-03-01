@@ -38,6 +38,7 @@ require('lazy').setup({
   require 'kickstart.plugins.neo-tree',
   require 'plugins.copilot',
   require 'plugins.copilot-chat',
+  require 'plugins.flash',
 
   -- Run `:Telescope colorscheme` to see which colorshemes are already installed.
   require 'colorscheme',
