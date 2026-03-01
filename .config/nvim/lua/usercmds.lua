@@ -26,6 +26,7 @@ vim.api.nvim_create_user_command('Restart', function()
   vim.cmd.restart { args = { 'source', session } }
 end, { desc = 'Restart current Neovim session' })
 
+-- [[ DeleteNvimLogs ]]
 -- Clear Neovim log files in the standard log directory.
 vim.api.nvim_create_user_command('DeleteNvimLogs', function()
   local log_dir = vim.fn.stdpath 'log'
@@ -43,5 +44,26 @@ end, { desc = 'Clear Neovim log files' })
 vim.api.nvim_create_user_command('TrimSpaces', function(opts)
   vim.cmd(string.format('%d,%ds/\\s\\+$//e', opts.line1, opts.line2))
 end, { range = '%', desc = 'Trim trailing whitespace' })
+
+-- [[ CD ]]
+vim.api.nvim_create_user_command('Tcd', function()
+  local buf_path = vim.api.nvim_buf_get_name(0)
+  if buf_path == '' then
+    print 'Current buffer has no name. Cannot change directory.'
+    return
+  end
+  local dir = vim.fs.dirname(buf_path)
+  vim.cmd.tcd(dir)
+end, { desc = 'tcd with current buffer' })
+
+vim.api.nvim_create_user_command('Lcd', function()
+  local buf_path = vim.api.nvim_buf_get_name(0)
+  if buf_path == '' then
+    print 'Current buffer has no name. Cannot change directory.'
+    return
+  end
+  local dir = vim.fs.dirname(buf_path)
+  vim.cmd.lcd(dir)
+end, { desc = 'lcd with current buffer' })
 
 -- vim: ts=2 sts=2 sw=2 et
