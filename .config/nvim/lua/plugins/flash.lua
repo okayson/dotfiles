@@ -19,7 +19,7 @@ return {
           label = { min_pattern_length = 2, rainbow = { enabled = false, shade = 5 } },
         }
       end,
-      desc = 'Flash',
+      desc = 'Flash Jump',
     },
     {
       -- 'st',
@@ -35,20 +35,20 @@ return {
       mode = 'o',
       function()
         require('flash').remote {
-          label = { min_pattern_length = 2 },
+          -- label = { min_pattern_length = 2 },
         }
       end,
-      desc = 'Remote Flash',
+      desc = 'Flash Remote',
     },
     {
       'R',
       mode = { 'o', 'x' },
       function()
         require('flash').treesitter_search {
-          label = { min_pattern_length = 2 },
+          -- label = { min_pattern_length = 2 },
         }
       end,
-      desc = 'Treesitter Search',
+      desc = 'Flash Treesitter Search',
     },
     {
       'sj',
@@ -80,7 +80,7 @@ return {
       function()
         require('flash').toggle()
       end,
-      desc = 'Toggle Flash Search',
+      desc = 'Flash Toggle Search',
     },
   },
 }
