@@ -39,6 +39,7 @@ require('lazy').setup({
   require 'plugins.copilot',
   require 'plugins.copilot-chat',
   require 'plugins.flash',
+  require 'plugins.gtags',
 
   -- Run `:Telescope colorscheme` to see which colorshemes are already installed.
   require 'colorscheme',

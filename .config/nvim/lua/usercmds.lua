@@ -66,4 +66,65 @@ vim.api.nvim_create_user_command('Lcd', function()
   vim.cmd.lcd(dir)
 end, { desc = 'lcd with current buffer' })
 
+-- [[ Tags ]]
+local function remove_files_async(targets, on_done)
+  local remaining = #targets
+  for _, pattern in ipairs(targets) do
+    local cmd
+    if vim.fn.executable 'fd' == 1 then
+      cmd = { 'sh', '-c', 'fd ' .. pattern .. ' -t f -x rm -f' }
+    else
+      cmd = { 'sh', '-c', 'find . -type f -name ' .. pattern .. ' -exec rm -f {} \\;' }
+    end
+    vim.system(cmd, {}, function()
+      remaining = remaining - 1
+      if remaining == 0 then
+        on_done()
+      end
+    end)
+  end
+end
+
+local function make_tags_async(on_done)
+  local cmds = {}
+  if vim.fn.executable 'gtags' == 1 then
+    table.insert(cmds, { 'gtags' })
+  end
+  if vim.fn.executable 'ctags' == 1 then
+    table.insert(cmds, { 'ctags', '-R' })
+  end
+
+  local remaining = #cmds
+  if remaining == 0 then
+    on_done()
+    return
+  end
+
+  for _, cmd in ipairs(cmds) do
+    vim.system(cmd, {}, function()
+      remaining = remaining - 1
+      if remaining == 0 then
+        on_done()
+      end
+    end)
+  end
+end
+
+vim.api.nvim_create_user_command('MakeTags', function()
+  local remove_targets = { 'GTAGS', 'GPATH', 'GRTAGS', 'tags' }
+  vim.schedule(function()
+    vim.notify('Removing old tag files...', vim.log.levels.INFO)
+  end)
+  remove_files_async(remove_targets, function()
+    vim.schedule(function()
+      vim.notify('Generating tags...', vim.log.levels.INFO)
+    end)
+    make_tags_async(function()
+      vim.schedule(function()
+        vim.notify('Generating tags...done!!', vim.log.levels.INFO)
+      end)
+    end)
+  end)
+end, { desc = 'Make tag files' })
+
 -- vim: ts=2 sts=2 sw=2 et

@@ -105,8 +105,8 @@ map('n', '<C-l>', function()
   vim.cmd('cd ' .. vim.fn.getcwd())
   vim.cmd 'Gtags -f %'
 end, { silent = true, desc = 'Regenerate Gtags for current file' })
-map('n', '<C-j>', '<cmd>Gtags <C-r><C-w><CR>', { desc = 'Gtags symbol search' })
-map('n', '<C-k>', '<cmd>Gtags -r <C-r><C-w><CR>', { desc = 'Gtags reverse search' })
+map('n', '<C-j>', ':Gtags <C-r><C-w><CR>', { silent = true, desc = 'Gtags symbol search' })
+map('n', '<C-k>', ':Gtags -r <C-r><C-w><CR>', { silent = true, desc = 'Gtags reverse search' })
 
 -- Quickfix
 map('n', '<C-n>', '<cmd>cn<CR>', { desc = 'QuickFix next item' })
