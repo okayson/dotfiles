@@ -64,6 +64,7 @@ return {
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>c', group = '[C]opilot Chat' },
         { '<leader>o', group = '[O]ption' },
+        { '<leader>f', group = '[F]iler' },
       },
     },
   },
