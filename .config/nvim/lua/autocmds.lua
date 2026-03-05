@@ -34,21 +34,21 @@ local function set_indent(n, et)
   vim.opt_local.expandtab = et
 end
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = filetype_cfg,
-  pattern = 'sh',
-  callback = function()
-    set_indent(2)
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = filetype_cfg,
+--   pattern = 'sh',
+--   callback = function()
+--     set_indent(2)
+--   end,
+-- })
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = filetype_cfg,
-  pattern = { 'c', 'cpp' },
-  callback = function()
-    set_indent(4)
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = filetype_cfg,
+--   pattern = { 'c', 'cpp' },
+--   callback = function()
+--     set_indent(4)
+--   end,
+-- })
 
 -- [[ IME config ]]
 local ime_cfg = vim.api.nvim_create_augroup('IMEConfig', { clear = true })
