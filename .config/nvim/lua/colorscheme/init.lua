@@ -54,10 +54,38 @@ local function guess_theme(colorscheme)
   return nil
 end
 
+-- Autocommands for colorscheme changes
+local colorscheme_cfg = vim.api.nvim_create_augroup('ColorSchemeConfig', { clear = true })
+
 vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'Save the current colorscheme to state file',
+  group = colorscheme_cfg,
   callback = function()
     local colorscheme = vim.g.colors_name
     save_colorscheme(colorscheme)
+  end,
+})
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  desc = 'Customize highlight groups after colorscheme is applied',
+  group = colorscheme_cfg,
+  callback = function()
+    -- Change CopilotSuggestion to be the same as base_name but with italic
+    --
+    --
+    local base_name = 'Comment'
+    local base_hl = vim.api.nvim_get_hl(0, { name = base_name, link = false })
+
+    vim.api.nvim_set_hl(0, base_name, {
+      fg = base_hl.fg,
+      bg = base_hl.bg,
+      italic = false, -- Disable italic
+    })
+
+    vim.api.nvim_set_hl(0, 'CopilotSuggestion', {
+      fg = base_hl.fg,
+      italic = true, -- Enable italic
+    })
   end,
 })
 

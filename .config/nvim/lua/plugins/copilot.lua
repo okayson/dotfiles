@@ -3,7 +3,7 @@ return {
   cmd = 'Copilot',
   event = 'InsertEnter',
   config = function()
-    require('copilot').setup({
+    require('copilot').setup {
       suggestion = {
         enabled = true,
         auto_trigger = true,
@@ -16,7 +16,23 @@ return {
           prev = '<C-p>',
         },
       },
-        panel = { enabled = false },
-    })
+      panel = { enabled = false },
+    }
+    -- vim.api.nvim_set_hl(0, 'CopilotSuggestion', {
+    --   -- see: https://stephango.com/flexoki
+    --   -- cyan
+    --   -- fg = '#3AA99F',
+    --   fg = '#2F968D',
+    --   -- blue
+    --   -- fg = '#4385BE',
+    --   -- fg = '#66A0C8',
+    --   -- magenta
+    --   -- fg = '#F4A4C2',
+    --   -- fg = '#CE5D97',
+    --   -- yellow
+    --   -- fg = '#D0A215',
+    --   -- fg = '#AD8301',
+    --   italic = true, -- Enable italic
+    -- })
   end,
 }
