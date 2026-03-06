@@ -71,7 +71,7 @@ return {
         pickers = {
           find_files = {
             hidden = true,
-            no_ignore = true,
+            -- no_ignore = true,
             follow = true,
             file_ignore_patterns = { '%.git/' },
           },
@@ -91,47 +91,81 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
 
       -- See `:help telescope.builtin`
-      local builtin = require 'telescope.builtin'
-      local themes = require 'telescope.themes'
       local leader = 'si' -- 'si' means 'Search Incremental'
+      local builtin = require 'telescope.builtin'
 
       -- File
-      vim.keymap.set('n', leader .. 'f', builtin.find_files, { desc = 'Search [F]iles in cwd' })
-      vim.keymap.set('n', leader .. 'F', function()
+      vim.keymap.set('n', leader .. 's', function()
+        builtin.find_files { previewer = false }
+      end, { desc = 'Find files in cwd' })
+      -- vim.keymap.set('n', leader .. 's', function()
+      --   builtin.find_files(require('telescope.themes').get_ivy {
+      --     previewer = false,
+      --   })
+      -- end, { desc = 'Find files in cwd' })
+
+      vim.keymap.set('n', leader .. 'f', function()
         builtin.find_files {
-          prompt_title = 'Find Files in current buffer',
+          prompt_title = 'Find Files in current buffer dir',
           cwd = vim.fn.expand '%:p:h',
+          previewer = false,
         }
-      end, { desc = 'Search [F]iles in buffer dir' })
+      end, { desc = 'Find [F]iles in buffer dir' })
+
       vim.keymap.set('n', leader .. 'n', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = 'Search [n]eovim files' })
-      vim.keymap.set('n', leader .. '.', builtin.oldfiles, { desc = 'Search Recent[.] Files' })
+        builtin.find_files {
+          cwd = vim.fn.stdpath 'config',
+        }
+      end, { desc = 'Find [N]eovim files' })
+
+      vim.keymap.set('n', leader .. '.', function()
+        builtin.oldfiles { previewer = false }
+      end, { desc = 'Find [.]Recent Files' })
+
       -- Buffer
-      vim.keymap.set('n', leader .. 'b', builtin.buffers, { desc = 'Search [B]uffers' })
-      -- Search
-      vim.keymap.set('n', leader .. 'g', builtin.live_grep, { desc = 'Search by [G]rep' })
-      vim.keymap.set('n', leader .. 'w', builtin.grep_string, { desc = 'Search current [W]ord' })
+      vim.keymap.set('n', leader .. 'b', function()
+        builtin.buffers { previewer = false }
+      end, { desc = 'Find [B]uffers' })
+
+      -- Grep
+      local grep_opts = {
+        layout_strategy = 'vertical',
+        winblend = 20,
+        layout_config = {
+          preview_height = 11,
+        },
+      }
+      vim.keymap.set('n', leader .. 'g', function()
+        builtin.live_grep(grep_opts)
+      end, { desc = 'Find by [G]rep' })
+
+      vim.keymap.set('n', leader .. 'w', function()
+        builtin.grep_string(grep_opts)
+      end, { desc = 'Find [W]ord in cursor' })
+
       vim.keymap.set('n', leader .. '/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
           previewer = false,
-          width = 0.8,
+          layout_config = { width = 0.9, height = 0.9 },
         })
-      end, { desc = 'Search[/] Fuzzily in current buffer' })
+      end, { desc = 'Find [/]Fuzzily in current buffer' })
+
       vim.keymap.set('n', leader .. 'o', function()
         builtin.treesitter {
-          show_line = false,
+          symbol_width = 45,
+          ignore_symbols = { 'parameter', 'var', 'field' },
         }
-      end, { desc = 'Search TreeSitter [O]utline' })
+      end, { desc = 'Find [O]utline' })
+
       -- LSP
-      vim.keymap.set('n', leader .. 'd', builtin.diagnostics, { desc = 'Search [D]iagnostics' })
+      vim.keymap.set('n', leader .. 'd', builtin.diagnostics, { desc = 'Find [D]iagnostics' })
+
       -- Misc
-      -- Telescope
-      vim.keymap.set('n', leader .. 'r', builtin.resume, { desc = 'Search [R]esume' })
-      vim.keymap.set('n', leader .. 's', builtin.builtin, { desc = 'Search [S]elect telescope' })
-      vim.keymap.set('n', leader .. 'h', builtin.help_tags, { desc = 'Search [H]elp' })
-      vim.keymap.set('n', leader .. 'k', builtin.keymaps, { desc = 'Search [K]eymaps' })
+      vim.keymap.set('n', leader .. 'r', builtin.resume, { desc = 'Find [R]esume' })
+      vim.keymap.set('n', leader .. 'p', builtin.builtin, { desc = 'Find Telescope [P]icker' })
+      vim.keymap.set('n', leader .. 'h', builtin.help_tags, { desc = 'Find [H]elp' })
+      vim.keymap.set('n', leader .. 'k', builtin.keymaps, { desc = 'Find [K]eymaps' })
     end,
   },
 }
