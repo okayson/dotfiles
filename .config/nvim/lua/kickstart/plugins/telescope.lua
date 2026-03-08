@@ -118,9 +118,12 @@ return {
         }
       end, { desc = 'Find [N]eovim files' })
 
-      vim.keymap.set('n', leader .. '.', function()
-        builtin.oldfiles { previewer = false }
-      end, { desc = 'Find [.]Recent Files' })
+      vim.keymap.set('n', leader .. 'm', function()
+        builtin.oldfiles {
+          prompt_title = 'Find MRU (Most Recently Used) Files',
+          previewer = false,
+        }
+      end, { desc = 'Find [M]RU Files' })
 
       -- Buffer
       vim.keymap.set('n', leader .. 'b', function()
@@ -162,7 +165,8 @@ return {
       vim.keymap.set('n', leader .. 'd', builtin.diagnostics, { desc = 'Find [D]iagnostics' })
 
       -- Misc
-      vim.keymap.set('n', leader .. 'r', builtin.resume, { desc = 'Find [R]esume' })
+      vim.keymap.set('n', leader .. 'r', builtin.registers, { desc = 'Find [R]egister' })
+      vim.keymap.set('n', leader .. '.', builtin.resume, { desc = 'Find Repeat[.] Telescope' })
       vim.keymap.set('n', leader .. 'p', builtin.builtin, { desc = 'Find Telescope [P]icker' })
       vim.keymap.set('n', leader .. 'h', builtin.help_tags, { desc = 'Find [H]elp' })
       vim.keymap.set('n', leader .. 'k', builtin.keymaps, { desc = 'Find [K]eymaps' })
