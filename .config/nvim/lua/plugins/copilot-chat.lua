@@ -33,6 +33,17 @@ return {
     require('CopilotChat').setup {
       language = 'Japanese', -- Hint
       show_help = true,
+      window = {
+        layout = 'vertical',
+        width = 0.5,
+      },
+      headers = {
+        user = '👤 You',
+        assistant = '🤖 Copilot',
+        tool = '🔧 Tool',
+      },
+      separator = '━━',
+      -- auto_fold = true, -- Automatically folds non-assistant messages
 
       -- ビルトインのプロンプトを日本語化
       prompts = vim.tbl_deep_extend('force', default_prompts, {
@@ -71,6 +82,20 @@ return {
       }),
     }
 
+    -- [[ UI Customization ]]
+    vim.api.nvim_set_hl(0, 'CopilotChatHeader', { fg = '#7C3AED', bold = true })
+    vim.api.nvim_set_hl(0, 'CopilotChatSeparator', { fg = '#374151' })
+
+    vim.api.nvim_create_autocmd('BufEnter', {
+      pattern = 'copilot-*',
+      callback = function()
+        vim.opt_local.relativenumber = false
+        vim.opt_local.number = false
+        vim.opt_local.conceallevel = 0
+      end,
+    })
+
+    -- [[ CopilotChat History Management ]] --
     local function copilotchat_history_dir(opts)
       local ok, chat = pcall(require, 'CopilotChat')
       if not ok or not chat.config or not chat.config.history_path then
