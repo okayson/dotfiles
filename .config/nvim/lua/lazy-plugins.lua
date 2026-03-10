@@ -41,6 +41,7 @@ require('lazy').setup({
   require 'plugins.flash',
   require 'plugins.gtags',
   require 'plugins.rg',
+  require 'plugins.render-markdown',
 
   -- Run `:Telescope colorscheme` to see which colorshemes are already installed.
   require 'colorscheme',
