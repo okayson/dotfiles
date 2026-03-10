@@ -45,6 +45,12 @@ vim.api.nvim_create_user_command('TrimSpaces', function(opts)
   vim.cmd(string.format('%d,%ds/\\s\\+$//e', opts.line1, opts.line2))
 end, { range = '%', desc = 'Trim trailing whitespace' })
 
+-- [[ Trim CR ]]
+-- Trim carriage return characters in the current buffer or a specified range.
+vim.api.nvim_create_user_command('TrimCR', function(opts)
+  vim.cmd(string.format('%d,%ds/\\r//e', opts.line1, opts.line2))
+end, { range = '%', desc = 'Trim carriage return characters' })
+
 -- [[ CD ]]
 vim.api.nvim_create_user_command('Tcd', function()
   local buf_path = vim.api.nvim_buf_get_name(0)
