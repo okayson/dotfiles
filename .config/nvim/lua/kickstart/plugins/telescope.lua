@@ -135,7 +135,8 @@ return {
         layout_strategy = 'vertical',
         winblend = 20,
         layout_config = {
-          preview_height = 11,
+          preview_height = 9,
+          preview_cutoff = 0,
         },
       }
       vim.keymap.set('n', leader .. 'g', function()
