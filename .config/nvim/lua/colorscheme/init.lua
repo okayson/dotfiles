@@ -66,15 +66,33 @@ local function guess_theme(colorscheme)
   return nil
 end
 
+-- Theme used at startup
+local DEFAULT_THEME = 'tokyonight'
+local saved_colorscheme = load_colorscheme()
+local current_theme = guess_theme(saved_colorscheme) or DEFAULT_THEME
+
 -- Autocommands for colorscheme changes
 local colorscheme_cfg = vim.api.nvim_create_augroup('ColorSchemeConfig', { clear = true })
 
-vim.api.nvim_create_autocmd('ColorScheme', {
+vim.api.nvim_create_autocmd('ColorSchemePre', {
   desc = 'Save the current colorscheme to state file',
   group = colorscheme_cfg,
-  callback = function()
-    local colorscheme = vim.g.colors_name
+  callback = function(args)
+    local colorscheme = args.match -- Get the colorscheme name including any variant (e.g."tokyonight-night")
+
+    if not colorscheme then
+      -- print 'Skip changing colorscheme: No colorscheme name found' -- DEBUG
+      return
+    end
+
+    if colorscheme == saved_colorscheme then
+      -- print('Skip changing colorscheme: No change colorscheme ... ' .. colorscheme) -- DEBUG
+      return
+    end
+
     save_colorscheme(colorscheme)
+    saved_colorscheme = colorscheme -- Update
+    -- print('Saving colorscheme:' .. colorscheme) -- DEBUG
   end,
 })
 
@@ -83,8 +101,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   group = colorscheme_cfg,
   callback = function()
     -- Change CopilotSuggestion to be the same as base_name but with italic
-    --
-    --
     local base_name = 'Comment'
     local base_hl = vim.api.nvim_get_hl(0, { name = base_name, link = false })
 
@@ -100,11 +116,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     })
   end,
 })
-
--- Theme used at startup
-local DEFAULT_THEME = 'tokyonight'
-local saved_colorscheme = load_colorscheme()
-local current_theme = guess_theme(saved_colorscheme) or DEFAULT_THEME
 
 -- Generate plugin specifications for each theme
 local plugins = {}
