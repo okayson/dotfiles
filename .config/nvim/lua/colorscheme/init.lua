@@ -126,7 +126,7 @@ for key, theme in pairs(themes) do
 
       -- If it is the startup theme, apply it
       if key == current_theme then
-        vim.cmd.colorscheme(theme.name)
+        vim.cmd.colorscheme(saved_colorscheme)
       end
     end,
   })
