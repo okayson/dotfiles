@@ -1,5 +1,9 @@
 -- This module manages the colorscheme plugins and their configurations.
 
+-- How to add a new theme:
+-- 1. Add the theme plugin to the themes table below with its repository and name.
+-- 2. Create a new Lua file in the colorscheme/ directory with the same name as the key in the themes table.
+
 -- List of themes
 -- The key is colorscheme plugin name. It is used as file name for the theme configuration in colorscheme/ directory.
 local themes = {
@@ -18,6 +22,14 @@ local themes = {
   kanagawa = {
     repo = 'rebelot/kanagawa.nvim',
     name = 'kanagawa',
+  },
+  gruvbox = {
+    repo = 'ellisonleao/gruvbox.nvim',
+    name = 'gruvbox',
+  },
+  monokai = {
+    repo = 'loctvl842/monokai-pro.nvim',
+    name = 'monokai-pro',
   },
 }
 
