@@ -133,11 +133,13 @@ return {
       -- Grep
       local grep_opts = {
         layout_strategy = 'vertical',
-        winblend = 20,
+        sorting_strategy = 'ascending',
+        winblend = 10,
         layout_config = {
           preview_height = 9,
           preview_cutoff = 0,
         },
+        preview_title = 'Preview',
       }
       vim.keymap.set('n', leader .. 'g', function()
         builtin.live_grep(grep_opts)
@@ -148,11 +150,7 @@ return {
       end, { desc = 'Find [W]ord in cursor' })
 
       vim.keymap.set('n', leader .. '/', function()
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-          layout_config = { width = 0.9, height = 0.9 },
-        })
+        builtin.current_buffer_fuzzy_find(grep_opts)
       end, { desc = 'Find [/]Fuzzily in current buffer' })
 
       vim.keymap.set('n', leader .. 'o', function()
