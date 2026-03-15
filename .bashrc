@@ -338,6 +338,11 @@ alias git-difftool='fuzzy_git_difftool'
 alias gdt='fuzzy_git_difftool'
 alias gdt!='fuzzy_git_difftool --cached'
 
+# lazygit
+if executable lazygit; then
+  alias lg='lazygit'
+fi
+
 #}}}
 
 # vim #################################{{{
