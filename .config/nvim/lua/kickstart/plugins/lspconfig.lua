@@ -192,6 +192,27 @@ return {
         },
       }
 
+      -- Diagnostic Commands
+      local notify_toggle = function(title, enabled)
+        vim.notify(title .. ': ' .. (enabled and 'ON' or 'OFF'))
+      end
+
+      vim.api.nvim_create_user_command('LspToggleDiagnostics', function()
+        local toggle = not vim.diagnostic.is_enabled()
+        vim.diagnostic.enable(toggle)
+        notify_toggle('Diagnostics', toggle)
+      end, { desc = 'Toggle Diagnostics' })
+
+      vim.api.nvim_create_user_command('LspToggleInline', function()
+        local toggle = not vim.diagnostic.config().virtual_text
+        vim.diagnostic.config { virtual_text = toggle }
+        notify_toggle('Diagnostics Inline Virtual Text', toggle)
+      end, { desc = 'Toggle Diagnostics Inline Virtual Text' })
+
+      vim.api.nvim_create_user_command('LspLineDiagnostics', function()
+        vim.diagnostic.open_float(nil, { focus = false })
+      end, { desc = 'Show Line Diagnostics' })
+
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -208,15 +229,15 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {
-        --   cmd = {
-        --     --"clangd",
-        --     "--background-index",
-        --     "--clang-tidy",
-        --     "--completion-style=detailed",
-        --     "--header-insertion=never",
-        --   },
-        -- },
+        clangd = {
+          cmd = {
+            --"clangd",
+            '--background-index',
+            '--clang-tidy',
+            '--completion-style=detailed',
+            '--header-insertion=never',
+          },
+        },
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
