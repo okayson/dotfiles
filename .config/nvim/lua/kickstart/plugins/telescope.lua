@@ -93,6 +93,14 @@ return {
       -- See `:help telescope.builtin`
       local leader = 'si' -- 'si' means 'Search Incremental'
       local builtin = require 'telescope.builtin'
+      local vertical_opts = {
+        layout_strategy = 'vertical',
+        winblend = 10,
+        layout_config = {
+          preview_height = 9,
+          preview_cutoff = 0,
+        },
+      }
 
       -- File
       vim.keymap.set('n', leader .. 's', function()
@@ -127,30 +135,21 @@ return {
 
       -- Buffer
       vim.keymap.set('n', leader .. 'b', function()
-        builtin.buffers { previewer = false }
+        builtin.buffers(vertical_opts)
       end, { desc = 'Find [B]uffers' })
 
       -- Grep
-      local grep_opts = {
-        layout_strategy = 'vertical',
-        sorting_strategy = 'ascending',
-        winblend = 10,
-        layout_config = {
-          preview_height = 9,
-          preview_cutoff = 0,
-        },
-        preview_title = 'Preview',
-      }
       vim.keymap.set('n', leader .. 'g', function()
-        builtin.live_grep(grep_opts)
+        builtin.live_grep(vertical_opts)
       end, { desc = 'Find by [G]rep' })
 
       vim.keymap.set('n', leader .. 'w', function()
-        builtin.grep_string(grep_opts)
+        builtin.grep_string(vertical_opts)
       end, { desc = 'Find [W]ord in cursor' })
 
       vim.keymap.set('n', leader .. '/', function()
-        builtin.current_buffer_fuzzy_find(grep_opts)
+        local opts = vim.tbl_extend('force', vertical_opts, { sorting_strategy = 'ascending' })
+        builtin.current_buffer_fuzzy_find(opts)
       end, { desc = 'Find [/]Fuzzily in current buffer' })
 
       vim.keymap.set('n', leader .. 'o', function()
