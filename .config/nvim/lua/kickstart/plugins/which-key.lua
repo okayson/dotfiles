@@ -60,10 +60,12 @@ return {
       -- Document existing key chains
       spec = {
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>tl', group = '[T]oggle [L]sp' },
+        { '<leader>o', group = 'Toggle [O]ption' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>c', group = '[C]opilot Chat' },
-        { '<leader>o', group = 'Toggle [O]ption' },
         { '<leader>f', group = '[F]iler' },
+        { 'gl', group = 'Goto [L]sp' },
       },
     },
   },
