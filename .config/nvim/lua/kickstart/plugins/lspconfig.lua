@@ -113,7 +113,7 @@ return {
 
           map(leader .. 'l', function()
             vim.cmd 'LspLineDiagnostics'
-          end, 'Show Line Diagnostics')
+          end, 'Show [L]ine Diagnostics')
 
           -- Format the current buffer with LSP.
           -- To configure fommatting rules, create a configuration file for the language (for example, `.clang-format` for C/C++).
