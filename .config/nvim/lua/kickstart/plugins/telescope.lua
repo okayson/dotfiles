@@ -49,6 +49,7 @@ return {
         --  All the info you're looking for is in `:help telescope.setup()`
         --
         defaults = {
+          winblend = 10,
           --   mappings = {
           --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           --   },
@@ -95,7 +96,6 @@ return {
       local builtin = require 'telescope.builtin'
       local vertical_opts = {
         layout_strategy = 'vertical',
-        winblend = 10,
         layout_config = {
           preview_height = 9,
           preview_cutoff = 0,
