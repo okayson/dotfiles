@@ -55,16 +55,9 @@ local ime_cfg = vim.api.nvim_create_augroup('IMEConfig', { clear = true })
 
 -- IME OFF
 local function ime_off()
-  -- Windows
-  if vim.fn.has 'win32' == 1 then
+  -- Windows or WSL
+  if vim.fn.has 'win32' == 1 or vim.fn.has 'wsl' == 1 then
     vim.fn.system 'zenhan.exe 0'
-    return
-  end
-
-  -- WSL
-  if vim.fn.has 'wsl' == 1 then
-    vim.fn.system 'zenhan.exe 0'
-    return
   end
 end
 
