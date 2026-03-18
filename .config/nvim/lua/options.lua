@@ -90,4 +90,7 @@ vim.o.title = true
 vim.o.showmatch = true
 vim.o.matchtime = 1
 
+-- optional plugin
+vim.cmd 'packadd cfilter'
+
 -- vim: ts=2 sts=2 sw=2 et
