@@ -4,6 +4,7 @@
 -- [How to check key mappings]
 -- Detault  key map > :h index.txt
 -- Assigned key map > :verbose map(or nmap/imap/vmap)
+--                  > :verbose map(or nmap/imap/vmap) {key}
 
 -- [Guide line]
 -- for moving.
@@ -117,7 +118,7 @@ map('n', 'so', '<cmd>colder<CR>', { desc = 'QuickFix older list' })
 map('n', 'sn', '<cmd>cnewer<CR>', { desc = 'QuickFix newer list' })
 
 -- Diagnostic keymaps
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' }) -- TODO: reassign this mapping
 
 -- Restart neovim
 map('n', '<leader>.', '<cmd>Restart<CR>', { desc = 'Restart Neovim' })
