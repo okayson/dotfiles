@@ -20,7 +20,7 @@ local filetype_cfg = vim.api.nvim_create_augroup('FileTypeConfig', { clear = tru
 
 -- Don't auto comment new lines
 vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Disable auo comment new lines',
+  desc = 'Disable auto comment new lines',
   group = filetype_cfg,
   callback = function()
     vim.opt_local.formatoptions:remove { 'c', 'o' }
