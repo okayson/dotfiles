@@ -114,9 +114,19 @@ map('n', '<C-n>', '<cmd>cn<CR>', { desc = 'QuickFix next item' })
 map('n', '<C-p>', '<cmd>cp<CR>', { desc = 'QuickFix previous item' })
 map('n', 'so', '<cmd>colder<CR>', { desc = 'QuickFix older list' })
 map('n', 'sn', '<cmd>cnewer<CR>', { desc = 'QuickFix newer list' })
+map('n', '<leader>q', '<cmd>copen<CR>', { desc = 'Open [Q]uickfix list' })
+
+local qf_cfg = vim.api.nvim_create_augroup('qf_cfg', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Keymap when entering quickfix list',
+  group = qf_cfg,
+  callback = function()
+    vim.keymap.set('n', 'q', '<cmd>cclose<CR>', { buffer = true, desc = 'Close quickfix list' })
+  end,
+})
 
 -- Diagnostic keymaps
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Restart neovim
 map('n', '<leader>.', '<cmd>Restart<CR>', { desc = 'Restart Neovim' })
