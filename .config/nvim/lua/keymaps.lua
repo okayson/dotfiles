@@ -112,8 +112,6 @@ map('n', '<C-k>', ':Gtags -r <C-r><C-w><CR>', { silent = true, desc = 'Gtags rev
 -- Quickfix
 map('n', '<C-n>', '<cmd>cn<CR>', { desc = 'QuickFix next item' })
 map('n', '<C-p>', '<cmd>cp<CR>', { desc = 'QuickFix previous item' })
--- map('n', '<C-n>', '<cmd>cn<CR>zz', { desc = 'QuickFix next item' })
--- map('n', '<C-p>', '<cmd>cp<CR>zz', { desc = 'QuickFix previous item' })
 map('n', 'so', '<cmd>colder<CR>', { desc = 'QuickFix older list' })
 map('n', 'sn', '<cmd>cnewer<CR>', { desc = 'QuickFix newer list' })
 
