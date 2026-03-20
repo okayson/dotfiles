@@ -118,7 +118,7 @@ map('n', 'so', '<cmd>colder<CR>', { desc = 'QuickFix older list' })
 map('n', 'sn', '<cmd>cnewer<CR>', { desc = 'QuickFix newer list' })
 
 -- Diagnostic keymaps
--- map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' }) -- TODO: reassign this mapping
+map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Restart neovim
 map('n', '<leader>.', '<cmd>Restart<CR>', { desc = 'Restart Neovim' })
