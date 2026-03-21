@@ -1,4 +1,15 @@
--- Quickfix Plugins
+-- [[ Quickfix Plugins ]]
+
+local qf_cfg = vim.api.nvim_create_augroup('qf_cfg', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Keymap when entering quickfix list',
+  group = qf_cfg,
+  pattern = 'qf',
+  callback = function()
+    vim.keymap.set('n', 'q', '<cmd>cclose<CR>', { buffer = true, desc = 'Close quickfix list' })
+  end,
+})
+
 return {
   {
     'kevinhwang91/nvim-bqf',
