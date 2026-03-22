@@ -4,8 +4,8 @@
 umask 022
 
 # Editor
-export EDITOR
-EDITOR='vim'
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Check command is executable or not.
 # param $1 : command which is checked.
