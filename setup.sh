@@ -3,7 +3,7 @@
 LinkedDir=$(cd $(dirname $0); pwd)/
 LinkDir=~/
 
-LinkedTargets=(.vim .vimrc _gvimrc .tmux.conf .ripgreprc .config/nvim)
+LinkedTargets=(.vim .vimrc _gvimrc .tmux.conf .ripgreprc .config/nvim .config/lazygit)
 
 echo "Generate link..."
 

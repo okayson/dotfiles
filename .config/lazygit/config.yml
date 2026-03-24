@@ -1,0 +1,16 @@
+gui:
+  nerdFontsVersion: "3"
+  showFileTree: true
+  showIcons: true
+
+git:
+  paging:
+    colorArg: always
+    # pager: delta --dark --paging=never
+
+os:
+  edit: "nvim"
+  editAtLine: "nvim +{{line}} {{filename}}"
+
+refresher:
+  refreshInterval: 5
