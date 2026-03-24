@@ -340,7 +340,7 @@ alias gdt!='fuzzy_git_difftool --cached'
 
 # lazygit
 if executable lazygit; then
-  alias lg='lazygit'
+  alias lg='LANG=en_US.UTF-8 lazygit'
 fi
 
 #}}}
