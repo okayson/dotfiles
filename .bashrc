@@ -137,7 +137,8 @@ fuzzy_cd_children() {
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-alias cdd='fuzzy_cd_children'
+alias cdd='cd .'  #cd down
+alias cdu='cd ..' #cd up
 
 #}}}
 
