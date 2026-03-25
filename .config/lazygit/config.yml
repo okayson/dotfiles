@@ -1,4 +1,5 @@
 gui:
+  language: en
   nerdFontsVersion: "3"
   showFileTree: true
   showIcons: true
@@ -6,11 +7,15 @@ gui:
 git:
   paging:
     colorArg: always
-    # pager: delta --dark --paging=never
+    pager: delta --dark --paging=never
+
+  # paging:
+  #   colorArg: always
+  #   pager: delta --dark --paging=never --line-numbers --side-by-side
 
 os:
   edit: "nvim"
   editAtLine: "nvim +{{line}} {{filename}}"
 
 refresher:
-  refreshInterval: 5
+  refreshInterval: 30
