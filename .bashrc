@@ -21,21 +21,67 @@ executable() {
 #
 PS1=$(echo -ne "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ ")
 
-prompt_post_message() {
-	local command_result=$?
-	if [[ ! $prompt_post_message ]] ; then
-		prompt_post_message=1
-		return
-	fi
-	if [[ $command_result -eq 0 ]] ; then
-		# echo -ne "\e[0;37m[ Success ]\e[00m\n"
-		:
-	else
-		echo -ne "\e[0;31m[ Failure (code=$command_result) ]\e[00m\n"
-	fi
+# --- Update terminal tab title ---
+__update_tab_title() {
+  local dir host prefix title
+
+  # Use short directory name
+  if [[ "$PWD" == "$HOME" ]]; then
+    dir="~"
+  else
+    dir="$(basename "$PWD")"
+  fi
+
+  # Make prefix and host
+  prefix=""
+  host=""
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    # Show hostname only for SSH sessions
+    prefix="ssh:"
+    host="${HOSTNAME%%.*}:"
+  elif grep -qi microsoft /proc/version 2>/dev/null; then
+    prefix="wsl:"
+  else
+    :
+  fi
+
+  # Construct the title
+  title="${prefix}${host}${dir}"
+
+  # Set terminal tab title (no output to terminal)
+  echo -ne "\033]0;${title}\007"
 }
 
-PROMPT_COMMAND="prompt_post_message; ${PROMPT_COMMAND//prompt_post_message;/}"
+# --- Hook executed before each prompt display ---
+prompt_post_message() {
+  local command_result=$?
+
+  # Skip on first invocation (just after shell startup)
+  if [[ -z "$__PROMPT_POST_MESSAGE_INITIALIZED" ]]; then
+    __PROMPT_POST_MESSAGE_INITIALIZED=1
+    __update_tab_title
+    return
+  fi
+
+  # Show message only when the previous command failed
+  if [[ $command_result -ne 0 ]]; then
+    echo -ne "\e[0;31m[ Failure (code=$command_result) ]\e[00m\n"
+  fi
+
+  # Always update tab title
+  __update_tab_title
+}
+
+# --- Safely append to PROMPT_COMMAND ---
+if [[ "${BASH_VERSINFO[0]}" -ge 5 ]]; then
+  # Bash 5+ supports array style
+  PROMPT_COMMAND+=(prompt_post_message)
+else
+  # Fallback for older Bash versions
+  PROMPT_COMMAND="prompt_post_message; ${PROMPT_COMMAND}"
+# PROMPT_COMMAND="prompt_post_message; ${PROMPT_COMMAND//prompt_post_message;/}"
+fi
+
 #}}}
 
 # General Utilities ###################{{{
