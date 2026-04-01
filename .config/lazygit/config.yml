@@ -10,8 +10,7 @@ git:
     - pager: delta --dark --paging=never --line-numbers --side-by-side
 
 os:
-  edit: "nvim"
-  editAtLine: "nvim +{{line}} {{filename}}"
+  editPreset: "nvim"
 
 refresher:
   refreshInterval: 30
