@@ -21,38 +21,46 @@ executable() {
 #
 PS1=$(echo -ne "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ ")
 
-# --- Update terminal tab title ---
-__update_tab_title() {
+# Send osc0 - set terminal title
+__send_osc0() {
+  printf "\033]0;%s\007" "$1"
+}
+
+# Send osc7 - set terminal's current working directory (for supporting file:// protocol in terminal emulator)
+__send_osc7() {
+  printf "\033]7;file://%s%s\033\\" "$(hostname)" "$PWD"
+}
+
+__build_tab_title() {
   local dir host prefix title
 
-  # Use short directory name
   if [[ "$PWD" == "$HOME" ]]; then
     dir="~"
   else
     dir="$(basename "$PWD")"
   fi
 
-  # Make prefix and host
   prefix=""
   host=""
   if [[ -n "$SSH_CONNECTION" ]]; then
-    # Show hostname only for SSH sessions
     prefix="ssh:"
     host="${HOSTNAME%%.*}:"
   elif grep -qi microsoft /proc/version 2>/dev/null; then
     prefix="wsl:"
-  else
-    :
   fi
 
   # Construct the title
-  title="${prefix}${host}${dir}"
-
-  # Set terminal tab title (no output to terminal)
-  echo -ne "\033]0;${title}\007"
+  printf "%s%s%s" "$prefix" "$host" "$dir"
 }
 
-# --- Hook executed before each prompt display ---
+# Update terminal tab title
+__update_tab_title() {
+  local title
+  title="$(__build_tab_title)"
+  __send_osc0 "$title"
+}
+
+# Hook executed before each prompt display
 prompt_post_message() {
   local command_result=$?
 
@@ -65,21 +73,19 @@ prompt_post_message() {
 
   # Show message only when the previous command failed
   if [[ $command_result -ne 0 ]]; then
-    echo -ne "\e[0;31m[ Failure (code=$command_result) ]\e[00m\n"
+    printf "\e[0;31m[ Failure (code=%d) ]\e[00m\n" "$command_result"
   fi
 
   # Always update tab title
   __update_tab_title
 }
 
-# --- Safely append to PROMPT_COMMAND ---
+# Append to PROMPT_COMMAND
 if [[ "${BASH_VERSINFO[0]}" -ge 5 ]]; then
-  # Bash 5+ supports array style
-  PROMPT_COMMAND+=(prompt_post_message)
+  [[ " ${PROMPT_COMMAND[*]} " != *" __send_osc7 "* ]] && PROMPT_COMMAND+=(__send_osc7)
+  [[ " ${PROMPT_COMMAND[*]} " != *" prompt_post_message "* ]] && PROMPT_COMMAND+=(prompt_post_message)
 else
-  # Fallback for older Bash versions
-  PROMPT_COMMAND="prompt_post_message; ${PROMPT_COMMAND}"
-# PROMPT_COMMAND="prompt_post_message; ${PROMPT_COMMAND//prompt_post_message;/}"
+  PROMPT_COMMAND="__send_osc7; prompt_post_message; ${PROMPT_COMMAND}"
 fi
 
 #}}}
