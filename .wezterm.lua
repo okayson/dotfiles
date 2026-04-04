@@ -1,5 +1,3 @@
--- TODO: cmd/powershell/ubuntuをしてしてタブを表示できるようにする
-
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 
@@ -11,8 +9,11 @@ local config = wezterm.config_builder()
 -----------------------------------------------
 
 config.default_domain = "WSL:Ubuntu"
-local default_cwd = os.getenv("HOME")
-config.default_cwd = default_cwd
+-- local default_cwd = os.getenv("HOME")
+-- config.default_cwd = default_cwd
+
+config.default_prog = { "pwsh.exe", "-NoLogo" }
+
 config.use_ime = true
 
 -- Color scheme
@@ -126,8 +127,26 @@ config.leader = {
 	timeout_milliseconds = 2000,
 }
 
+config.launch_menu = {
+	{
+		label = "New Tab: PowerShell",
+		domain = { DomainName = "local" },
+		args = { "pwsh.exe", "-NoLogo" },
+	},
+	{
+		label = "New Tab: WSL",
+		domain = { DomainName = "WSL:Ubuntu" },
+	},
+}
+
 -- キーバインド
 config.keys = {
+	-- Launch Menu
+	{
+		mods = "LEADER",
+		key = "l",
+		action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }),
+	},
 	-- activate copy mode or vim mode
 	-- Vで選択開始し、カーソル移動して、yでyankする
 	{
@@ -159,29 +178,18 @@ config.keys = {
 		mods = "ALT|SHIFT",
 		action = wezterm.action.ResetFontSize,
 	},
-	-- 新しいウィンドウを開く
-	--	{
-	--		key = "n",
-	--		mods = "ALT",
-	--		action = wezterm.action.SpawnWindow,
-	--	},
 	-- 新しいタブを開く
 	{
 		key = "t",
 		mods = "ALT",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
-	-- タブ名を変更
 	{
-		key = "T",
-		mods = "ALT",
-		action = wezterm.action.PromptInputLine({
-			description = "Rename tab",
-			action = wezterm.action_callback(function(window, pane, line)
-				if line then
-					window:active_tab():set_title(line)
-				end
-			end),
+		mods = "LEADER",
+		key = "t",
+		action = wezterm.action.SpawnCommandInNewTab({
+			domain = { DomainName = "local" },
+			args = { "pwsh.exe", "-NoLogo" },
 		}),
 	},
 	-- 次のタブに移動
@@ -297,6 +305,5 @@ config.mouse_bindings = {
 	--	},
 }
 
------------------------------------------------
 -- Finally, return the configuration to wezterm:
 return config
