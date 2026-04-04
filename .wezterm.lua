@@ -122,8 +122,8 @@ config.colors = {
 
 -- prefixキーの設定
 config.leader = {
-	key = ";",
 	mods = "ALT",
+	key = ";",
 	timeout_milliseconds = 2000,
 }
 
@@ -162,26 +162,26 @@ config.keys = {
 	},
 	-- フォント拡大
 	{
-		key = "+",
 		mods = "ALT|SHIFT",
+		key = "+",
 		action = wezterm.action.IncreaseFontSize,
 	},
 	-- フォント縮小
 	{
-		key = "-",
 		mods = "ALT",
+		key = "-",
 		action = wezterm.action.DecreaseFontSize,
 	},
 	-- フォントリセット
 	{
-		key = "=",
 		mods = "ALT|SHIFT",
+		key = "=",
 		action = wezterm.action.ResetFontSize,
 	},
 	-- 新しいタブを開く
 	{
-		key = "t",
 		mods = "ALT",
+		key = "t",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
 	{
@@ -194,86 +194,86 @@ config.keys = {
 	},
 	-- 次のタブに移動
 	{
-		key = "n",
 		mods = "ALT",
+		key = "n",
 		action = wezterm.action.ActivateTabRelative(1),
 	},
 	-- 前のタブに移動
 	{
-		key = "p",
 		mods = "ALT",
+		key = "p",
 		action = wezterm.action.ActivateTabRelative(-1),
 	},
 	-- ペイン分割(左右)
 	{
-		key = "v",
 		mods = "ALT",
+		key = "v",
 		action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }),
 	},
 	-- ペイン分割(上下)
 	{
-		key = "s",
 		mods = "ALT",
+		key = "s",
 		action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }),
 	},
 	-- ペインを閉じる
 	{
-		key = "q",
 		mods = "ALT",
+		key = "q",
 		action = wezterm.action.CloseCurrentPane({ confirm = false }),
 	},
 	-- ペイン間移動
 	{
-		key = "h",
 		mods = "ALT",
+		key = "h",
 		action = wezterm.action.ActivatePaneDirection("Left"),
 	},
 	{
-		key = "j",
 		mods = "ALT",
+		key = "j",
 		action = wezterm.action.ActivatePaneDirection("Down"),
 	},
 	{
-		key = "k",
 		mods = "ALT",
+		key = "k",
 		action = wezterm.action.ActivatePaneDirection("Up"),
 	},
 	{
-		key = "l",
 		mods = "ALT",
+		key = "l",
 		action = wezterm.action.ActivatePaneDirection("Right"),
 	},
 	-- ペイン移動(時計回り)
 	{
-		key = "r",
 		mods = "ALT",
+		key = "r",
 		action = wezterm.action.RotatePanes("Clockwise"),
 	},
 	-- ペイン移動(反時計回り)
 	{
-		key = "R",
 		mods = "ALT",
+		key = "R",
 		action = wezterm.action.RotatePanes("CounterClockwise"),
 	},
 	-- ペイン境界の調整
 	{
-		key = "LeftArrow",
 		mods = "ALT",
+		key = "LeftArrow",
 		action = wezterm.action.AdjustPaneSize({ "Left", 2 }),
 	},
 	{
-		key = "RightArrow",
 		mods = "ALT",
+		key = "RightArrow",
 		action = wezterm.action.AdjustPaneSize({ "Right", 2 }),
 	},
 	{
-		key = "UpArrow",
 		mods = "ALT",
+		key = "UpArrow",
 		action = wezterm.action.AdjustPaneSize({ "Up", 2 }),
 	},
 	{
-		key = "DownArrow",
 		mods = "ALT",
+		key = "DownArrow",
 		action = wezterm.action.AdjustPaneSize({ "Down", 2 }),
 	},
 }
@@ -282,20 +282,20 @@ config.keys = {
 config.mouse_bindings = {
 	-- 右クリックでクリップボードから貼り付け
 	{
-		event = { Down = { streak = 1, button = "Right" } },
 		mods = "NONE",
+		event = { Down = { streak = 1, button = "Right" } },
 		action = wezterm.action.PasteFrom("Clipboard"),
 	},
 	--	-- フォント拡大
 	--	{
-	--		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
 	--		mods = "ALT",
+	--		event = { Down = { streak = 1, button = { WheelUp = 1 } } },
 	--		action = wezterm.action.IncreaseFontSize,
 	--	},
 	--	-- フォント縮小
 	--	{
-	--		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
 	--		mods = "ALT",
+	--		event = { Down = { streak = 1, button = { WheelDown = 1 } } },
 	--		action = wezterm.action.DecreaseFontSize,
 	--	},
 	--	-- フォントリセット
