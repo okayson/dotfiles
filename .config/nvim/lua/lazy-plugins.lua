@@ -43,6 +43,7 @@ require('lazy').setup({
   require 'plugins.rg',
   require 'plugins.render-markdown',
   require 'plugins.qfconfig',
+  require 'plugins.aerial',
 
   -- Run `:Telescope colorscheme` to see which colorshemes are already installed.
   require 'colorscheme',
