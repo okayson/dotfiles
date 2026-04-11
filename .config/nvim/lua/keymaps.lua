@@ -57,7 +57,7 @@ map('n', '<C-h><C-h>', ':help <C-r><C-w><CR>', { desc = 'Help for word under cur
 map('n', '<C-h><C-g>', ':helpgrep ', { desc = 'Helpgrep' })
 
 -- Toggle Options
-local opt_prefix = '<Leader>o'
+local opt_prefix = '<Leader>t'
 --map('n', opt_pfx .. 'n', '<cmd>set number!<CR><cmd>echo "Toggle line numbers"<CR>', { desc = 'Toggle line numbers' })
 map('n', opt_prefix .. 'n', ':set number!<CR>', { desc = 'Toggle line numbers' })
 map('n', opt_prefix .. 'r', ':set relativenumber!<CR>', { desc = 'Toggle relative numbers' })

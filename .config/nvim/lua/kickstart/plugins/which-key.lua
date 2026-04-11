@@ -61,7 +61,6 @@ return {
       spec = {
         { '<leader>t', group = '[T]oggle' },
         { '<leader>tl', group = '[T]oggle [L]sp' },
-        { '<leader>o', group = 'Toggle [O]ption' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>c', group = '[C]opilot Chat' },
         { '<leader>f', group = '[F]iler' },
