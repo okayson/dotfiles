@@ -14,6 +14,6 @@ return {
     'AerialNavOpen',
   },
   keys = {
-    { '<leader>o', '<cmd>AerialOpen<CR>', desc = '[O]utline by Aerial' },
+    { '<leader>o', '<cmd>AerialOpen left<CR>', desc = '[O]utline by Aerial' },
   },
 }
